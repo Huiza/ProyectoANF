@@ -13,7 +13,7 @@ class EmpresaController extends Controller
      */
     public function index()
     {
-        //
+        return view('Empresas.lista_empresas');
     }
 
     /**
@@ -23,7 +23,7 @@ class EmpresaController extends Controller
      */
     public function create()
     {
-        //
+        return view('Empresas.crear_empresa');
     }
 
     /**
