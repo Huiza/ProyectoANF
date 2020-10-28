@@ -14,8 +14,9 @@ class CreateCuentaMayorsTable extends Migration
     public function up()
     {
         Schema::create('cuenta_mayors', function (Blueprint $table) {
-            $table->bigIncrements('id');
-            $table->timestamps();
+            $table->bigIncrements('id_cuenta_mayor');
+            $table->string('codigo_cuenta',10);
+            $table->string('nombre_cuenta');
         });
     }
 

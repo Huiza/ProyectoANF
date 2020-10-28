@@ -14,8 +14,10 @@ class CreateSubcuentaPrimariasTable extends Migration
     public function up()
     {
         Schema::create('subcuenta_primarias', function (Blueprint $table) {
-            $table->bigIncrements('id');
-            $table->timestamps();
+            $table->bigIncrements('id_subcuenta_primaria');
+            $table->integer('id_cuenta_mayor')->unsigned()->foreign()->references('id_cuenta_mayor')->on('cuenta_mayors')->onDelete('cascade');
+            $table->string('codigo_subcuenta_primaria');
+            $table->string('nombre_subcuenta_primaria',150);
         });
     }
 

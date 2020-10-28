@@ -14,8 +14,10 @@ class CreateSubcuentaTerciariasTable extends Migration
     public function up()
     {
         Schema::create('subcuenta_terciarias', function (Blueprint $table) {
-            $table->bigIncrements('id');
-            $table->timestamps();
+            $table->bigIncrements('id_subcuenta_terciaria');
+            $table->integer('id_subcuenta_secundaria')->unsigned()->foreign()->references('id_subcuenta_secundaria')->on('subcuenta_secundarias')->onDelete('cascade');
+            $table->string('codigo_subcuenta_terciaria');
+            $table->string('nombre_subcuenta_terciaria',150);
         });
     }
 
