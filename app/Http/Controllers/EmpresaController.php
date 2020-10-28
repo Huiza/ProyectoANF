@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Http\Requests\EmpresaRequest;
 
 class EmpresaController extends Controller
 {
@@ -13,7 +14,12 @@ class EmpresaController extends Controller
      */
     public function index()
     {
+
         return view('Empresas.lista_empresas');
+
+        //
+        $empresas=empresa::all();
+        return view('',compact('empresas'));
     }
 
     /**
@@ -23,7 +29,12 @@ class EmpresaController extends Controller
      */
     public function create()
     {
+
         return view('Empresas.crear_empresa');
+
+        $tipos = tipo::all();
+        return view('',compact('tipos'));
+        //
     }
 
     /**
@@ -32,9 +43,15 @@ class EmpresaController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(EmpresaRequest $request)
     {
-        //
+        $empresa = new empresa;//
+        $empresa->codigo = $request->codigo;
+        $empresa->nombre_empresa = $request->nombre;
+        $empresa->descripcion = $request->descripcion;
+        $empresa->tipo_id = $request->tipo_id;
+        $empresa->save();
+        return redirect('');
     }
 
     /**
@@ -56,7 +73,10 @@ class EmpresaController extends Controller
      */
     public function edit($id)
     {
-        //
+        $empresa_actualizar = emprtesa::findOrFail($id);
+        $tipos = tipo::all();
+         return view('',compact('empresa_actualizar','tipos'));
+
     }
 
     /**
@@ -66,9 +86,16 @@ class EmpresaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(EmpresaRequest $request, $id)
     {
         //
+        $empresa_actualizar = empresa::findOrFail($id);
+        $empresa_actualizar->codigo = $request->codigo;
+        $empresa_actualizar->nombre_empresa = $request->nombre;
+        $empresa_actualizar->descripcion = $request->descripcion;
+        $empresa_actualizar->tipo_id = $request->tipo_id;
+        $empresa_actualizar->save();
+
     }
 
     /**
@@ -80,5 +107,6 @@ class EmpresaController extends Controller
     public function destroy($id)
     {
         //
+        
     }
 }
