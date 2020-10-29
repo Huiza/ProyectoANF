@@ -25,7 +25,7 @@ class EmpresaRequest extends FormRequest
     {
         return [
             'codigo'=> 'required|max:7|regex:/[A-Za-z]{2}[0-9]{5}/',
-            'nombre' => 'required|max:100|regex:/[a-zA-ZñÑáéíóúÁÉÍÓÚ]/',
+            'nombre_empresa' => 'required|max:100|regex:/[a-zA-ZñÑáéíóúÁÉÍÓÚ]/',
             'descripcion' => 'required|max:100|regex:/[a-zA-ZñÑáéíóúÁÉÍÓÚ]/',
             'tipo_id'          => 'required',
         ];
@@ -33,11 +33,11 @@ class EmpresaRequest extends FormRequest
         return [
             'codigo.required' => 'El campo código es obligatorio.',
             'codigo.max'=> 'La cantidad máxima de carácteres es 7.',
-            'carne.regex'=> 'El formato debe ser AA#####',
+            'codigo.regex'=> 'El formato debe ser AA#####',
 
-            'nombre.required'=> 'El campo nombre es obligatorio.',
-            'nombre.max' => 'La cantidad máxima de carácteres es 100.',
-            'nombre.regex' => 'Los carácteres deben ser solo letras.',
+            'nombre_empresa.required'=> 'El campo nombre es obligatorio.',
+            'nombre_empresa.max' => 'La cantidad máxima de carácteres es 100.',
+            'nombre_empresa.regex' => 'Los carácteres deben ser solo letras.',
             
             'descripcion.required'=> 'El campo descripcion es obligatorio.',
             'descripcion.max'=> 'La cantidad máxima de carácteres es 100.',

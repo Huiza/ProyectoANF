@@ -43,13 +43,14 @@ class EmpresaController extends Controller
      */
     public function store(EmpresaRequest $request)
     {
+        $empresa_registrada=false;
         $empresa = new empresa;//
         $empresa->codigo = $request->codigo;
-        $empresa->nombre_empresa = $request->nombre;
+        $empresa->nombre_empresa = $request->nombre_empresa;
         $empresa->descripcion = $request->descripcion;
         $empresa->tipo_id = $request->tipo_id;
         $empresa->save();
-        return redirect('empresas');
+         return redirect('empresas');
     }
 
     /**
@@ -71,9 +72,9 @@ class EmpresaController extends Controller
      */
     public function edit($id)
     {
-        /*$empresa_actualizar = emprtesa::findOrFail($id);
+        $empresa_actualizar = empresa::findOrFail($id);
         $tipos = tipo::all();
-        return view('Empresas.empresa_editar', compact('empresa_actualizar','tipos'));*/
+        return view('Empresas.editar_empresa', compact('empresa_actualizar','tipos'));
 
     }
 
@@ -87,13 +88,12 @@ class EmpresaController extends Controller
     public function update(EmpresaRequest $request, $id)
     {
         //
-       /* $empresa_actualizar = empresa::findOrFail($id);
+        $empresa_actualizar = empresa::findOrFail($id);
         $empresa_actualizar->codigo = $request->codigo;
-        $empresa_actualizar->nombre_empresa = $request->nombre;
+        $empresa_actualizar->nombre_empresa = $request->nombre_empresa;
         $empresa_actualizar->descripcion = $request->descripcion;
         $empresa_actualizar->tipo_id = $request->tipo_id;
-        $empresa_actualizar->save();
-        return redirect('empresas');*/
+        return redirect('empresas');
 
 
     }
