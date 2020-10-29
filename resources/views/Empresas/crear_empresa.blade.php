@@ -36,13 +36,12 @@
                 <div class="form-group">
                   <label class="col-sm-4 col-sm-2 control-label">Tipo </label>
                   <div class="col-sm-8">
-                  <select class="form-control round-form">
-                    <option>1</option>
-                    <option>2</option>
-                    <option>3</option>
-                    <option>4</option>
-                    <option>5</option>
-                    </select>
+                  <select name="tipo_id" class="form-control round-form">
+                    <option>--Seleccione el tipo de empresa--</option>
+                    @foreach($tipos as $tipo)
+                      <option value="{{$tipo->id}}" >{{$tipo->tipo}}</option>
+                    @endforeach
+                  </select>
                 </div>
                 </div>
                 <br><br>
