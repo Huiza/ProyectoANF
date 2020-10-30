@@ -378,3 +378,10 @@ INSERT INTO `subcuenta_terciarias` (`id_subcuenta_terciaria`, `id_subcuenta_secu
 (4, 2, '', 'Banco Citibank'),
 (5, 3, '', 'Banco Agrícola'),
 (6, 3, '', 'Banco Citibank');
+
+INSERT INTO `tipos` (`id`, `tipo`, `created_at`, `updated_at`) VALUES
+(1, 'Comercial', NULL, NULL),
+(2, 'Extractiva', NULL, NULL),
+(3, 'Financiera', NULL, NULL),
+(4, 'Industrial', NULL, NULL),
+(5, 'Servicio', NULL, NULL);
