@@ -24,17 +24,20 @@ class EmpresaRequest extends FormRequest
     public function rules()
     {
         return [
-            'codigo'=> 'required|max:7|regex:/[A-Za-z]{2}[0-9]{5}/',
+            'codigo'=> 'required|string',
             'nombre_empresa' => 'required|max:100|regex:/[a-zA-ZñÑáéíóúÁÉÍÓÚ]/',
             'descripcion' => 'required|max:100|regex:/[a-zA-ZñÑáéíóúÁÉÍÓÚ]/',
             'tipo_id'          => 'required',
         ];
 
+       
+    }
+
+    public function messages()
+    {
         return [
             'codigo.required' => 'El campo código es obligatorio.',
-            'codigo.max'=> 'La cantidad máxima de carácteres es 7.',
-            'codigo.regex'=> 'El formato debe ser AA#####',
-
+    
             'nombre_empresa.required'=> 'El campo nombre es obligatorio.',
             'nombre_empresa.max' => 'La cantidad máxima de carácteres es 100.',
             'nombre_empresa.regex' => 'Los carácteres deben ser solo letras.',
@@ -46,4 +49,5 @@ class EmpresaRequest extends FormRequest
             'tipo_id.required'          => 'Debe seleccionar un tipo',
         ];
     }
+
 }

@@ -17,6 +17,9 @@
                   <label class="col-sm-4 col-sm-2 control-label">Código </label>
                   <div class="col-sm-8">
                     <input type="text" class="form-control round-form" name="codigo" value="{{$empresa_actualizar->codigo}}" readonly>
+                    @foreach ($errors->get('codigo') as $mensaje)
+                      <small style="color:#B42020;">{{ $mensaje }}</small>
+                    @endforeach
                   </div>
                 </div>
 
@@ -24,6 +27,9 @@
                   <label class="col-sm-4 col-sm-2 control-label">Nombre </label>
                   <div class="col-sm-8">
                     <input type="text" class="form-control round-form" name="nombre_empresa" value="{{$empresa_actualizar->nombre_empresa}}">
+                    @foreach ($errors->get('nombre_empresa') as $mensaje)
+                      <small style="color:#B42020;">{{ $mensaje }}</small>
+                    @endforeach
                   </div>
                 </div>
 
@@ -31,6 +37,9 @@
                   <label class="col-sm-4 col-sm-2 control-label">Descripción </label>
                   <div class="col-sm-8">
                     <input type="text" class="form-control round-form" name="descripcion" value="{{$empresa_actualizar->descripcion}}">
+                    @foreach ($errors->get('descripcion') as $mensaje)
+                      <small style="color:#B42020;">{{ $mensaje }}</small>
+                    @endforeach
                   </div>
                 </div>
 
@@ -43,13 +52,16 @@
                       <option value="{{$tipo->id}}" {{ ($empresa_actualizar->tipo_id == $loop->iteration ? "selected":"") }}>{{$tipo->tipo}}</option>
                     @endforeach
                   </select>
+                  @foreach ($errors->get('tipo_id') as $mensaje)
+                      <small style="color:#B42020;">{{ $mensaje }}</small>
+                  @endforeach
                 </div>
                 </div>
                 <br><br>
                 <div class="form-group">
                     <div class="col-lg-offset-2 col-lg-10">
-                      <button class="btn btn-theme" type="submit">Actualizar empresa</button>
-                      <button class="btn btn-theme04" type="button">Cancelar</button>
+                      <button class="btn btn-theme">Actualizar empresa</button>
+                      <button class="btn btn-theme04">Cancelar</button>
                     </div>
                 </div>
                 

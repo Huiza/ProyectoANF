@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateSubcuentaTerciariasTable extends Migration
+class CreateSubcuentaQuinariasTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,9 @@ class CreateSubcuentaTerciariasTable extends Migration
      */
     public function up()
     {
-        Schema::create('subcuenta_terciarias', function (Blueprint $table) {
-            $table->bigIncrements('id_subcuenta_terciaria');
-            $table->integer('id_subcuenta_secundaria')->unsigned()->foreign()->references('id_subcuenta_secundaria')->on('subcuenta_secundarias')->onDelete('cascade');
+        Schema::create('subcuenta_quinarias', function (Blueprint $table) {
+            $table->bigIncrements('id_subcuenta_quinaria');
+            $table->integer('id_subcuenta_cuaternaria')->unsigned()->foreign()->references('id_subcuenta_cuaternaria')->on('subcuenta_cuaternarias')->onDelete('cascade');
             $table->string('nombre_subcuenta_terciaria',150);
         });
     }
@@ -27,6 +27,6 @@ class CreateSubcuentaTerciariasTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('subcuenta_terciarias');
+        Schema::dropIfExists('subcuenta_quinarias');
     }
 }

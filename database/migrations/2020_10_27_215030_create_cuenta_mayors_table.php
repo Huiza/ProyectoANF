@@ -15,7 +15,6 @@ class CreateCuentaMayorsTable extends Migration
     {
         Schema::create('cuenta_mayors', function (Blueprint $table) {
             $table->bigIncrements('id_cuenta_mayor');
-            $table->string('codigo_cuenta',10);
             $table->string('nombre_cuenta');
         });
     }

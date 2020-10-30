@@ -30,9 +30,6 @@ class EmpresaController extends Controller
         $tipos = tipo::all();
         return view('Empresas.crear_empresa',compact('tipos'));
 
-       
-        
-        //
     }
 
     /**
@@ -87,12 +84,13 @@ class EmpresaController extends Controller
      */
     public function update(EmpresaRequest $request, $id)
     {
-        //
+
         $empresa_actualizar = empresa::findOrFail($id);
         $empresa_actualizar->codigo = $request->codigo;
         $empresa_actualizar->nombre_empresa = $request->nombre_empresa;
         $empresa_actualizar->descripcion = $request->descripcion;
         $empresa_actualizar->tipo_id = $request->tipo_id;
+        $empresa_actualizar->save();
         return redirect('empresas');
 
 

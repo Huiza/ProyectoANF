@@ -11,6 +11,7 @@
                 <hr>
                 <thead>
                   <tr>
+                    <th><i class="fa fa-bullhorn"></i> Código</th>
                     <th><i class="fa fa-bullhorn"></i> Empresa</th>
                     <th class="hidden-phone"><i class="fa fa-question-circle"></i> Descripción</th>
                     <th><i class="fa fa-bookmark"></i>Tipo</th>
@@ -20,12 +21,15 @@
                 <tbody>
                   @foreach($empresas as $empresa)
                   <tr>
+                      <td>{{$empresa->codigo}}</td>
                       <td>{{$empresa->nombre_empresa}}</td>
                       <td>{{$empresa->descripcion}}</td>
                       <td>{{$empresa->tipo->tipo}}</td>
                       <td>
-                        <a href="{{route('editar_empresa', $empresa->id)}}" class="btn btn-primary btn-xs"><i class="fa fa-pencil"></i></a>
-                       
+                        <a href="{{route('editar_empresa', $empresa->id)}}" class="btn btn-primary"><i class="fa fa-pencil"></i></a>
+                      </td>
+                      <td>
+                        <a href="{{route('crear_catalogo', $empresa->id)}}" class="btn btn-primary"><i class="fa fa-pencil"></i></a>
                       </td>
                   </tr>
                   @endforeach

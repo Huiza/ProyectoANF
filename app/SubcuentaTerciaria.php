@@ -9,7 +9,7 @@ class SubcuentaTerciaria extends Model
     protected $table      = 'subcuenta_terciarias';
     protected $primaryKey = 'id_subcuenta_terciaria';
 
-    protected $fillable = ['id_subcuenta_secundaria', 'codigo_subcuenta_terciaria', 'nombre_subcuenta_terciaria'];
+    protected $fillable = ['id_subcuenta_secundaria','nombre_subcuenta_terciaria'];
 
     public function subcuentaSecundaria()
     {
