@@ -14,3 +14,21 @@
 Route::get('/', function () {
     return view('welcome');
 });
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
+
+//RUTAS PARA LAS EMPRESAS
+Route::get('empresas', 'EmpresaController@index')->name('empresas');
+
+Route::get('empresas/crear', 'EmpresaController@create')->name('crear_empresa');
+    
+Route::post('empresas/guardar', 'EmpresaController@store')->name('guardar_empresa');
+    
+Route::get('empresas/editar/{id}', 'EmpresaController@edit')->name('editar_empresa');
+    
+Route::put('empresas/actualizar/{id}', 'EmpresaController@update')->name('actualizar_empresa');
+    
+
+   
