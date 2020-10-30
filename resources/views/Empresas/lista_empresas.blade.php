@@ -28,9 +28,7 @@
                       <td>
                         <a href="{{route('editar_empresa', $empresa->id)}}" class="btn btn-primary"><i class="fa fa-pencil"></i></a>
                       </td>
-                      <td>
-                        <a href="{{route('crear_catalogo', $empresa->id)}}" class="btn btn-primary"><i class="fa fa-pencil"></i></a>
-                      </td>
+                      
                   </tr>
                   @endforeach
                 </tbody>
