@@ -9,29 +9,32 @@
           <div class="col-lg-12">
             <div class="form-panel" style="padding:3%; font-size:15px;">
               <h4 class="mb"><i class="fa fa-angle-right"></i> {{$empresa->nombre_empresa}} : Registro de catálogo</h4>
-              <br>
-              <form class="form-horizontal style-form" method="POST" action="{{route('guardar_empresa')}}" style="padding-left:10%;">
+              <form class="form-horizontal style-form" method="POST" action="{{route('guardar_empresa')}}" style="padding:5%;">
                @csrf
 
                @foreach($cuentas_mayores as $cm)
-                   <h4><strong>{{$cm->nombre_cuenta}}</strong></h4>
-                   @foreach($cuentas_primarias as $cp)
-                   <h5><strong>{{$cp->nombre_subcuenta_primaria}}</strong></h5>
-                   @foreach($cuentas_secundarias as $cs)
-                   <h6><strong>{{$cs->nombre_subcuenta_secundaria}}</strong></h6>
-                   @foreach($cuentas_terciarias as $ct)
-                   <p>{{$ct->nombre_subcuenta_terciaria}}</p>
-                   @foreach($cuentas_cuaternarias as $cc)
-                   <p>{{$ct->nombre_subcuenta_cuaternaria}}</hp>
-                   @foreach($cuentas_quinarias as $cq)
-                   <p>{{$ct->nombre_subcuenta_quinaria}}</hp>
+                   <h3><strong>{{$cm->nombre_cuenta}}</strong></h3>
+                   <hr>
+                   @foreach($cm->cuentaPrimaria as $cp)
+                   <h4><strong>{{$cp->nombre_subcuenta_primaria}}</strong></h4>
+                   @foreach($cp->cuentaSecundaria as $cs)
+                   <h5><strong>{{$cs->nombre_subcuenta_secundaria}}</strong></h5>
+                   @foreach($cs->cuentaTerciaria as $ct)
+                   <h6><strong>{{$ct->nombre_subcuenta_terciaria}}</strong></h6>
+                   @foreach($ct->cuentaCuaternaria as $cc)
+                   <h6><strong>{{$cc->nombre_subcuenta_cuaternaria}}</strong></h6>
+                   @foreach($cc->cuentaQuinaria as $cq)
+                   <h6><strong>{{$cq->nombre_subcuenta_quinaria}}</strong></h6>
                    @endforeach
                    @endforeach
                    @endforeach
+                   <hr>
                    @endforeach
                    @endforeach
-                   
+               
                @endforeach
+                   
+              
                </form>
             </div>
           </div>

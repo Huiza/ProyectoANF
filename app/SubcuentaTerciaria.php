@@ -11,8 +11,8 @@ class SubcuentaTerciaria extends Model
 
     protected $fillable = ['id_subcuenta_secundaria','nombre_subcuenta_terciaria'];
 
-    public function subcuentaSecundaria()
+    public function cuentaCuaternaria()
     {
-        return $this->hasMany(SubcuentaSecundaria::class, 'id_subcuenta_secundaria', 'id_subcuenta_secundaria');
+        return $this->hasMany(SubcuentaCuaternaria::class, 'id_subcuenta_terciaria', 'id_subcuenta_terciaria');
     }
 }

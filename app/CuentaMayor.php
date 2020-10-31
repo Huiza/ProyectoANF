@@ -10,4 +10,9 @@ class CuentaMayor extends Model
     protected $primaryKey = 'id_cuenta_mayor';
 
     protected $fillable = ['nombre_cuenta'];
+
+    public function cuentaPrimaria()
+    {
+        return $this->hasMany(SubcuentaPrimaria::class, 'id_cuenta_mayor', 'id_cuenta_mayor');
+    }
 }

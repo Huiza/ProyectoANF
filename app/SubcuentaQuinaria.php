@@ -11,8 +11,5 @@ class SubcuentaQuinaria extends Model
 
     protected $fillable = ['id_subcuenta_cuaternaria','nombre_subcuenta_quinaria'];
 
-    public function subcuentaCuaternaria()
-    {
-        return $this->hasMany(SubcuentaCuaternaria::class, 'id_subcuenta_cuaternaria', 'id_subcuenta_cuaternaria');
-    }
+   
 }
