@@ -22,7 +22,9 @@
   <!-- Custom styles for this template -->
   <link href="{{ asset('css/style.css') }}" rel="stylesheet">
   <link href="{{ asset('css/style-responsive.css') }}" rel="stylesheet">
+  <link rel="stylesheet" href="{{ asset('css/to-do.css') }}">
   <script src="{{ asset('lib/chart-master/Chart.js') }}"></script>
+
 
   <!-- =======================================================
     Template Name: Dashio
@@ -229,6 +231,18 @@
     <!--script for this page-->
     <script src="{{ asset('lib/sparkline-chart.js') }}"></script>
     <script src="{{ asset('lib/zabuto_calendar.js') }}"></script>
+    <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+    <script src="{{ asset('lib/tasks.js') }}" type="text/javascript"></script>
+    <script>
+    jQuery(document).ready(function() {
+      TaskList.initTaskWidget();
+    });
+
+    $(function() {
+      $("#sortable").sortable();
+      $("#sortable").disableSelection();
+    });
+  </script>
     
   </body>
   

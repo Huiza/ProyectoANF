@@ -10,6 +10,7 @@ use App\SubcuentaSecundaria;
 use App\SubcuentaTerciaria;
 use App\SubcuentaCuaternaria;
 use App\SubcuentaQuinaria;
+use App\Cuenta;
 
 class CatalogoController extends Controller
 {
@@ -21,12 +22,14 @@ class CatalogoController extends Controller
     public function create($id)
     {   
         $empresa = empresa::findOrFail($id);
-        $cuentas_mayores = CuentaMayor::all();
+        /*$cuentas_mayores = CuentaMayor::all();
         $cuentas_primarias = SubcuentaPrimaria::all();
         $cuentas_secundarias = SubcuentaSecundaria::all();
         $cuentas_terciarias = SubcuentaTerciaria::all();
         $cuentas_cuaternarias = SubcuentaCuaternaria::all();
-        $cuentas_quinarias = SubcuentaQuinaria::all();
-        return view('Catalogo.crear_catalogo', compact('empresa', 'cuentas_mayores', 'cuentas_primarias', 'cuentas_secundarias', 'cuentas_terciarias', 'cuentas_cuaternarias', 'cuentas_quinarias'));
+        $cuentas_quinarias = SubcuentaQuinaria::all();*/
+        $cuentas = Cuenta::all();
+
+        return view('Catalogo.crear_catalogo', compact('empresa', 'cuentas'));
     }
 }

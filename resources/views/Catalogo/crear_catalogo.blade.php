@@ -9,31 +9,45 @@
           <div class="col-lg-12">
             <div class="form-panel" style="padding:3%; font-size:15px;">
               <h4 class="mb"><i class="fa fa-angle-right"></i> {{$empresa->nombre_empresa}} : Registro de catálogo</h4>
-              <form class="form-horizontal style-form" method="POST" action="{{route('guardar_empresa')}}" style="padding:5%;">
+              <form class="form-horizontal style-form" method="POST" action="{{route('guardar_empresa')}}" style="padding:2%;">
                @csrf
-
-               @foreach($cuentas_mayores as $cm)
-                   <h3><strong>{{$cm->nombre_cuenta}}</strong></h3>
-                   <hr>
-                   @foreach($cm->cuentaPrimaria as $cp)
-                   <h4><strong>{{$cp->nombre_subcuenta_primaria}}</strong></h4>
-                   @foreach($cp->cuentaSecundaria as $cs)
-                   <h5><strong>{{$cs->nombre_subcuenta_secundaria}}</strong></h5>
-                   @foreach($cs->cuentaTerciaria as $ct)
-                   <h6><strong>{{$ct->nombre_subcuenta_terciaria}}</strong></h6>
-                   @foreach($ct->cuentaCuaternaria as $cc)
-                   <h6><strong>{{$cc->nombre_subcuenta_cuaternaria}}</strong></h6>
-                   @foreach($cc->cuentaQuinaria as $cq)
-                   <h6><strong>{{$cq->nombre_subcuenta_quinaria}}</strong></h6>
-                   @endforeach
-                   @endforeach
-                   @endforeach
-                   <hr>
-                   @endforeach
-                   @endforeach
-               
-               @endforeach
+            <div class="row mt">
+          <div class="col-md-12">
+            <section class="task-panel tasks-widget">
+              <div class="panel-heading">
+                <div class="pull-left">
+                  <h5><i class="fa fa-tasks"></i> Seleccione las cuentas a utilizar, en orden</h5>
+                </div>
+                <br>
+              </div>
+              <div class="panel-body">
+                <div class="task-content">
+                  <ul class="task-list">
+                  @foreach($cuentas as $cuenta)
+                    <li>
+                      <div class="task-title">
+                        <span class="task-title-sp">{{$cuenta->nombre_cuenta}}</span>
+                        <div class="pull-right hidden-phone">
+                          <div class="task-checkbox">
+                          
+                          <div class="col-sm-10">
+                            <input type="text" class="form-control round-form" name="codigo" placeholder="Código de cuenta">
+                          </div>
+                          <input type="checkbox" class="list-child" name="cuentas[]" value="{{ $cuenta->id }}">
+                          </div>
+                        </div>
+                      </div>
+                    </li>
+                    @endforeach
                    
+                  </ul>
+                </div>
+                
+              </div>
+            </section>
+          </div>
+          <!-- /col-md-12-->
+        </div>
               
                </form>
             </div>
