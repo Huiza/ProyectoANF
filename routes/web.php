@@ -31,4 +31,6 @@ Route::get('empresas/editar/{id}', 'EmpresaController@edit')->name('editar_empre
 Route::put('empresas/actualizar/{id}', 'EmpresaController@update')->name('actualizar_empresa');
     
 //RUTAS PARA EL CATÁLOGO
-Route::get('catalogo/crear/{id}', 'CatalogoController@create')->name('crear_catalogo');   
+Route::get('catalogo/crear/{id}', 'CatalogoController@create')->name('crear_catalogo');
+
+Route::post('catalogo/guardar', 'CatalogoController@store')->name('guardar_catalogo');   

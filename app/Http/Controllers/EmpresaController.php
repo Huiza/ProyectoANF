@@ -7,6 +7,7 @@ use App\Http\Requests\EmpresaRequest;
 use App\tipo;
 use App\empresa;
 
+
 class EmpresaController extends Controller
 {
     /**
@@ -15,7 +16,7 @@ class EmpresaController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {
+    {   
         $empresas=empresa::all();
         return view('Empresas.lista_empresas',compact('empresas'));
     }
@@ -47,7 +48,7 @@ class EmpresaController extends Controller
         $empresa->descripcion = $request->descripcion;
         $empresa->tipo_id = $request->tipo_id;
         $empresa->save();
-         return redirect('empresas');
+        return redirect('empresas');
     }
 
     /**
@@ -58,7 +59,7 @@ class EmpresaController extends Controller
      */
     public function show($id)
     {
-        //
+        
     }
 
     /**
