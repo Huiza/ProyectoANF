@@ -1,9 +1,16 @@
-@extends('layouts.app')
+}@extends('layouts.app')
 
 @section('content')
 <div class="row mt">
           <div class="col-md-12">
             <div class="content-panel" style="padding:3%;">
+              <form method="post" enctype="multipart/form-data" action="{{route('estado_resultado')}}">
+                @csrf
+
+                <input type="file" name="estado_finaciero">
+                <button class="btn btn-primary">Importar Balance General</button>
+                <button class="btn btn-primary">Importar Estado de resultado</button>
+              </form>
             <a href="{{route('crear_empresa')}}"><button type="button" class="btn btn-round btn-default"> <i class="fa fa-plus"></i> Agregar</button></a>
             <br><br>
               <table class="table table-striped table-advance table-hover" >

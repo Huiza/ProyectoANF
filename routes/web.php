@@ -31,4 +31,8 @@ Route::get('empresas/editar/{id}', 'EmpresaController@edit')->name('editar_empre
 Route::put('empresas/actualizar/{id}', 'EmpresaController@update')->name('actualizar_empresa');
     
 //RUTAS PARA EL CATÁLOGO
-Route::get('catalogo/crear/{id}', 'CatalogoController@create')->name('crear_catalogo');   
+Route::get('catalogo/crear/{id}', 'CatalogoController@create')->name('crear_catalogo'); 
+
+Route::post('importarBalanceGeneral', 'ImportarExcelController@ImportarBalanceGeneral')->name('balance_general'); 
+Route::post('importarEstadoResultado', 'ImportarExcelController@ImportarEstadoResultado')->name('estado_resultado');   
+

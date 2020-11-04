@@ -3,12 +3,12 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
-use App\empresa;
+use App\Empresa;
 
 class tipo extends Model
 {
     
-    protected $fillabel = ['tipo'];
+    protected $fillable = ['tipo'];
 
     public function getRouteKeyName()
     {
@@ -17,6 +17,6 @@ class tipo extends Model
 
       public function empresas()
     {
-        return $this->hasMany(empresa::class);
+        return $this->hasMany(Empresa::class);
     }
 }
