@@ -4,8 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Http\Requests\EmpresaRequest;
-use App\tipo;
-use App\empresa;
+use App\Tipo;
+use App\Empresa;
 
 
 class EmpresaController extends Controller
@@ -16,8 +16,13 @@ class EmpresaController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
+<<<<<<< HEAD
     {   
         $empresas=empresa::all();
+=======
+    {
+        $empresas=Empresa::all();
+>>>>>>> ccf5fb43dd78804e4189ef1d16d77d1a63b44a5d
         return view('Empresas.lista_empresas',compact('empresas'));
     }
 
@@ -28,7 +33,7 @@ class EmpresaController extends Controller
      */
     public function create()
     {
-        $tipos = tipo::all();
+        $tipos = Tipo::all();
         return view('Empresas.crear_empresa',compact('tipos'));
 
     }
@@ -42,7 +47,7 @@ class EmpresaController extends Controller
     public function store(EmpresaRequest $request)
     {
         $empresa_registrada=false;
-        $empresa = new empresa;//
+        $empresa = new Empresa;//
         $empresa->codigo = $request->codigo;
         $empresa->nombre_empresa = $request->nombre_empresa;
         $empresa->descripcion = $request->descripcion;
@@ -70,8 +75,8 @@ class EmpresaController extends Controller
      */
     public function edit($id)
     {
-        $empresa_actualizar = empresa::findOrFail($id);
-        $tipos = tipo::all();
+        $empresa_actualizar = Empresa::findOrFail($id);
+        $tipos = Tipo::all();
         return view('Empresas.editar_empresa', compact('empresa_actualizar','tipos'));
 
     }
@@ -86,7 +91,7 @@ class EmpresaController extends Controller
     public function update(EmpresaRequest $request, $id)
     {
 
-        $empresa_actualizar = empresa::findOrFail($id);
+        $empresa_actualizar = Empresa::findOrFail($id);
         $empresa_actualizar->codigo = $request->codigo;
         $empresa_actualizar->nombre_empresa = $request->nombre_empresa;
         $empresa_actualizar->descripcion = $request->descripcion;

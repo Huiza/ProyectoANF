@@ -32,7 +32,7 @@
                         <input type="checkbox" class="list-child" name="id_cuenta[]" value="{{ $cuenta->id_cuenta }}">
                         <div class="pull-right hidden-phone">
                           <div class="task-checkbox">
-                          <input type="text"  name="id_empresa" value="{{ $empresa->id }}" hidden>
+                          <input type="text"  name="id_empresa[]" value="{{ $empresa->id }}" hidden>
                           <div class="col-sm-10" style="display:flex;">
                           <input type="text" class="form-control round-form" name="codigo_cuenta[]" placeholder="Código de cuenta">
                           

@@ -38,10 +38,9 @@ class CatalogoController extends Controller
         {
             foreach($request->id_cuenta as $key => $value){
                 Catalogo::create([
-                    'id_empresa' => $request['id_empresa'][$key], // aquí deberás indicarle el índice que coincida con el del input sobre el que estás iterando
-                    'id_cuenta' => $value, // fecha es siempre la misma
-                    
-                    'codigo_cuenta' => $request['codigo_cuenta'][$key],// este es el input sobre el que iteras, así que solo asígnale el valor
+                    'id_empresa' => $request['id_empresa'][$key], 
+                    'id_cuenta' => $value, 
+                    'codigo_cuenta' => $request['codigo_cuenta'][$key],
                 ]);
             }
                
