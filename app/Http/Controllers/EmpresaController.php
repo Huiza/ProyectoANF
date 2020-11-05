@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests\EmpresaRequest;
 use App\Tipo;
 use App\Empresa;
+use App\Catalogo;
 
 
 class EmpresaController extends Controller
@@ -16,15 +17,11 @@ class EmpresaController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-<<<<<<< HEAD
-    {   
-        $empresas=empresa::all();
-=======
     {
-        $empresas=Empresa::all();
->>>>>>> ccf5fb43dd78804e4189ef1d16d77d1a63b44a5d
+        $empresas = Empresa::all();
         return view('Empresas.lista_empresas',compact('empresas'));
     }
+  
 
     /**
      * Show the form for creating a new resource.
@@ -64,7 +61,9 @@ class EmpresaController extends Controller
      */
     public function show($id)
     {
-        
+        $empresa = Empresa::findOrFail($id);
+        $catalogo = Catalogo::where('id_empresa', $empresa->id)->get();
+        return view('Empresas.ver_empresa', compact('empresa', 'catalogo'));
     }
 
     /**

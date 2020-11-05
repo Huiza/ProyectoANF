@@ -11,40 +11,48 @@
               <h4 class="mb"><i class="fa fa-angle-right"></i> {{$empresa->nombre_empresa}}: Registro de catálogo</h4>
               <form class="form-horizontal style-form" method="POST" action="{{route('guardar_catalogo')}}" style="padding:2%;">
                @csrf
-            <div class="row mt">
-          <div class="col-md-12">
-            <section class="task-panel tasks-widget">
-              <div class="panel-heading">
-                <div class="pull-left">
-                  <h5><i class="fa fa-tasks"></i> Seleccione las cuentas a utilizar, en orden</h5>
-                </div>
-                <br>
-              </div>
-              
-              
+           
               <div class="panel-body">
                 <div class="task-content">
-                  <ul class="task-list">
-                  @foreach($cuentas as $cuenta)
-                    <li>
-                      <div class="task-title">
-                        <span class="task-title-sp">{{$cuenta->nombre_cuenta}}</span>
-                        <input type="checkbox" class="list-child" name="id_cuenta[]" value="{{ $cuenta->id_cuenta }}">
-                        <div class="pull-right hidden-phone">
-                          <div class="task-checkbox">
-                          <input type="text"  name="id_empresa[]" value="{{ $empresa->id }}" hidden>
-                          <div class="col-sm-10" style="display:flex;">
-                          <input type="text" class="form-control round-form" name="codigo_cuenta[]" placeholder="Código de cuenta">
-                          
-                          </div>
-                          
-                          </div>
-                        </div>
-                      </div>
-                    </li>
-                    @endforeach
-                   
-                  </ul>
+
+                <div class="row">
+                      <div class="col-md-12">
+                        <h3> </h3>
+
+                        <div class="col-md-11">
+                      
+                        <table class="table table-hover">
+                            <h4><i class="fa fa-angle-right"></i> Catálogo de cuentas</h4>
+                            <hr>
+                            <thead>
+                            <tr>
+                                <th><h4><strong>Cuenta</strong></h4></th>
+                                <th><h4><strong>Código</strong></h4></th>
+                                <th><h4><strong>Selección</strong></h4></th>
+
+                            </tr>
+                            </thead>
+                            <tbody>
+                            
+                            @foreach($cuentas as $cuenta)
+                            <tr>
+                                <div class="task-checkbox"><input type="text"  name="id_empresa[]" value="{{ $empresa->id }}" hidden></div>
+                                @if($cuenta->nombre_cuenta == 'ACTIVO' || $cuenta->nombre_cuenta == 'PASIVO' || $cuenta->nombre_cuenta == 'PATRIMONIO' || $cuenta->nombre_cuenta == 'INGRESOS' || $cuenta->nombre_cuenta == 'GASTOS' || $cuenta->nombre_cuenta == 'CUENTA LIQUIDADORA O DE CIERRE' || $cuenta->nombre_cuenta == 'CUENTAS DE MEMORANDUM DEUDORAS' || $cuenta->nombre_cuenta == 'CUENTAS DE MEMORANDUM DEUDORAS')
+                                <td><h4><strong>{{$cuenta->nombre_cuenta}}</strong></h4></td>
+                                <td><input type="text" class="form-control round-form" name="codigo_cuenta[]" placeholder="Código de cuenta"></td>
+                                @else
+                                <td>{{$cuenta->nombre_cuenta}}</td>
+                                <td><input type="text" class="form-control round-form" name="codigo_cuenta[]" placeholder="Código de cuenta"></td>
+                                @endif
+                                <td><input type="checkbox" class="list-child" name="id_cuenta[]" value="{{ $cuenta->id_cuenta }}"></td>
+
+                            </tr>
+                            @endforeach
+                            </tbody>
+                        </table>
+                        
+                    </div>
+                 
                 </div>
                 
               </div>

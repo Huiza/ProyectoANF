@@ -182,39 +182,30 @@
 
 
     <section id="main-content">
-      <section class="wrapper">
-          <div class="col-lg-12 main-chart">
-    
-    @yield('content')
-            
+      <section class="wrapper site-min-height">
+        <div class="row mt">
+          <div class="col-lg-12">
+          @yield('content')
           </div>
-          
-      </section>
-      
-    </section>
-    <!--////////////////FOOTER//////////////////!-->
-   
-
-    <footer class="site-footer" >
-        <div class="text-center" >
-          <p>
-            &copy; DerechosReservados <strong>ANF</strong>
-          </p>
-          <div class="credits">
-            <!--
-              You are NOT allowed to delete the credit link to TemplateMag with free version.
-              You can delete the credit link only if you bought the pro version.
-              Buy the pro version with working PHP/AJAX contact form: https://templatemag.com/dashio-bootstrap-admin-template/
-              Licensing information: https://templatemag.com/license/
-            -->
-            
-          </div>
-          <a href="index.html#" class="go-top">
-            <i class="fa fa-angle-up"></i>
-            </a>
         </div>
-      </footer>
-      <!--footer end-->
+      </section>
+      <!-- /wrapper -->
+    </section>
+    <!-- /MAIN CONTENT -->
+    <!--main content end-->
+    <!--footer start-->
+    <footer class="site-footer">
+      <div class="text-center">
+        <p>
+          &copy; Análisis <strong>Financiero</strong>. Derechos reservados
+        </p>
+       
+        <a href="blank.html#" class="go-top">
+          <i class="fa fa-angle-up"></i>
+          </a>
+      </div>
+    </footer>
+    <!--footer end-->
     </section>
     <!-- js placed at the end of the document so the pages load faster -->
     <script src="{{ asset('lib/jquery/jquery.min.js') }}"></script>

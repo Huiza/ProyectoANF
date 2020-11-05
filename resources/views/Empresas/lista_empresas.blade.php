@@ -1,4 +1,4 @@
-}@extends('layouts.app')
+@extends('layouts.app')
 
 @section('content')
 <div class="row mt">
@@ -7,7 +7,7 @@
               <form method="post" enctype="multipart/form-data" action="{{route('estado_resultado')}}">
                 @csrf
 
-                <input type="file" name="estado_finaciero">
+                <input type="file" name="estado_resultado">
                 <button class="btn btn-primary">Importar Balance General</button>
                 <button class="btn btn-primary">Importar Estado de resultado</button>
               </form>
@@ -18,10 +18,10 @@
                 <hr>
                 <thead>
                   <tr>
-                    <th><i class="fa fa-bullhorn"></i> Código</th>
-                    <th><i class="fa fa-bullhorn"></i> Empresa</th>
+                    <th><i class="fa fa-code-fork"></i> Código</th>
+                    <th><i class="fa fa-building-o"></i> Empresa</th>
                     <th class="hidden-phone"><i class="fa fa-question-circle"></i> Descripción</th>
-                    <th><i class="fa fa-bookmark"></i>Tipo</th>
+                    <th><i class="fa fa-bookmark"></i> Tipo</th>
                     <th></th>
                   </tr>
                 </thead>
@@ -36,7 +36,7 @@
                         <a href="{{route('editar_empresa', $empresa->id)}}" class="btn btn-primary"><i class="fa fa-pencil"></i></a>
                       </td>
                       <td>
-                        <a href="{{route('crear_catalogo', $empresa->id)}}" class="btn btn-info"><i class="fa fa-book"></i> Crear catálogo</a>
+                        <a href="{{route('ver_empresa', $empresa->id)}}" class="btn btn-info"><i class="fa fa-indent"></i> Ver</a>
                       </td>
                       
                   </tr>

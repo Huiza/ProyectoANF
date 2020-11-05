@@ -13,7 +13,7 @@ class Catalogo extends Model
 
     public function cuenta()
     {
-        return $this->hasMany(Cuenta::class, 'id_cuenta', 'id_cuenta');
+        return $this->belongsTo(Cuenta::class, 'id_cuenta', 'id_cuenta');
 
     }
     public function empresa()

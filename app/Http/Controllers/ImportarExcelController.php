@@ -11,13 +11,13 @@ class ImportarExcelController extends Controller
 {
     //
     public function importarBalanceGeneral(Request $request){
-        $file = $request->file('estado_financiero');
+        $file = $request->file('balance_general');
         Excel::import(new BalanceGeneralImport, $file);
         return back()->with('message','Importación del balance general completado.');
     }
 
      public function importarEstadoResultado(Request $request){
-        $file = $request->file('estado_financiero');
+        $file = $request->file('estado_resultado');
         Excel::import(new EstadoResultadoImport, $file);
         return back()->with('message','Importación del estado de resultado completado.');
     }
