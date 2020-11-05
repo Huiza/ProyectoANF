@@ -23,8 +23,17 @@
                 <a href="{{route('editar_empresa', $empresa->id)}}" class="btn btn-default"><i class="fa fa-pencil"></i> Editar</a>
                 @if(count($catalogo)==0)
                 <a href="{{route('crear_catalogo', $empresa->id)}}" class="btn btn-info"><i class="fa fa-book"></i> Agregar catálogo</a>
-                @endif 
+                @endif
             </div>
+
+            <div class="col-md-4 centered">
+                
+                  <p>
+                  <a href="{{route('nuevo_balance_general', $empresa->id)}}" class="btn btn-theme03"><i class="fa fa-plus"></i> Balance general</a>
+                  <a href="{{route('editar_empresa', $empresa->id)}}" class="btn btn-theme02"><i class="fa fa-plus"></i> Estado de resultados</a>
+                  </p>
+               
+              </div>
              
               <!-- /col-md-4 -->
             </div>
@@ -35,14 +44,15 @@
             <div class="row content-panel">
               <div class="panel-heading">
                 <ul class="nav nav-tabs nav-justified">
+                  
                   <li class="active">
-                    <a data-toggle="tab" href="#catalogo">Catálogo</a>
-                  </li>
-                  <li>
                     <a data-toggle="tab" href="#contact" class="contact-map">Contact</a>
                   </li>
                   <li>
                     <a data-toggle="tab" href="#edit">Edit Profile</a>
+                  </li>
+                  <li>
+                    <a data-toggle="tab" href="#catalogo">Catálogo</a>
                   </li>
                 </ul>
               </div>
@@ -87,11 +97,11 @@
                         
                     </div>
    
-                      </div>
+                </div>
                       
-                    </div>
+                </div>
                     <!-- /OVERVIEW -->
-                  </div>
+                </div>
                   <!-- /tab-pane -->
                   <div id="contact" class="tab-pane">
                     <div class="row">

@@ -33,10 +33,10 @@
                       <td>{{$empresa->descripcion}}</td>
                       <td>{{$empresa->tipo->tipo}}</td>
                       <td>
-                        <a href="{{route('editar_empresa', $empresa->id)}}" class="btn btn-primary"><i class="fa fa-pencil"></i></a>
+                        <a href="{{route('editar_empresa', $empresa->id)}}" class="btn btn-default"><i class="fa fa-pencil"></i> Editar</a>
                       </td>
                       <td>
-                        <a href="{{route('ver_empresa', $empresa->id)}}" class="btn btn-info"><i class="fa fa-indent"></i> Ver</a>
+                        <a href="{{route('ver_empresa', $empresa->id)}}" class="btn btn-info"><i class="fa fa-indent"></i> Consultar</a>
                       </td>
                       
                   </tr>
