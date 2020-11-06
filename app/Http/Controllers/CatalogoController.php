@@ -28,18 +28,16 @@ class CatalogoController extends Controller
         return view('Catalogo.crear_catalogo', compact('empresa', 'cuentas'));
     }
 
-        public function store(Request $request)
-        {
-            foreach($request->id_cuenta as $key => $value){
-                Catalogo::create([
+    public function store(Request $request)
+    {
+        foreach($request->id_cuenta as $key => $value){
+            Catalogo::create([
                     'id_empresa' => $request['id_empresa'][$key], 
                     'id_cuenta' => $value, 
                     'codigo_cuenta' => $request['codigo_cuenta'][$key],
                 ]);
-            }
-               
-           
-                
-                return redirect('empresas');
+        }
+
+            return redirect('empresas');
         }
 }

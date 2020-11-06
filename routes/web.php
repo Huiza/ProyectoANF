@@ -38,7 +38,11 @@ Route::post('catalogo/guardar', 'CatalogoController@store')->name('guardar_catal
 Route::get('catalogo/crear/{id}', 'CatalogoController@create')->name('crear_catalogo'); 
 
 //RUTAS PARA LOS ESTADOS FINANCIEROS
-Route::get('balance_general/crear/{id}', 'EstadoFinancieroController@create')->name('nuevo_balance_general');
+
+Route::get('estado_financiero/crear/{id}', 'EstadoFinancieroController@create')->name('crear_estado_financiero');
+Route::post('estado_financiero/guardar', 'EstadoFinancieroController@store')->name('guardar_estado_financiero');
+Route::post('detalle_estado_financiero/guardar', 'DetalleEstadosFinancierosController@store')->name('guardar_detalle_estado_financiero');
+
 Route::post('importarBalanceGeneral', 'ImportarExcelController@ImportarBalanceGeneral')->name('balance_general'); 
 Route::post('importarEstadoResultado', 'ImportarExcelController@ImportarEstadoResultado')->name('estado_resultado');   
 

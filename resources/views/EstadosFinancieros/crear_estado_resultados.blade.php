@@ -2,13 +2,13 @@
 
 @section('content')
 
-<h3><i class="fa fa-angle-right"></i> Balance general</h3>
+<h3><i class="fa fa-angle-right"></i> Estado de resultados</h3>
 
         <!-- BASIC FORM ELELEMNTS -->
         <div class="row mt">
           <div class="col-lg-12">
             <div class="form-panel" style="padding-left:15%; font-size:15px;">
-              <h4 class="mb"><i class="fa fa-angle-right"></i> {{$empresa->nombre_empresa}}: Registro de balance general</h4>
+              <h4 class="mb"><i class="fa fa-angle-right"></i> {{$empresa->nombre_empresa}}: Registro de estado de resultados</h4>
               <form class="form-horizontal style-form" method="POST" action="{{route('guardar_detalle_estado_financiero')}}" style="padding:2%;">
                @csrf
            
@@ -38,7 +38,7 @@
                             <tr>
                                 <div><input type="text"  name="id_estado_financiero[]" value="{{ $estado_financiero->id_estado_financiero}}" hidden></div>
                                 <input type="text"  name="cuenta[]" value="{{ $cuenta->cuenta->nombre_cuenta }}" hidden>
-                                @if($cuenta->cuenta->nombre_cuenta == 'ACTIVO' || $cuenta->cuenta->nombre_cuenta == 'PASIVO' || $cuenta->cuenta->nombre_cuenta == 'PATRIMONIO')
+                                @if($cuenta->cuenta->nombre_cuenta == 'INGRESOS' || $cuenta->cuenta->nombre_cuenta == 'GASTOS')
                                 <td name=><h4><strong>{{$cuenta->cuenta->nombre_cuenta}}</strong></h4></td>
                                 <td><input type="text" class="form-control round-form" name="saldo[]" placeholder="Monto en $"></td>
                                 @else
