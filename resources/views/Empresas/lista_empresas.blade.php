@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="row mt">
-          <div class="col-md-12">
+          <div class="col-md-1s2">
             <div class="content-panel" style="padding:3%;">
               <form method="post" enctype="multipart/form-data" action="{{route('estado_resultado')}}">
                 @csrf
