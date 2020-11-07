@@ -14,6 +14,11 @@ class EstadoFinanciero extends Model
 
     public function tipoEstadoFinanciero()
     {
-        return $this->belongsTo(tipoEstadoFinanciero::class, 'id_tipo_estado_financiero', 'id_tipo_estado_financiero');
+        return $this->belongsTo(TipoEstadoFinanciero::class, 'id_tipo_estado_financiero', 'id_tipo_estado_financiero');
+    }
+
+    public function detallesEstado()
+    {
+        return $this->hasMany(DetalleEstadosFinancieros::class, 'id_estado_financiero', 'id_estado_financiero');
     }
 }

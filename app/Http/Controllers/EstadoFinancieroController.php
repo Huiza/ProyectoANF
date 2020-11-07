@@ -44,37 +44,50 @@ class EstadoFinancieroController extends Controller
 
         if($estado_financiero->id_tipo_estado_financiero==1)
         {
-            $cuentas = [];
+            $activos = [];
+            $pasivos = [];
+            $patrimonio = [];
             $catalogo = Catalogo::where('id_empresa', $empresa->id)->get();
 
             foreach($catalogo as $cuenta)
             {
-                if($cuenta->cuenta->id_tipo_cuenta <= 3)
+                if($cuenta->cuenta->id_tipo_cuenta == 1)
                 {
-                    $cuentas[] = $cuenta;
+                    $activos[] = $cuenta;
+                }
+                elseif($cuenta->cuenta->id_tipo_cuenta == 2)
+                {
+                    $pasivos[] = $cuenta;
+                }
+                elseif($cuenta->cuenta->id_tipo_cuenta == 3)
+                {
+                    $patrimonio[] = $cuenta;
                 }
             }
-            return view('EstadosFinancieros.crear_balance_general', compact('cuentas','empresa', 'estado_financiero'));
+            return view('EstadosFinancieros.crear_balance_general', compact('activos', 'pasivos', 'patrimonio','empresa', 'estado_financiero'));
         }
         elseif($estado_financiero->id_tipo_estado_financiero==2)
         {
-            $cuentas = [];
+            $ingresos = [];
+            $gastos = [];
             $catalogo = Catalogo::where('id_empresa', $empresa->id)->get();
 
             foreach($catalogo as $cuenta)
             {
-                if($cuenta->cuenta->id_tipo_cuenta > 3 && $cuenta->cuenta->id_tipo_cuenta <= 5)
+                if($cuenta->cuenta->id_tipo_cuenta == 4)
                 {
-                    $cuentas[] = $cuenta;
+                    $gastos[] = $cuenta;
                 }
+                elseif($cuenta->cuenta->id_tipo_cuenta == 5)
+                {
+                    $ingresos[] = $cuenta;
+                }
+                
             }
-            return view('EstadosFinancieros.crear_estado_resultados', compact('cuentas','empresa', 'estado_financiero'));
+            return view('EstadosFinancieros.crear_estado_resultados', compact('ingresos','gastos','empresa', 'estado_financiero'));
         }
         
     }
 
-    public function crear_detalle_estado_financiero($id)
-    {
-        
-    }
+
 }
