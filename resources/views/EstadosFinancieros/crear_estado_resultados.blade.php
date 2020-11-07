@@ -34,21 +34,45 @@
                             </thead>
                             <tbody>
                             
-                            @foreach($cuentas as $cuenta)
+                            @foreach($ingresos as $cuenta)
                             <tr>
-                                <div><input type="text"  name="id_estado_financiero[]" value="{{ $estado_financiero->id_estado_financiero}}" hidden></div>
-                                <input type="text"  name="cuenta[]" value="{{ $cuenta->cuenta->nombre_cuenta }}" hidden>
-                                @if($cuenta->cuenta->nombre_cuenta == 'INGRESOS' || $cuenta->cuenta->nombre_cuenta == 'GASTOS')
+                                @if($cuenta->cuenta->nombre_cuenta == 'INGRESOS')
                                 <td name=><h4><strong>{{$cuenta->cuenta->nombre_cuenta}}</strong></h4></td>
-                                <td><input type="text" class="form-control round-form" name="saldo[]" placeholder="Monto en $"></td>
+                            
                                 @else
                                 <td>{{$cuenta->cuenta->nombre_cuenta}}</td>
+                                <div><input type="text"  name="id_estado_financiero[]" value="{{ $estado_financiero->id_estado_financiero}}" hidden></div>
+                                <input type="text"  name="cuenta[]" value="{{ $cuenta->cuenta->nombre_cuenta }}" hidden>
                                 <td><input type="text" class="form-control round-form" name="saldo[]" placeholder="Monto en $"></td>
                                 @endif
-                                
-
                             </tr>
                             @endforeach
+                            </tbody>
+                                <td><strong>TOTAL DE INGRESOS</strong></td>
+                                <div><input type="text"  name="id_estado_financiero[]" value="{{ $estado_financiero->id_estado_financiero}}" hidden></div>
+                                <input type="text"  name="cuenta[]" value="TOTAL DE INGRESOS" hidden>
+                                <td><input type="text" class="form-control round-form" name="saldo[]" placeholder="Monto en $"></td>
+
+                                
+                            @foreach($gastos as $cuenta)
+                            <tr>
+                                @if($cuenta->cuenta->nombre_cuenta == 'GASTOS')
+                                <td name=><h4><strong>{{$cuenta->cuenta->nombre_cuenta}}</strong></h4></td>
+                            
+                                @else
+                                <td>{{$cuenta->cuenta->nombre_cuenta}}</td>
+                                <div><input type="text"  name="id_estado_financiero[]" value="{{ $estado_financiero->id_estado_financiero}}" hidden></div>
+                                <input type="text"  name="cuenta[]" value="{{ $cuenta->cuenta->nombre_cuenta }}" hidden>
+                                <td><input type="text" class="form-control round-form" name="saldo[]" placeholder="Monto en $"></td>
+                                @endif
+                            </tr>
+                            @endforeach
+                            </tbody>
+                                <td><strong>TOTAL DE GASTOS</strong></td>
+                                <div><input type="text"  name="id_estado_financiero[]" value="{{ $estado_financiero->id_estado_financiero}}" hidden></div>
+                                <input type="text"  name="cuenta[]" value="TOTAL DE GASTOS" hidden>
+                                <td><input type="text" class="form-control round-form" name="saldo[]" placeholder="Monto en $"></td>
+
                             </tbody>
                         </table>
                         

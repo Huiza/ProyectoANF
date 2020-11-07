@@ -7,9 +7,24 @@
         <!-- BASIC FORM ELELEMNTS -->
         <div class="row mt">
           <div class="col-lg-12">
-            <div class="form-panel" style="padding-left:15%; font-size:15px;">
-              <h4 class="mb"><i class="fa fa-angle-right"></i> {{$empresa->nombre_empresa}}: Registro de balance general</h4>
-              <form class="form-horizontal style-form" method="POST" action="{{route('guardar_detalle_estado_financiero')}}" style="padding:2%;">
+            <div class="form-panel" >
+            <div style="padding-left:10%; padding-top:5%; padding-bottom:3%;"> 
+                <form method="post" enctype="multipart/form-data" action="{{route('estado_resultado')}}">
+                @csrf
+
+                <input type="file" name="estado_resultado">
+                <br>
+                <button class="btn btn-primary">Importar Balance General</button>
+              </form>
+              </div>
+            <div style="text-align:center;">
+              <h3 class="mb">{{$empresa->nombre_empresa}}</h3>
+              <h4 class="mb">Balance general</h4>
+              <h4>Del {{$estado_financiero->fecha_inicio}} al {{$estado_financiero->fecha_final}}</h4>
+            </div>
+                
+
+              <form style="padding-left:15%; font-size:15px;" class="form-horizontal style-form" method="POST" action="{{route('guardar_detalle_estado_financiero')}}" style="padding:2%;">
                @csrf
            
               <div class="panel-body">
@@ -34,22 +49,65 @@
                             </thead>
                             <tbody>
                             
-                            @foreach($cuentas as $cuenta)
+                            @foreach($activos as $cuenta)
                             <tr>
-                                <div><input type="text"  name="id_estado_financiero[]" value="{{ $estado_financiero->id_estado_financiero}}" hidden></div>
-                                <input type="text"  name="cuenta[]" value="{{ $cuenta->cuenta->nombre_cuenta }}" hidden>
-                                @if($cuenta->cuenta->nombre_cuenta == 'ACTIVO' || $cuenta->cuenta->nombre_cuenta == 'PASIVO' || $cuenta->cuenta->nombre_cuenta == 'PATRIMONIO')
+                                @if($cuenta->cuenta->nombre_cuenta == 'ACTIVO')
                                 <td name=><h4><strong>{{$cuenta->cuenta->nombre_cuenta}}</strong></h4></td>
-                                <td><input type="text" class="form-control round-form" name="saldo[]" placeholder="Monto en $"></td>
+                            
                                 @else
                                 <td>{{$cuenta->cuenta->nombre_cuenta}}</td>
+                                <div><input type="text"  name="id_estado_financiero[]" value="{{ $estado_financiero->id_estado_financiero}}" hidden></div>
+                                <input type="text"  name="cuenta[]" value="{{ $cuenta->cuenta->nombre_cuenta }}" hidden>
                                 <td><input type="text" class="form-control round-form" name="saldo[]" placeholder="Monto en $"></td>
                                 @endif
-                                
-
                             </tr>
                             @endforeach
                             </tbody>
+                                <td><strong>TOTAL DE ACTIVOS</strong></td>
+                                <div><input type="text"  name="id_estado_financiero[]" value="{{ $estado_financiero->id_estado_financiero}}" hidden></div>
+                                <input type="text"  name="cuenta[]" value="TOTAL DE ACTIVOS" hidden>
+                                <td><input type="text" class="form-control round-form" name="saldo[]" placeholder="Monto en $"></td>
+
+                                
+                            @foreach($pasivos as $cuenta)
+                            <tr>
+                                @if($cuenta->cuenta->nombre_cuenta == 'PASIVO')
+                                <td name=><h4><strong>{{$cuenta->cuenta->nombre_cuenta}}</strong></h4></td>
+                            
+                                @else
+                                <td>{{$cuenta->cuenta->nombre_cuenta}}</td>
+                                <div><input type="text"  name="id_estado_financiero[]" value="{{ $estado_financiero->id_estado_financiero}}" hidden></div>
+                                <input type="text"  name="cuenta[]" value="{{ $cuenta->cuenta->nombre_cuenta }}" hidden>
+                                <td><input type="text" class="form-control round-form" name="saldo[]" placeholder="Monto en $"></td>
+                                @endif
+                            </tr>
+                            @endforeach
+                            </tbody>
+                                <td><strong>TOTAL DE PASIVOS</strong></td>
+                                <div><input type="text"  name="id_estado_financiero[]" value="{{ $estado_financiero->id_estado_financiero}}" hidden></div>
+                                <input type="text"  name="cuenta[]" value="TOTAL DE ACTIVOS" hidden>
+                                <td><input type="text" class="form-control round-form" name="saldo[]" placeholder="Monto en $"></td>
+
+                                
+                            @foreach($patrimonio as $cuenta)
+                            <tr>
+                                @if($cuenta->cuenta->nombre_cuenta == 'PATRIMONIO')
+                                <td name=><h4><strong>{{$cuenta->cuenta->nombre_cuenta}}</strong></h4></td>
+                            
+                                @else
+                                <td>{{$cuenta->cuenta->nombre_cuenta}}</td>
+                                <div><input type="text"  name="id_estado_financiero[]" value="{{ $estado_financiero->id_estado_financiero}}" hidden></div>
+                                <input type="text"  name="cuenta[]" value="TOTAL DE PASIVOS" hidden>
+                                <td><input type="text" class="form-control round-form" name="saldo[]" placeholder="Monto en $"></td>
+                                @endif
+                            </tr>
+                            @endforeach
+                            </tbody>
+                                <td><strong>TOTAL DE PATRIMONIO</strong></td>
+                                <div><input type="text"  name="id_estado_financiero[]" value="{{ $estado_financiero->id_estado_financiero}}" hidden></div>
+                                <input type="text"  name="cuenta[]" value="TOTAL PATRIMONIO" hidden>
+                                <td><input type="text" class="form-control round-form" name="saldo[]" placeholder="Monto en $"></td>
+
                         </table>
                         
                     </div>

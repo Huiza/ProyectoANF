@@ -7,6 +7,8 @@ use App\Http\Requests\EmpresaRequest;
 use App\Tipo;
 use App\Empresa;
 use App\Catalogo;
+use App\EstadoFinanciero;
+use App\DetalleEstadosFinancieros;
 
 
 class EmpresaController extends Controller
@@ -63,7 +65,21 @@ class EmpresaController extends Controller
     {
         $empresa = Empresa::findOrFail($id);
         $catalogo = Catalogo::where('id_empresa', $empresa->id)->get();
-        return view('Empresas.ver_empresa', compact('empresa', 'catalogo'));
+        $estados = EstadoFinanciero::where('id_empresa', $empresa->id)->get();
+        $balances_general = [];
+        $estados_resultados = [];
+        foreach($estados as $e)
+        {
+            if($e->id_tipo_estado_financiero == 1)
+            {
+                $balances_general[] = $e;
+            }
+            elseif($e->id_tipo_estado_financiero == 2)
+            {
+                $estados_resultados[] = $e;
+            }
+        }
+        return view('Empresas.ver_empresa', compact('empresa', 'catalogo', 'estados', 'balances_general', 'estados_resultados'));
     }
 
     /**
