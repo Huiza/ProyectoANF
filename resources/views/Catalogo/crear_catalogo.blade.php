@@ -8,33 +8,66 @@
         <div class="row mt">
           <div class="col-lg-12">
             <div class="form-panel" style="padding:3%; font-size:15px;">
-              <h4 class="mb"><i class="fa fa-angle-right"></i> {{$empresa->nombre_empresa}} : Registro de catálogo</h4>
-              <form class="form-horizontal style-form" method="POST" action="{{route('guardar_empresa')}}" style="padding:5%;">
+              <h4 class="mb"><i class="fa fa-angle-right"></i> {{$empresa->nombre_empresa}}: Registro de catálogo</h4>
+              <form class="form-horizontal style-form" method="POST" action="{{route('guardar_catalogo')}}" style="padding:2%;">
                @csrf
+           
+              <div class="panel-body">
+                <div class="task-content">
 
-               @foreach($cuentas_mayores as $cm)
-                   <h3><strong>{{$cm->nombre_cuenta}}</strong></h3>
-                   <hr>
-                   @foreach($cm->cuentaPrimaria as $cp)
-                   <h4><strong>{{$cp->nombre_subcuenta_primaria}}</strong></h4>
-                   @foreach($cp->cuentaSecundaria as $cs)
-                   <h5><strong>{{$cs->nombre_subcuenta_secundaria}}</strong></h5>
-                   @foreach($cs->cuentaTerciaria as $ct)
-                   <h6><strong>{{$ct->nombre_subcuenta_terciaria}}</strong></h6>
-                   @foreach($ct->cuentaCuaternaria as $cc)
-                   <h6><strong>{{$cc->nombre_subcuenta_cuaternaria}}</strong></h6>
-                   @foreach($cc->cuentaQuinaria as $cq)
-                   <h6><strong>{{$cq->nombre_subcuenta_quinaria}}</strong></h6>
-                   @endforeach
-                   @endforeach
-                   @endforeach
-                   <hr>
-                   @endforeach
-                   @endforeach
+                <div class="row">
+                      <div class="col-md-12">
+                        <h3> </h3>
+
+                        <div class="col-md-11">
+                      
+                        <table class="table table-hover">
+                            <h4><i class="fa fa-angle-right"></i> Catálogo de cuentas</h4>
+                            <hr>
+                            <thead>
+                            <tr>
+                                <th><h4><strong>Cuenta</strong></h4></th>
+                                <th><h4><strong>Código</strong></h4></th>
+                                <th><h4><strong>Selección</strong></h4></th>
+
+                            </tr>
+                            </thead>
+                            <tbody>
+                            
+                            @foreach($cuentas as $cuenta)
+                            <tr>
+                                <div class="task-checkbox"><input type="text"  name="id_empresa[]" value="{{ $empresa->id }}" hidden></div>
+                                @if($cuenta->nombre_cuenta == 'ACTIVO' || $cuenta->nombre_cuenta == 'PASIVO' || $cuenta->nombre_cuenta == 'PATRIMONIO' || $cuenta->nombre_cuenta == 'INGRESOS' || $cuenta->nombre_cuenta == 'GASTOS' || $cuenta->nombre_cuenta == 'CUENTA LIQUIDADORA O DE CIERRE' || $cuenta->nombre_cuenta == 'CUENTAS DE MEMORANDUM DEUDORAS' || $cuenta->nombre_cuenta == 'CUENTAS DE MEMORANDUM DEUDORAS')
+                                <td><h4><strong>{{$cuenta->nombre_cuenta}}</strong></h4></td>
+                                <td><input type="text" class="form-control round-form" name="codigo_cuenta[]" placeholder="Código de cuenta"></td>
+                                @else
+                                <td>{{$cuenta->nombre_cuenta}}</td>
+                                <td><input type="text" class="form-control round-form" name="codigo_cuenta[]" placeholder="Código de cuenta"></td>
+                                @endif
+                                <td><input type="checkbox" class="list-child" name="id_cuenta[]" value="{{ $cuenta->id_cuenta }}"></td>
+
+                            </tr>
+                            @endforeach
+                            </tbody>
+                        </table>
+                        
+                    </div>
+                 
+                </div>
+                
+              </div>
+              <div class="form-group">
+                    <div class="col-lg-offset-2 col-lg-10">
+                      <button class="btn btn-theme">Guardar</button>
+                      <button class="btn btn-theme04">Cancelar</button>
+                    </div>
+                </div>
+                <br>
+            </section>
+          </div>
+          <!-- /col-md-12-->
+        </div>
                
-               @endforeach
-                   
-              
                </form>
             </div>
           </div>

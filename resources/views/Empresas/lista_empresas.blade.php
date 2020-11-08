@@ -18,10 +18,10 @@
                 <hr>
                 <thead>
                   <tr>
-                    <th><i class="fa fa-bullhorn"></i> Código</th>
-                    <th><i class="fa fa-bullhorn"></i> Empresa</th>
+                    <th><i class="fa fa-code-fork"></i> Código</th>
+                    <th><i class="fa fa-building-o"></i> Empresa</th>
                     <th class="hidden-phone"><i class="fa fa-question-circle"></i> Descripción</th>
-                    <th><i class="fa fa-bookmark"></i>Tipo</th>
+                    <th><i class="fa fa-bookmark"></i> Tipo</th>
                     <th></th>
                   </tr>
                 </thead>
@@ -33,10 +33,10 @@
                       <td>{{$empresa->descripcion}}</td>
                       <td>{{$empresa->tipo->tipo}}</td>
                       <td>
-                        <a href="{{route('editar_empresa', $empresa->id)}}" class="btn btn-primary"><i class="fa fa-pencil"></i></a>
+                        <a href="{{route('editar_empresa', $empresa->id)}}" class="btn btn-default"><i class="fa fa-pencil"></i> Editar</a>
                       </td>
                       <td>
-                        <a href="{{route('crear_catalogo', $empresa->id)}}" class="btn btn-info"><i class="fa fa-book"></i> Crear catálogo</a>
+                        <a href="{{route('ver_empresa', $empresa->id)}}" class="btn btn-info"><i class="fa fa-indent"></i> Consultar</a>
                       </td>
                       
                   </tr>

@@ -6,6 +6,10 @@ use Illuminate\Http\Request;
 use App\Http\Requests\EmpresaRequest;
 use App\Tipo;
 use App\Empresa;
+use App\Catalogo;
+use App\EstadoFinanciero;
+use App\DetalleEstadosFinancieros;
+
 
 class EmpresaController extends Controller
 {
@@ -16,9 +20,10 @@ class EmpresaController extends Controller
      */
     public function index()
     {
-        $empresas=Empresa::all();
+        $empresas = Empresa::all();
         return view('Empresas.lista_empresas',compact('empresas'));
     }
+  
 
     /**
      * Show the form for creating a new resource.
@@ -47,7 +52,7 @@ class EmpresaController extends Controller
         $empresa->descripcion = $request->descripcion;
         $empresa->tipo_id = $request->tipo_id;
         $empresa->save();
-         return redirect('empresas');
+        return redirect('empresas');
     }
 
     /**
@@ -58,7 +63,23 @@ class EmpresaController extends Controller
      */
     public function show($id)
     {
-        //
+        $empresa = Empresa::findOrFail($id);
+        $catalogo = Catalogo::where('id_empresa', $empresa->id)->get();
+        $estados = EstadoFinanciero::where('id_empresa', $empresa->id)->get();
+        $balances_general = [];
+        $estados_resultados = [];
+        foreach($estados as $e)
+        {
+            if($e->id_tipo_estado_financiero == 1)
+            {
+                $balances_general[] = $e;
+            }
+            elseif($e->id_tipo_estado_financiero == 2)
+            {
+                $estados_resultados[] = $e;
+            }
+        }
+        return view('Empresas.ver_empresa', compact('empresa', 'catalogo', 'estados', 'balances_general', 'estados_resultados'));
     }
 
     /**
