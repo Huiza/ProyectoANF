@@ -45,4 +45,4 @@ Route::post('detalle_estado_financiero/guardar', 'DetalleEstadosFinancierosContr
 
 Route::post('importarBalanceGeneral', 'ImportarExcelController@ImportarBalanceGeneral')->name('balance_general'); 
 Route::post('importarEstadoResultado', 'ImportarExcelController@ImportarEstadoResultado')->name('estado_resultado');   
-
+Route::post('importarCatalogoCuentas', 'ImportarExcelController@importarCatalogoCuentas')->name('catalogo_cuentas');  
