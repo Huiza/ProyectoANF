@@ -50,7 +50,7 @@ class AnalisisHorizontalController extends Controller
     {
         $i = 0;
         $variacion_absoluta = [];
-        $variacion_relativa = [];        
+        $variacion_relativa = [];
         $estado_financiero = EstadoFinanciero::findOrFail($id);
         $balance = DB::select('select * from detalle_estados_financieros where id_estado_financiero ='.$id);
         $estado_financiero_anterior = EstadoFinanciero::where('fecha_inicio','<',$estado_financiero->fecha_inicio)->orderBy('fecha_inicio', 'DESC')->first();
@@ -59,7 +59,7 @@ class AnalisisHorizontalController extends Controller
         for($i = 0; $i < count($balance); $i++){
             $variacion_absoluta[$i] = $balance[$i]->saldo - $balance_anterior[$i]->saldo;
             if($balance_anterior[$i]->saldo!=0){
-            $variacion_relativa[$i] = round(($balance[$i]->saldo - $balance_anterior[$i]->saldo)/$balance_anterior[$i]->saldo, 2);
+            $variacion_relativa[$i] = round((($balance[$i]->saldo - $balance_anterior[$i]->saldo)/$balance_anterior[$i]->saldo)*100, 2);
             }
             else{
                 $variacion_relativa[$i] = 0;
