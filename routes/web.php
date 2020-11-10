@@ -48,3 +48,10 @@ Route::get('balance_general/ver/{id}', 'DetalleEstadosFinancierosController@show
 Route::post('importarBalanceGeneral', 'ImportarExcelController@ImportarBalanceGeneral')->name('balance_general'); 
 Route::post('importarEstadoResultado', 'ImportarExcelController@ImportarEstadoResultado')->name('estado_resultado');   
 Route::post('importarCatalogoCuentas', 'ImportarExcelController@importarCatalogoCuentas')->name('catalogo_cuentas');  
+
+
+//RUTAS PARA EL ANÁLISIS VERTICAL
+Route::get('analisis_vertical/calcular/{id}', 'AnalisisVerticalController@show')->name('calcular_analisis_vertical');
+
+//RUTAS PARA EL ANÁLISIS HORIZONTAL
+Route::get('analisis_horizontal/calcular/{id}', 'AnalisisHorizontalController@show')->name('calcular_analisis_horizontal');
