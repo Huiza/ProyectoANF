@@ -102,12 +102,12 @@
                   </tr>
                 </thead>
                 <tbody>
-                  @foreach($balances_general as $bg)
+                  @foreach($estados_resultados as $er)
                   <tr>
-                      <td>{{date('j F, Y', strtotime($bg->fecha_inicio))}}</td>
-                      <td>{{date('j F, Y', strtotime($bg->fecha_final))}}</td>
+                      <td>{{date('j F, Y', strtotime($er->fecha_inicio))}}</td>
+                      <td>{{date('j F, Y', strtotime($er->fecha_final))}}</td>
                       <td>
-                        <a href="{{route('ver_balance_general', $bg->id_estado_financiero)}}" class="btn btn-info"><i class="fa fa-indent"></i> Consultar</a>
+                        <a href="{{route('ver_estado_resultado', $er->id_estado_financiero)}}" class="btn btn-info"><i class="fa fa-indent"></i> Consultar</a>
                       </td>
                   </tr>
                   @endforeach

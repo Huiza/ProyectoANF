@@ -64,8 +64,15 @@ class DetalleEstadosFinancierosController extends Controller
     {
         $estado_financiero = EstadoFinanciero::findOrFail($id);
         $balance = DetalleEstadosFinancieros::where('id_estado_financiero', $id);
-
-        return view('EstadosFinancieros.ver_balance_general', compact('balance', 'estado_financiero'));
+        if($estado_financiero->id_tipo_estado_financiero==1)
+        {
+            return view('EstadosFinancieros.ver_balance_general', compact('balance', 'estado_financiero'));
+        }
+        else{
+            return view('EstadosFinancieros.ver_estado_resultado', compact('balance', 'estado_financiero'));
+        }
+        
+        
     }
 
     /**

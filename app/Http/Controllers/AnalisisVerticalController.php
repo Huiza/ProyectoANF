@@ -61,11 +61,17 @@ class AnalisisVerticalController extends Controller
             if($balance[$i]->cuenta=='TOTAL DE ACTIVOS'){
                 $total_activo = $balance[$i]->saldo;
             }
-            elseif($balance[$i]->cuenta=='TOTAL DE PASIVOS'){
+        }
+
+        for($i = 0; $i < count($balance); $i++){
+            if($balance[$i]->cuenta=='TOTAL DE PASIVOS'){
                 $total_pasivo = $balance[$i]->saldo;
             }
-            elseif($balance[$i]->cuenta=='TOTAL PATRIMONIO'){
-                $total_pasivo = $balance[$i]->saldo;
+        }
+
+        for($i = 0; $i < count($balance); $i++){
+            if($balance[$i]->cuenta=='TOTAL PATRIMONIO'){
+                $total_patrimonio = $balance[$i]->saldo;
             }
         }
 
@@ -79,6 +85,7 @@ class AnalisisVerticalController extends Controller
 
             $j++;
         }
+
         while($balance[$j]->cuenta!='PATRIMONIO'){
             if($balance[$j]->saldo!=0){
                 $porcentaje_vertical[$j] = round((($balance[$j]->saldo)/$total_pasivo)*100, 2);
@@ -89,9 +96,10 @@ class AnalisisVerticalController extends Controller
 
             $j++;
         }
-        while($balance[$j]->cuenta=='TOTAL PATRIMONIO'){
+
+        while($j!==count($balance)){
             if($balance[$j]->saldo!=0){
-                $porcentaje_vertical[$j] = round((($balance[$j]->saldo)/$total_pasivo)*100, 2);
+                $porcentaje_vertical[$j] = round((($balance[$j]->saldo)/$total_patrimonio)*100, 2);
                 }
                 else{
                     $porcentaje_vertical[$j] = 0;
@@ -99,6 +107,7 @@ class AnalisisVerticalController extends Controller
 
             $j++;
         }
+        
 
         return view('Analisis.calculo_analisis_vertical', compact('estado_financiero', 'balance', 'porcentaje_vertical'));
     }

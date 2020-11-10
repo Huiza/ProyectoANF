@@ -65,7 +65,7 @@ class EmpresaController extends Controller
     {
         $empresa = Empresa::findOrFail($id);
         $catalogo = Catalogo::where('id_empresa', $empresa->id)->get();
-        $estados = EstadoFinanciero::where('id_empresa', $empresa->id)->get();
+        $estados = EstadoFinanciero::where('id_empresa', $empresa->id)->orderBy('fecha_inicio', 'DESC')->get();
         $balances_general = [];
         $estados_resultados = [];
         foreach($estados as $e)

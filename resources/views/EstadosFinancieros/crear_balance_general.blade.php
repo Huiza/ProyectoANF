@@ -87,7 +87,7 @@
                             </tbody>
                                 <td><strong>TOTAL DE PASIVOS</strong></td>
                                 <div><input type="text"  name="id_estado_financiero[]" value="{{ $estado_financiero->id_estado_financiero}}" hidden></div>
-                                <input type="text"  name="cuenta[]" value="TOTAL DE ACTIVOS" hidden>
+                                <input type="text"  name="cuenta[]" value="TOTAL DE PASIVOS" hidden>
                                 <td><input type="text" class="form-control round-form" name="saldo[]" placeholder="Monto en $"></td>
 
                                 

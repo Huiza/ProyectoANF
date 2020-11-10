@@ -2,7 +2,7 @@
 
 @section('content')
 
-<h3><i class="fa fa-angle-right"></i> Balance general</h3>
+<h3><i class="fa fa-angle-right"></i> Estado de resultados</h3>
 
 
         <!-- BASIC FORM ELELEMNTS -->
@@ -21,7 +21,7 @@
               </div>
             <div style="text-align:center;">
               <h3 class="mb">{{$estado_financiero->empresa->nombre_empresa}}</h3>
-              <h4 class="mb">Balance general</h4>
+              <h4 class="mb">Estado de resultados</h4>
               <h4>Del {{date('j F, Y', strtotime($estado_financiero->fecha_inicio))}} al {{date('j F, Y', strtotime($estado_financiero->fecha_final))}}</h4>
             </div>
                 
@@ -54,7 +54,7 @@
                             @foreach($estado_financiero->detallesEstado as $cuenta)
                             <tr>
                                 
-                              @if($cuenta->cuenta == 'ACTIVO' || $cuenta->cuenta == 'PASIVO' ||$cuenta->cuenta == 'PATRIMONIO')
+                              @if($cuenta->cuenta == 'INGRESOS' || $cuenta->cuenta == 'GASTOS')
                               <td><h3><strong>{{$cuenta->cuenta}}</strong></h3></td>
                               
                               @else
