@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\DetalleEstadosFinancieros;
 use App\Imports\DetalleEstadosFinancierosImport;
 use Illuminate\Http\Request;
+use App\EstadoFinanciero;
 use Excel;
 
 class DetalleEstadosFinancierosController extends Controller
@@ -59,9 +60,12 @@ class DetalleEstadosFinancierosController extends Controller
      * @param  \App\DetalleEstadosFinancieros  $detalleEstadosFinancieros
      * @return \Illuminate\Http\Response
      */
-    public function show(DetalleEstadosFinancieros $detalleEstadosFinancieros)
+    public function show($id)
     {
-        //
+        $estado_financiero = EstadoFinanciero::findOrFail($id);
+        $balance = DetalleEstadosFinancieros::where('id_estado_financiero', $id);
+
+        return view('EstadosFinancieros.ver_balance_general', compact('balance', 'estado_financiero'));
     }
 
     /**
