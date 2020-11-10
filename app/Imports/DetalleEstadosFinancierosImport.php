@@ -2,26 +2,26 @@
 
 namespace App\Imports;
 
-use App\DetalleEstadoFinanciero;
+use App\DetalleEstadosFinancieros;
 use Maatwebsite\Excel\Concerns\ToModel;
 
-class DetalleEstadoFinancieroImport implements ToModel
+class DetalleEstadosFinancierosImport implements ToModel
 {
-    protected $tipo_id;
+      public static $tipo_id;
     /**
     * @param array $row
     *
     * @return \Illuminate\Database\Eloquent\Model|null
     */
-    public function __construct($tipo_id){
-        $this->$tipo_id=$tipo_id;
-    }
+    public static function setTipoEstadoFinanciero($id){
+        print(self::$tipo_id=$id);
 
+    }
     public function model(array $row)
     {
-        return new DetalleEstadoFinanciero([
+        return new DetalleEstadosFinancieros([
             //
-            'id_estado_finaciero'=>$this->tipo_id,
+            'id_estado_financiero'=>1,
             'cuenta'=>$row[0],
             'saldo'=>$row[1],
         ]);

@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\DetalleEstadosFinancieros;
+use App\Imports\DetalleEstadosFinancierosImport;
 use Illuminate\Http\Request;
+use Excel;
 
 class DetalleEstadosFinancierosController extends Controller
 {
@@ -35,12 +37,17 @@ class DetalleEstadosFinancierosController extends Controller
      */
     public function store(Request $request)
     {
-        foreach($request->cuenta as $key => $value){
-            DetalleEstadosFinancieros::create([
-                'cuenta' => $value, 
-                'id_estado_financiero' => $request['id_estado_financiero'][$key], 
-                'saldo' => $request['saldo'][$key],
-            ]);
+        if ($request->hasFile('estado_financiero')){
+            $file = $request->file('estado_financiero');
+            Excel::import(new DetalleEstadosFinancierosImport, $file);
+        }
+        else
+            foreach($request->cuenta as $key => $value){
+                DetalleEstadosFinancieros::create([
+                    'cuenta' => $value, 
+                    'id_estado_financiero' => $request['id_estado_financiero'][$key],
+                    'saldo' => $request['saldo'][$key],
+                ]);
         }
 
         return redirect('empresas');

@@ -11,7 +11,9 @@
               <h4 class="mb"><i class="fa fa-angle-right"></i> {{$empresa->nombre_empresa}}: Registro de estado de resultados</h4>
               <form class="form-horizontal style-form" method="POST" action="{{route('guardar_detalle_estado_financiero')}}" style="padding:2%;">
                @csrf
-           
+                <input type="file" name="estado_financiero">
+                <br>
+                <button class="btn btn-primary">Importar Estado de Resultados</button>
               <div class="panel-body">
                 <div class="task-content">
 
