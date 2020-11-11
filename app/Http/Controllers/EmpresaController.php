@@ -125,7 +125,10 @@ class EmpresaController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $empresa = Empresa::findOrFail($id);
+        $empresa->delete();
+
+        return redirect()->route('empresas');
         
     }
 }

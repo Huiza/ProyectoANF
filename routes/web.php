@@ -31,6 +31,8 @@ Route::get('empresas/ver/{id}', 'EmpresaController@show')->name('ver_empresa');
 Route::get('empresas/editar/{id}', 'EmpresaController@edit')->name('editar_empresa');
     
 Route::put('empresas/actualizar/{id}', 'EmpresaController@update')->name('actualizar_empresa');
+
+Route::delete('empresas/eliminar/{id}', 'EmpresaController@destroy')->name('eliminar_empresa');
     
 //RUTAS PARA EL CATÁLOGO
 

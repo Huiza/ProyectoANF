@@ -10,11 +10,20 @@
           <div class="col-lg-12">
             <div class="form-panel" >
             
-              <h4><i class="fa fa-angle-right"></i> Análisis</h4>
-              <div class="btn-group">
-              <a  href="{{route('ver_balance_general', $estado_financiero->id_estado_financiero)}}"><button type="button" class="btn btn-default"> Balance general</button></a>
-              <a href="{{route('calcular_analisis_horizontal', $estado_financiero->id_estado_financiero)}}"><button type="button" class="btn btn-default"> Análisis horizontal</button></a>
-              <a href="{{route('calcular_analisis_vertical', $estado_financiero->id_estado_financiero)}}"><button type="button" class="btn btn-theme"> Análisis vertical</button></a>
+                       
+            <div class="btn-group btn-group-justified">
+                <div class="btn-group">
+                <a href="{{route('ver_balance_general', $estado_financiero->id_estado_financiero)}}"><button type="button" class="btn btn-default"> Balance general</button></a>
+                </div>
+                <div class="btn-group">
+                <a href="{{route('calcular_analisis_horizontal', $estado_financiero->id_estado_financiero)}}"><button type="button" class="btn btn-default"> Análisis horizontal</button></a>
+                </div>
+                <div class="btn-group">
+                <a href="{{route('calcular_analisis_vertical', $estado_financiero->id_estado_financiero)}}"><button type="button" class="btn btn-theme"> Análisis vertical</button></a>
+                </div>
+                <div class="btn-group">
+                <a href="{{route('calcular_ratios_financieros', $estado_financiero->id_estado_financiero)}}"><button type="button" class="btn btn-default"> Razones financieras</button></a>
+                </div>
               </div>
             
             <div style="padding-left:10%; padding-top:5%; padding-bottom:3%;"> 

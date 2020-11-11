@@ -53,20 +53,25 @@ class AnalisisHorizontalController extends Controller
         $variacion_relativa = [];
         $estado_financiero = EstadoFinanciero::findOrFail($id);
         $balance = DB::select('select * from detalle_estados_financieros where id_estado_financiero ='.$id);
-        $estado_financiero_anterior = EstadoFinanciero::where('fecha_inicio','<',$estado_financiero->fecha_inicio)->orderBy('fecha_inicio', 'DESC')->first();
+        $estado_financiero_anterior = EstadoFinanciero::where('fecha_inicio','<',$estado_financiero->fecha_inicio)->where('id_empresa', $estado_financiero->id_empresa)->orderBy('fecha_inicio', 'DESC')->first();
+        
+        if($estado_financiero_anterior)
+        {
         $balance_anterior = DB::select('select * from detalle_estados_financieros where id_estado_financiero ='.$estado_financiero_anterior->id_estado_financiero);;
 
-        for($i = 0; $i < count($balance); $i++){
-            $variacion_absoluta[$i] = $balance[$i]->saldo - $balance_anterior[$i]->saldo;
-            if($balance_anterior[$i]->saldo!=0){
-            $variacion_relativa[$i] = round((($balance[$i]->saldo - $balance_anterior[$i]->saldo)/$balance_anterior[$i]->saldo)*100, 2);
+            for($i = 0; $i < count($balance); $i++){
+                $variacion_absoluta[$i] = $balance[$i]->saldo - $balance_anterior[$i]->saldo;
+                if($balance_anterior[$i]->saldo!=0){
+                $variacion_relativa[$i] = round((($balance[$i]->saldo - $balance_anterior[$i]->saldo)/$balance_anterior[$i]->saldo)*100, 2);
+                }
+                else{
+                    $variacion_relativa[$i] = 0;
+                }
             }
-            else{
-                $variacion_relativa[$i] = 0;
-            }
+            return view('Analisis.calculo_analisis_horizontal', compact('estado_financiero', 'balance', 'estado_financiero_anterior', 'balance_anterior', 'variacion_absoluta', 'variacion_relativa'));
         }
 
-        return view('Analisis.calculo_analisis_horizontal', compact('estado_financiero', 'balance', 'estado_financiero_anterior', 'balance_anterior', 'variacion_absoluta', 'variacion_relativa'));
+        
     }
 
     /**

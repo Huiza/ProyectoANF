@@ -39,6 +39,14 @@
                       <td>
                         <a href="{{route('ver_empresa', $empresa->id)}}" class="btn btn-info"><i class="fa fa-indent"></i> Consultar</a>
                       </td>
+                      <td>
+                      <form method="POST" id="formulario{{$empresa->id}}" action="{{route('eliminar_empresa', $empresa->id)}}" >
+                          @csrf
+                          @method('DELETE')
+                          <button type="button" onClick="confirmar({{$empresa->id}})" class="btn btn-danger notika-btn-danger"><span class="glyphicon glyphicon-trash"></span> Eliminar</button>
+                      </form>
+                      </td>
+                      
                       
                   </tr>
                   @endforeach
@@ -49,6 +57,30 @@
           </div>
           <!-- /col-md-12 -->
         </div>
-        <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<script>
+function confirmar(valor){
+    //ruta.concat(variable,")}}");
+    swal({
+      title: "¿Eliminar empresa?",
+      text: "Esta acción es irreversible.",
+      icon: "warning",
+      buttons: true,
+      dangerMode: true,
+    })
+    .then((willDelete) => {
+      if (willDelete) {
+        swal("Empresa eliminada", {
+          icon: "success",
+        });
+        document.getElementById("formulario"+valor).submit();
+      } else {
+        swal("Eliminación cancelada");
+      }
+    });
+}
+
+</script>
 @endsection
 
