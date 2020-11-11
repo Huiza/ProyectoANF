@@ -51,6 +51,17 @@
                                 {{$prueba_acida}}
                                 <br><br>
 
+                                {{-- Razones de apalancamiento --}}
+                                <h4>grado_endeudamiento</h4>
+                                {{$grado_endeudamiento}} <br><br>
+                                <h4>grado_propiedad</h4>
+                                {{$grado_propiedad}} <br><br>
+                                <h4>razon_endeudamiento_patrimonial</h4>
+                                {{$razon_endeudamiento_patrimonial}} <br><br>
+                                <h4>razon_cobertura_gastos_financieros</h4>
+                                {{$razon_cobertura_gastos_financieros}} <br><br>
+
+
                             </tr>
                             </thead>
                             <tbody>
