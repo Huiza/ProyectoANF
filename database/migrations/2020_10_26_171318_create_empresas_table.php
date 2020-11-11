@@ -15,7 +15,6 @@ class CreateEmpresasTable extends Migration
     {
         Schema::create('empresas', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('codigo');
             $table->string('nombre_empresa');
             $table->string('descripcion');
             $table->integer('tipo_id')->unsigned()->foreign()->references('id')->on('tipos')->onDelete('cascade');

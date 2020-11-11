@@ -369,11 +369,3 @@ INSERT INTO `tipos` (`id`, `tipo`, `created_at`, `updated_at`) VALUES
 INSERT INTO `tipo_estado_financieros` (`id_tipo_estado_financiero`,`tipo_estado_financiero`) VALUES
 (1,'Balance general'),
 (2,'Estado de resultados');
-
-
-
-
-
-
-
-

@@ -46,8 +46,7 @@ class EmpresaController extends Controller
     public function store(EmpresaRequest $request)
     {
         $empresa_registrada=false;
-        $empresa = new Empresa;//
-        $empresa->codigo = $request->codigo;
+        $empresa = new Empresa;
         $empresa->nombre_empresa = $request->nombre_empresa;
         $empresa->descripcion = $request->descripcion;
         $empresa->tipo_id = $request->tipo_id;
@@ -107,7 +106,6 @@ class EmpresaController extends Controller
     {
 
         $empresa_actualizar = Empresa::findOrFail($id);
-        $empresa_actualizar->codigo = $request->codigo;
         $empresa_actualizar->nombre_empresa = $request->nombre_empresa;
         $empresa_actualizar->descripcion = $request->descripcion;
         $empresa_actualizar->tipo_id = $request->tipo_id;
