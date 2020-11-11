@@ -4,12 +4,13 @@
 <div class="row mt">
           <div class="col-md-1s2">
             <div class="content-panel" style="padding:3%;">
-              <form method="post" enctype="multipart/form-data" action="{{route('estado_resultado')}}">
+              <form method="post" enctype="multipart/form-data" action="{{route('catalogo_cuentas')}}">
                 @csrf
 
-                <input type="file" name="estado_resultado">
+                <input type="file" name="catalogo_cuentas">
                 <button class="btn btn-primary">Importar Balance General</button>
                 <button class="btn btn-primary">Importar Estado de resultado</button>
+                <button class="btn btn-primary">Importar Catalogo de Cuentas</button>
               </form>
             <a href="{{route('crear_empresa')}}"><button type="button" class="btn btn-round btn-default"> <i class="fa fa-plus"></i> Agregar</button></a>
             <br><br>

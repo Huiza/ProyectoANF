@@ -3,7 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\DetalleEstadosFinancieros;
+use App\Imports\DetalleEstadosFinancierosImport;
 use Illuminate\Http\Request;
+use App\EstadoFinanciero;
+use Excel;
 
 class DetalleEstadosFinancierosController extends Controller
 {
@@ -35,12 +38,17 @@ class DetalleEstadosFinancierosController extends Controller
      */
     public function store(Request $request)
     {
-        foreach($request->cuenta as $key => $value){
-            DetalleEstadosFinancieros::create([
-                'cuenta' => $value, 
-                'id_estado_financiero' => $request['id_estado_financiero'][$key], 
-                'saldo' => $request['saldo'][$key],
-            ]);
+        if ($request->hasFile('estado_financiero')){
+            $file = $request->file('estado_financiero');
+            Excel::import(new DetalleEstadosFinancierosImport, $file);
+        }
+        else
+            foreach($request->cuenta as $key => $value){
+                DetalleEstadosFinancieros::create([
+                    'cuenta' => $value, 
+                    'id_estado_financiero' => $request['id_estado_financiero'][$key],
+                    'saldo' => $request['saldo'][$key],
+                ]);
         }
 
         return redirect('empresas');
@@ -52,9 +60,19 @@ class DetalleEstadosFinancierosController extends Controller
      * @param  \App\DetalleEstadosFinancieros  $detalleEstadosFinancieros
      * @return \Illuminate\Http\Response
      */
-    public function show(DetalleEstadosFinancieros $detalleEstadosFinancieros)
+    public function show($id)
     {
-        //
+        $estado_financiero = EstadoFinanciero::findOrFail($id);
+        $balance = DetalleEstadosFinancieros::where('id_estado_financiero', $id);
+        if($estado_financiero->id_tipo_estado_financiero==1)
+        {
+            return view('EstadosFinancieros.ver_balance_general', compact('balance', 'estado_financiero'));
+        }
+        else{
+            return view('EstadosFinancieros.ver_estado_resultado', compact('balance', 'estado_financiero'));
+        }
+        
+        
     }
 
     /**

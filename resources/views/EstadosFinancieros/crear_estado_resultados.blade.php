@@ -11,7 +11,9 @@
               <h4 class="mb"><i class="fa fa-angle-right"></i> {{$empresa->nombre_empresa}}: Registro de estado de resultados</h4>
               <form class="form-horizontal style-form" method="POST" action="{{route('guardar_detalle_estado_financiero')}}" style="padding:2%;">
                @csrf
-           
+                <input type="file" name="estado_financiero">
+                <br>
+                <button class="btn btn-primary">Importar Estado de Resultados</button>
               <div class="panel-body">
                 <div class="task-content">
 
@@ -38,13 +40,14 @@
                             <tr>
                                 @if($cuenta->cuenta->nombre_cuenta == 'INGRESOS')
                                 <td name=><h4><strong>{{$cuenta->cuenta->nombre_cuenta}}</strong></h4></td>
+                                <td hidden><input type="text" class="form-control round-form" name="saldo[]" placeholder="Monto en $" value="0" ></td>
                             
                                 @else
                                 <td>{{$cuenta->cuenta->nombre_cuenta}}</td>
-                                <div><input type="text"  name="id_estado_financiero[]" value="{{ $estado_financiero->id_estado_financiero}}" hidden></div>
-                                <input type="text"  name="cuenta[]" value="{{ $cuenta->cuenta->nombre_cuenta }}" hidden>
                                 <td><input type="text" class="form-control round-form" name="saldo[]" placeholder="Monto en $"></td>
                                 @endif
+                                <input type="text"  name="cuenta[]" value="{{ $cuenta->cuenta->nombre_cuenta }}" hidden>
+                                <div><input type="text"  name="id_estado_financiero[]" value="{{ $estado_financiero->id_estado_financiero}}" hidden></div>
                             </tr>
                             @endforeach
                             </tbody>
@@ -53,18 +56,21 @@
                                 <input type="text"  name="cuenta[]" value="TOTAL DE INGRESOS" hidden>
                                 <td><input type="text" class="form-control round-form" name="saldo[]" placeholder="Monto en $"></td>
 
+
                                 
-                            @foreach($gastos as $cuenta)
+                             
+                                @foreach($gastos as $cuenta)
                             <tr>
                                 @if($cuenta->cuenta->nombre_cuenta == 'GASTOS')
                                 <td name=><h4><strong>{{$cuenta->cuenta->nombre_cuenta}}</strong></h4></td>
+                                <td hidden><input type="text" class="form-control round-form" name="saldo[]" placeholder="Monto en $" value="0" ></td>
                             
                                 @else
                                 <td>{{$cuenta->cuenta->nombre_cuenta}}</td>
-                                <div><input type="text"  name="id_estado_financiero[]" value="{{ $estado_financiero->id_estado_financiero}}" hidden></div>
-                                <input type="text"  name="cuenta[]" value="{{ $cuenta->cuenta->nombre_cuenta }}" hidden>
                                 <td><input type="text" class="form-control round-form" name="saldo[]" placeholder="Monto en $"></td>
                                 @endif
+                                <input type="text"  name="cuenta[]" value="{{ $cuenta->cuenta->nombre_cuenta }}" hidden>
+                                <div><input type="text"  name="id_estado_financiero[]" value="{{ $estado_financiero->id_estado_financiero}}" hidden></div>
                             </tr>
                             @endforeach
                             </tbody>
@@ -72,7 +78,6 @@
                                 <div><input type="text"  name="id_estado_financiero[]" value="{{ $estado_financiero->id_estado_financiero}}" hidden></div>
                                 <input type="text"  name="cuenta[]" value="TOTAL DE GASTOS" hidden>
                                 <td><input type="text" class="form-control round-form" name="saldo[]" placeholder="Monto en $"></td>
-
                             </tbody>
                         </table>
                         

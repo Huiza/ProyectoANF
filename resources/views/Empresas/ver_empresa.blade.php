@@ -62,8 +62,8 @@
                       <hr>
                   <thead>
                   <tr>
-                    <th><i class="fa fa-code-fork"></i> Fecha de inicio</th>
-                    <th><i class="fa fa-building-o"></i> Fecha de fin</th>
+                    <th><i class="fa fa-calendar"></i> Fecha de inicio</th>
+                    <th><i class="fa fa-calendar"></i> Fecha de fin</th>
                     
                     <th></th>
                   </tr>
@@ -71,10 +71,10 @@
                 <tbody>
                   @foreach($balances_general as $bg)
                   <tr>
-                      <td>{{$bg->fecha_inicio}}</td>
-                      <td>{{$bg->fecha_final}}</td>
+                      <td>{{date('j F, Y', strtotime($bg->fecha_inicio))}}</td>
+                      <td>{{date('j F, Y', strtotime($bg->fecha_final))}}</td>
                       <td>
-                        <a href="" class="btn btn-info"><i class="fa fa-indent"></i> Consultar</a>
+                        <a href="{{route('ver_balance_general', $bg->id_estado_financiero)}}" class="btn btn-info"><i class="fa fa-indent"></i> Consultar</a>
                       </td>
                   </tr>
                   @endforeach
@@ -95,8 +95,8 @@
                       <hr>
                   <thead>
                   <tr>
-                    <th><i class="fa fa-code-fork"></i> Fecha de inicio</th>
-                    <th><i class="fa fa-building-o"></i> Fecha de fin</th>
+                    <th><i class="fa fa-calendar"></i> Fecha de inicio</th>
+                    <th><i class="fa fa-calendar"></i> Fecha de fin</th>
                     
                     <th></th>
                   </tr>
@@ -104,10 +104,10 @@
                 <tbody>
                   @foreach($estados_resultados as $er)
                   <tr>
-                      <td>{{$er->fecha_inicio}}</td>
-                      <td>{{$er->fecha_final}}</td>
+                      <td>{{date('j F, Y', strtotime($er->fecha_inicio))}}</td>
+                      <td>{{date('j F, Y', strtotime($er->fecha_final))}}</td>
                       <td>
-                        <a href="" class="btn btn-info"><i class="fa fa-indent"></i> Consultar</a>
+                        <a href="{{route('ver_estado_resultado', $er->id_estado_financiero)}}" class="btn btn-info"><i class="fa fa-indent"></i> Consultar</a>
                       </td>
                   </tr>
                   @endforeach
