@@ -55,3 +55,6 @@ Route::get('analisis_vertical/calcular/{id}', 'AnalisisVerticalController@show')
 
 //RUTAS PARA EL ANÁLISIS HORIZONTAL
 Route::get('analisis_horizontal/calcular/{id}', 'AnalisisHorizontalController@show')->name('calcular_analisis_horizontal');
+
+//RUTAS PARA EL CÁLCULO DE RATIOS FINANCIEROS
+Route::get('ratios_financieros/calcular/{id}', 'RatioFinancieroController@show')->name('calcular_ratios_financieros');

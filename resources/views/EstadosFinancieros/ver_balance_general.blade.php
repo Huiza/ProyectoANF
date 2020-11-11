@@ -15,6 +15,7 @@
               <a  href="{{route('ver_balance_general', $estado_financiero->id_estado_financiero)}}"><button type="button" class="btn btn-theme"> Balance general</button></a>
               <a href="{{route('calcular_analisis_horizontal', $estado_financiero->id_estado_financiero)}}"><button type="button" class="btn btn-default"> Análisis horizontal</button></a>
               <a href="{{route('calcular_analisis_vertical', $estado_financiero->id_estado_financiero)}}"><button type="button" class="btn btn-default"> Análisis vertical</button></a>
+              <a href="{{route('calcular_ratios_financieros', $estado_financiero->id_estado_financiero)}}"><button type="button" class="btn btn-default"> Calcular ratios financieros</button></a>
               </div>
             <div style="padding-left:10%; padding-top:5%; padding-bottom:3%;"> 
               
