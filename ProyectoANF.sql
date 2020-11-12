@@ -264,7 +264,7 @@ INSERT INTO `cuentas` (`id_cuenta`, `id_tipo_cuenta`, `nombre_cuenta`) VALUES
 (253, 7, 'CUENTAS DE MEMORANDUM DEUDORAS'),
 (254, 7, 'CUENTAS DE ORDEN DEUDORAS'),
 (255, 8, 'CUENTAS DE MEMORANDUM ACREEDORAS'),
-(256, 8, 'CUENTAS DE ORDEN ACREEDORAS'),
+(256, 8, 'CUENTAS DE ORDEN ACREEDORAS');
 
 INSERT INTO `tipos` (`id`, `tipo`, `created_at`, `updated_at`) VALUES
 (1, 'Comercial', NULL, NULL),
@@ -277,4 +277,3 @@ INSERT INTO `tipos` (`id`, `tipo`, `created_at`, `updated_at`) VALUES
 INSERT INTO `tipo_estado_financieros` (`id_tipo_estado_financiero`,`tipo_estado_financiero`) VALUES
 (1,'Balance general'),
 (2,'Estado de resultados');
-
