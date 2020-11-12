@@ -8,7 +8,7 @@
               <div class="col-md-4 profile-text mt mb centered">
                 <div class="right-divider hidden-sm hidden-xs">
                   <h4 style="color:black;">{{$empresa->codigo}}</h4>
-                  <h6 style="color:grey;">CÓDIGO</h6>
+                  <!--h6 style="color:grey;">CÓDIGO</h6-->
                   <h4 style="color:black;">{{$empresa->tipo->tipo}}</h4>
                   <h6 style="color:grey;">RUBRO</h6>
             

@@ -8,7 +8,7 @@ use App\Tipo;
 class empresa extends Model
 {
     //
-    protected $fillable = ['codigo','nombre_empresa','descripcion','tipo_id'];
+    protected $fillable = ['nombre_empresa','descripcion','tipo_id'];
 
     public function getRouteKeyName()
     {

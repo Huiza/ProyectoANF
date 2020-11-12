@@ -24,7 +24,7 @@ class EmpresaRequest extends FormRequest
     public function rules()
     {
         return [
-            'codigo'=> 'required|string',
+            //'codigo'=> 'required|string',
             'nombre_empresa' => 'required|max:100|regex:/[a-zA-ZñÑáéíóúÁÉÍÓÚ]/',
             'descripcion' => 'required|max:100|regex:/[a-zA-ZñÑáéíóúÁÉÍÓÚ]/',
             'tipo_id'          => 'required',
@@ -36,7 +36,7 @@ class EmpresaRequest extends FormRequest
     public function messages()
     {
         return [
-            'codigo.required' => 'El campo código es obligatorio.',
+            //'codigo.required' => 'El campo código es obligatorio.',
     
             'nombre_empresa.required'=> 'El campo nombre es obligatorio.',
             'nombre_empresa.max' => 'La cantidad máxima de carácteres es 100.',

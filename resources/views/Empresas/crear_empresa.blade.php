@@ -12,7 +12,7 @@
               <br>
               <form class="form-horizontal style-form" method="POST" action="{{route('guardar_empresa')}}" style="padding-left:10%;">
                @csrf
-                <div class="form-group">
+                <!--div class="form-group">
                   <label class="col-sm-4 col-sm-2 control-label">Código </label>
                   <div class="col-sm-8">
                     <input type="text" class="form-control round-form" name="codigo">
@@ -20,7 +20,7 @@
                       <small style="color:#B42020;">{{ $mensaje }}</small>
                     @endforeach
                   </div>
-                </div>
+                </div-->
 
                 <div class="form-group">
                   <label class="col-sm-4 col-sm-2 control-label">Nombre </label>

@@ -40,6 +40,7 @@ class DetalleEstadosFinancierosController extends Controller
     {
         if ($request->hasFile('estado_financiero')){
             $file = $request->file('estado_financiero');
+            //$id_tipo=$request->input('id_estado_financiero[]');
             Excel::import(new DetalleEstadosFinancierosImport, $file);
         }
         else

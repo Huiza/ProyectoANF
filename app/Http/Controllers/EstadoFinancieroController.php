@@ -40,7 +40,7 @@ class EstadoFinancieroController extends Controller
         $estado_financiero->fecha_inicio = $request->fecha_inicio;
         $estado_financiero->fecha_final = $request->fecha_final;
         $estado_financiero->save();
-        DetalleEstadosFinancierosImport::setTipoEstadoFinanciero($estado_financiero->id_tipo_estado_financiero);
+        DetalleEstadosFinancierosImport::setTipoEstadoFinanciero($estado_financiero);
         $empresa = Empresa::findOrFail($estado_financiero->id_empresa);
 
         if($estado_financiero->id_tipo_estado_financiero==1)
