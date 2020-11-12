@@ -43,7 +43,7 @@ Route::get('catalogo/crear/{id}', 'CatalogoController@create')->name('crear_cata
 
 Route::get('estado_financiero/crear/{id}', 'EstadoFinancieroController@create')->name('crear_estado_financiero');
 Route::post('estado_financiero/guardar', 'EstadoFinancieroController@store')->name('guardar_estado_financiero');
-Route::post('detalle_estado_financiero/guardar', 'DetalleEstadosFinancierosController@store')->name('guardar_detalle_estado_financiero');
+Route::post('detalle_estado_financiero/guardar/{id}', 'DetalleEstadosFinancierosController@store')->name('guardar_detalle_estado_financiero');
 Route::get('balance_general/ver/{id}', 'DetalleEstadosFinancierosController@show')->name('ver_balance_general');
 Route::get('estado_resultado/ver/{id}', 'DetalleEstadosFinancierosController@show')->name('ver_estado_resultado');
 

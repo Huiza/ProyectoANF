@@ -9,7 +9,7 @@
           <div class="col-lg-12">
             <div class="form-panel" >
             <div style="padding-left:10%; padding-top:5%; padding-bottom:3%;"> 
-                <form method="post" enctype="multipart/form-data" action="{{route('guardar_detalle_estado_financiero')}}">
+                <form method="post" enctype="multipart/form-data" action="{{route('guardar_detalle_estado_financiero',$estado_financiero->id_estado_financiero)}}">
                 @csrf
 
                 <input type="file" name="estado_financiero">
@@ -24,7 +24,7 @@
             </div>
                 
 
-            <form style="padding-left:15%; font-size:15px;" class="form-horizontal style-form" method="POST" action="{{route('guardar_detalle_estado_financiero')}}" style="padding:2%;">
+            <form style="padding-left:15%; font-size:15px;" class="form-horizontal style-form" method="POST" action="{{route('guardar_detalle_estado_financiero',$estado_financiero->id_estado_financiero)}}" style="padding:2%;"></form>
                @csrf
            
               <div class="panel-body">

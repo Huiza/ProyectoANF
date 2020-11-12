@@ -36,12 +36,12 @@ class DetalleEstadosFinancierosController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request,$id)
     {
+        //$id=1;
         if ($request->hasFile('estado_financiero')){
             $file = $request->file('estado_financiero');
-            //$id_tipo=$request->input('id_estado_financiero[]');
-            Excel::import(new DetalleEstadosFinancierosImport, $file);
+            Excel::import(new DetalleEstadosFinancierosImport($id), $file);
         }
         else
             foreach($request->cuenta as $key => $value){

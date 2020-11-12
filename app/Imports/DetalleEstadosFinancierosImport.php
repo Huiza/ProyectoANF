@@ -9,25 +9,29 @@ use Maatwebsite\Excel\Concerns\ToModel;
 
 class DetalleEstadosFinancierosImport implements ToModel
 {
-    protected static $id;
-   
+   public $id_estado_financiero;
     /**
     * @param array $row
     *
     * @return \Illuminate\Database\Eloquent\Model|null
     */
-    public static function setTipoEstadoFinanciero(EstadoFinanciero $estado_financiero){
-        self::$id=$estado_financiero->id;
-    }
+    public function __construct($id)
+            {
+                $this->id_estado_financiero = $id; // errro en en linea
+            }
 
-    public static function getTipoEstadoFinanciero(){
-        return self::$id;
-    }
+    /*static public function setTipoEstadoFinanciero(EstadoFinanciero $estado_financiero){
+        DetalleEstadosFinancierosImport::$id_tipo_estado_financiero=1;
+    }*/
+
+    /*static public  function getTipoEstadoFinanciero(){
+        return DetalleEstadosFinancierosImport::$id_tipo_estado_financiero;
+    }*/
     public function model(array $row)
     {
         return new DetalleEstadosFinancieros([
             //
-            'id_estado_financiero'=>self::getTipoEstadoFinanciero(),
+            'id_estado_financiero'=>$this->id_estado_financiero,
             'cuenta'=>$row[0],
             'saldo'=>$row[1],
         ]);

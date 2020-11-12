@@ -8,12 +8,18 @@
         <div class="row mt">
           <div class="col-lg-12">
             <div class="form-panel" style="padding-left:15%; font-size:15px;">
-              <h4 class="mb"><i class="fa fa-angle-right"></i> {{$empresa->nombre_empresa}}: Registro de estado de resultados</h4>
-              <form class="form-horizontal style-form" method="POST" action="{{route('guardar_detalle_estado_financiero')}}" style="padding:2%;">
-               @csrf
+              <form method="post" enctype="multipart/form-data" action="{{route('guardar_detalle_estado_financiero',$estado_financiero->id_estado_financiero)}}">
+                @csrf
+
                 <input type="file" name="estado_financiero">
                 <br>
                 <button class="btn btn-primary">Importar Estado de Resultados</button>
+              </form>
+              
+              <h4 class="mb"><i class="fa fa-angle-right"></i> {{$empresa->nombre_empresa}}: Registro de estado de resultados</h4>
+
+              <form style="padding-left:15%; font-size:15px;" class="form-horizontal style-form" method="POST" action="{{route('guardar_detalle_estado_financiero',$estado_financiero->id_estado_financiero)}}" style="padding:2%;"></form>
+
               <div class="panel-body">
                 <div class="task-content">
 
