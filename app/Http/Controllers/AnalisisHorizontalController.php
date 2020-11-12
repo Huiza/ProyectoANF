@@ -51,6 +51,8 @@ class AnalisisHorizontalController extends Controller
         $i = 0;
         $variacion_absoluta = [];
         $variacion_relativa = [];
+        $balance_anterior = [];
+        $mensaje = "";
         $estado_financiero = EstadoFinanciero::findOrFail($id);
         $balance = DB::select('select * from detalle_estados_financieros where id_estado_financiero ='.$id);
         $estado_financiero_anterior = EstadoFinanciero::where('fecha_inicio','<',$estado_financiero->fecha_inicio)->where('id_empresa', $estado_financiero->id_empresa)->orderBy('fecha_inicio', 'DESC')->first();
@@ -68,8 +70,13 @@ class AnalisisHorizontalController extends Controller
                     $variacion_relativa[$i] = 0;
                 }
             }
-            return view('Analisis.calculo_analisis_horizontal', compact('estado_financiero', 'balance', 'estado_financiero_anterior', 'balance_anterior', 'variacion_absoluta', 'variacion_relativa'));
+            
         }
+        else{
+
+            $mensaje = "No se han registrado períodos anteriores, nos es posible calcular el análisis horizontal!!!";
+        }
+        return view('Analisis.calculo_analisis_horizontal', compact('estado_financiero', 'balance', 'estado_financiero_anterior', 'balance_anterior', 'variacion_absoluta', 'variacion_relativa', 'mensaje'));
 
         
     }

@@ -33,12 +33,12 @@
               <h4>Del {{date('j F, Y', strtotime($estado_financiero->fecha_inicio))}} al {{date('j F, Y', strtotime($estado_financiero->fecha_final))}}</h4>
             </div>
                 
-             
-
-              <form style="padding-left:15%; font-size:15px;" class="form-horizontal style-form" method="POST" action="{{route('guardar_detalle_estado_financiero')}}" style="padding:2%;">
-               @csrf
-           
-              <div class="panel-body">
+            @if($mensaje)
+            <div class="col-md-12 alert alert-warning" style="text-align:center;">
+              <h5><strong>{{$mensaje}}</strong></h5>
+            </div>
+            @endif
+              <div style="padding-left:15%; font-size:15px;"  class="panel-body">
                 <div class="task-content">
 
                 <div class="row">
@@ -53,11 +53,14 @@
                             <thead>
                             <tr>
                                 <th><h4><strong>Cuenta</strong></h4></th>
+                                @if(!$mensaje)
                                 <th><h4><strong>{{date('j F, Y', strtotime($estado_financiero_anterior->fecha_inicio))}} al <br>{{date('j F, Y', strtotime($estado_financiero_anterior->fecha_final))}}</strong></h4></th>
+                                @endif
                                 <th><h4><strong>{{date('j F, Y', strtotime($estado_financiero->fecha_inicio))}} al <br>{{date('j F, Y', strtotime($estado_financiero->fecha_final))}}</strong></h4></th>
+                                @if(!$mensaje)
                                 <th><h4><strong>Variación absoluta</strong></h4></th>
-                                <th><h4><strong>Variación relativa</strong></h4></th>
-
+                                <th><h4><strong>Variación relativa</strong></h4></th> 
+                                @endif
 
                             </tr>
                             </thead>
@@ -71,10 +74,12 @@
 
                               @else
                               <td><h4>{{$balance[$i]->cuenta}}</h4></td>
-                              <td><h4><strong>${{$balance_anterior[$i]->saldo}}</strong></h4></td>
                               <td><h4><strong>${{$balance[$i]->saldo}}</strong></h4></td>
+                              @if(!$mensaje)
+                              <td><h4><strong>${{$balance_anterior[$i]->saldo}}</strong></h4></td>
                               <td><h4><strong>${{$variacion_absoluta[$i]}}</strong></h4></td>
                               <td><h4><strong>{{$variacion_relativa[$i]}}%</strong></h4></td>
+                              @endif
                               @endif
 
 
@@ -97,7 +102,7 @@
           <!-- /col-md-12-->
         </div>
                
-               </form>
+             
             </div>
           </div>
           <!-- col-lg-12-->

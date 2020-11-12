@@ -89,6 +89,8 @@ class RatioFinancieroController extends Controller
         $activo_fijo_neto_promedio = 0;
         $indice_rotacion_activo_total = 0;
         $indice_rotacion_activo_fijo = 0;
+        $mensaje = "";
+        $periodos =[];
         
         $estado_financiero_1 = EstadoFinanciero::findOrFail($id);
         $balance = DB::select('select * from detalle_estados_financieros where id_estado_financiero ='.$id);
@@ -96,6 +98,8 @@ class RatioFinancieroController extends Controller
                                                 where('fecha_final','=',$estado_financiero_1->fecha_final)->
                                                 where('id_empresa','=',$estado_financiero_1->id_empresa)->
                                                 where('id_tipo_estado_financiero','=',2)->first();
+        if($estado_financiero_2)
+        {                                      
         $estado_resultado = DB::select('select * from detalle_estados_financieros where id_estado_financiero ='.$estado_financiero_2->id_estado_financiero);;
         $periodos = EstadoFinanciero::where('fecha_inicio', '<=', $estado_financiero_1->fecha_inicio)->where('id_empresa', $estado_financiero_1->id_empresa)->get();
         
@@ -210,8 +214,11 @@ class RatioFinancieroController extends Controller
         $grado_propiedad = $total_activos == 0 ? 0 : (round($total_patrimonio / $total_activos,2));
         $razon_endeudamiento_patrimonial = $total_patrimonio == 0 ? 0 : (round($total_pasivos / $total_patrimonio,2));
         $razon_cobertura_gastos_financieros = $gastos_financieros == 0 ? 0 : (round($utilidades_antes_impuestos / $gastos_financieros,2));
-
-        return view('RatiosFinancieros/calcular_ratios', compact('estado_financiero_1', 'razon_circulante', 'prueba_acida', 'razon_capital_trabajo', 'razon_efectivo', 'grado_endeudamiento', 'grado_propiedad', 'razon_endeudamiento_patrimonial', 'razon_cobertura_gastos_financieros', 'indice_margen_bruto', 'indice_margen_operativo', 'periodos', 'razon_rotacion_inventario', 'dias_rotacion_inventario', 'razon_rotacion_cuentas_cobrar', 'razon_periodo_medio_cobranza', 'razon_periodo_medio_pago', 'razon_rotacion_cuentas_pagar', 'indice_rotacion_activo_fijo', 'indice_rotacion_activo_total'));
+        } 
+        else{
+            $mensaje="Se debe registrar un estado de resultado correspondiente a este período para el cálculo de las razones financieras!!!";
+        }
+        return view('RatiosFinancieros/calcular_ratios', compact('estado_financiero_1', 'razon_circulante', 'prueba_acida', 'razon_capital_trabajo', 'razon_efectivo', 'grado_endeudamiento', 'grado_propiedad', 'razon_endeudamiento_patrimonial', 'razon_cobertura_gastos_financieros', 'indice_margen_bruto', 'indice_margen_operativo', 'periodos', 'razon_rotacion_inventario', 'dias_rotacion_inventario', 'razon_rotacion_cuentas_cobrar', 'razon_periodo_medio_cobranza', 'razon_periodo_medio_pago', 'razon_rotacion_cuentas_pagar', 'indice_rotacion_activo_fijo', 'indice_rotacion_activo_total', 'mensaje'));
 
     }
 
