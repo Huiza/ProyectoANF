@@ -89,8 +89,17 @@ class RatioFinancieroController extends Controller
         $activo_fijo_neto_promedio = 0;
         $indice_rotacion_activo_total = 0;
         $indice_rotacion_activo_fijo = 0;
+<<<<<<< HEAD
         $mensaje = "";
         $periodos =[];
+=======
+
+        $rentabilidad_del_patrimonio = 0;
+        $total_patrimonio_promedio = 0;
+        $total_gastos=0;
+        $ventas_netas=0;
+        $inversion=0;
+>>>>>>> 51882297b3b31043891adfbf0d3fc96ee6bb1012
         
         $estado_financiero_1 = EstadoFinanciero::findOrFail($id);
         $balance = DB::select('select * from detalle_estados_financieros where id_estado_financiero ='.$id);
@@ -105,92 +114,102 @@ class RatioFinancieroController extends Controller
         
         //Ceuntas de balance general
         foreach($balance as $cuentas){
-            if($cuentas->cuenta=='ACTIVO CORRIENTE'){
+            if(!strcasecmp($cuentas->cuenta,'ACTIVO CORRIENTE')){
                 $activo_corriente=$cuentas->saldo;
             }
-            if($cuentas->cuenta=='PASIVO CORRIENTE'){
+            if(!strcasecmp($cuentas->cuenta,'PASIVO CORRIENTE')){
                 $pasivo_corriente=$cuentas->saldo;
             }
-            if($cuentas->cuenta=='INVENTARIOS'){
+            if(!strcasecmp($cuentas->cuenta,'inventarios')){
                 $inventarios=$cuentas->saldo;
             }
-            if($cuentas->cuenta=='TOTAL DE ACTIVOS'){
+            if(!strcasecmp($cuentas->cuenta,'TOTAL DE ACTIVOS')){
                 $total_activos=$cuentas->saldo;
             }
-            if($cuentas->cuenta=='Valores de corto plazo'){
+            if(!strcasecmp($cuentas->cuenta,'Valores de corto plazo')){
                 $valores_corto_plazo=$cuentas->saldo;
             }
-            if($cuentas->cuenta=='EFECTIVO Y EQUIVALENTES DE EFECTIVO'){
+            if(!strcasecmp($cuentas->cuenta,'EFECTIVO Y EQUIVALENTES DE EFECTIVO')){
                 $efectivo=$cuentas->saldo;
             }
-            if($cuentas->cuenta=='TOTAL DE PASIVOS'){
+            if(!strcasecmp($cuentas->cuenta,'TOTAL DE PASIVOS')){
                 $total_pasivos=$cuentas->saldo;
             }
-            if($cuentas->cuenta=='TOTAL PATRIMONIO'){
+            if(!strcasecmp($cuentas->cuenta,'TOTAL PATRIMONIO')){
                 $total_patrimonio=$cuentas->saldo;
             }
-            if($cuentas->cuenta=='Utilidades antes de impuesto'){
+            if(!strcasecmp($cuentas->cuenta,'Utilidades antes de impuesto')){
                 $utilidades_antes_impuestos=$cuentas->saldo;
             }
-            if($cuentas->cuenta=='Utilidad operativa'){
+            if(!strcasecmp($cuentas->cuenta,'Utilidad operativa')){
                 $utilidad_operativa=$cuentas->saldo;
             }
-            if($cuentas->cuenta=='UTILIDAD BRUTA'){
+            if(!strcasecmp($cuentas->cuenta,'UTILIDAD BRUTA')){
                 $utilidad_bruta=$cuentas->saldo;
             }
-            
+            if(!strcasecmp($cuentas->cuenta,'Inversiones')){
+                $inversion=$cuentas->saldo;
+            }
         }
         //Promedio de cuentas del balance general
         foreach($periodos as $p){
             foreach($p->detallesEstado as $cuenta){
-                if($cuenta->cuenta=='INVENTARIOS'){
+                if(!strcasecmp($cuenta->cuenta,'inventarios')){
                     $inventario_promedio=$inventario_promedio + $cuenta->saldo;
                     $cantidad_periodos++;
                 } 
-                if($cuenta->cuenta=='Cuentas por cobrar comerciales'){
+                if(!strcasecmp($cuenta->cuenta,'Cuentas por cobrar comerciales')){
                     $cuentas_cobrar_comerciales_promedio=$cuentas_cobrar_comerciales_promedio + $cuenta->saldo;
                 }
-                if($cuenta->cuenta=='Cuentas por pagar comerciales'){
+                if(!strcasecmp($cuenta->cuenta,'Cuentas por pagar comerciales')){
                     $cuentas_pagar_comerciales_promedio=$cuentas_pagar_comerciales_promedio + $cuenta->saldo;
                 } 
-                if($cuenta->cuenta=='TOTAL DE ACTIVOS'){
+                if(!strcasecmp($cuenta->cuenta,'TOTAL DE ACTIVOS')){
                     $total_activo_promedio=$total_activo_promedio + $cuenta->saldo;
                 }
-                if($cuenta->cuenta=='ACTIVO FIJO NETO'){
+                if(!strcasecmp($cuenta->cuenta,'ACTIVO FIJO NETO')){
                     $activo_fijo_neto_promedio=$activo_fijo_neto_promedio + $cuenta->saldo;
-                } 
-                
-                
-            }                      
+                }
+                if(!strcasecmp($cuenta->cuenta,'TOTAL PATRIMONIO')){
+                    $total_patrimonio_promedio=$total_patrimonio_promedio + $cuenta->saldo;
+                }
+            }
         }
         
         //Promedio de cuentas de estado de resultado
         foreach($estado_resultado as $cuenta){
-                if($cuenta->cuenta=='TOTAL DE INGRESOS'){
+                if(!strcasecmp($cuenta->cuenta,'TOTAL DE INGRESOS')){
                     $total_ingresos=$cuenta->saldo;
                 }
-                if($cuenta->cuenta=='COSTO DE VENTA'){
+                if(!strcasecmp($cuenta->cuenta,'COSTO DE VENTA')){
                         $costo_venta = $cuenta->saldo;
                 }
-                if($cuenta->cuenta=='COMPRAS'){
+                if(!strcasecmp($cuenta->cuenta,'COMPRAS')){
                     $compras = $cuenta->saldo;
                 }
-                if($cuenta->cuenta=='GASTOS FINANCIEROS'){
+                if(!strcasecmp($cuenta->cuenta,'GASTOS FINANCIEROS')){
                     $gastos_financieros=$cuenta->saldo;
-                }                
-        }                      
+                }
+                if(!strcasecmp($cuenta->cuenta,'TOTAL DE GASTOS')){
+                    $total_gastos=$cuenta->saldo;
+                }
+                if(!strcasecmp($cuenta->cuenta,'Ventas Netas')){
+                    $ventas_netas=$cuenta->saldo;
+                }
+        }
         
         $inventario_promedio = $inventario_promedio/$cantidad_periodos;
         $cuentas_cobrar_comerciales_promedio = $cuentas_cobrar_comerciales_promedio/$cantidad_periodos;
         $cuentas_pagar_comerciales_promedio = $cuentas_pagar_comerciales_promedio/$cantidad_periodos;
         $total_activo_promedio = $total_activo_promedio/$cantidad_periodos;
         $activo_fijo_neto_promedio = $activo_fijo_neto_promedio/$cantidad_periodos;
+        $total_patrimonio_promedio = $total_patrimonio_promedio/$cantidad_periodos;
 
         //Razones de liquidez
-        $razon_circulante = round($activo_corriente/$pasivo_corriente, 2);
-        $prueba_acida = round(($activo_corriente - $inventarios)/ $pasivo_corriente, 2);
-        $razon_capital_trabajo = round(($activo_corriente - $pasivo_corriente)/$total_activos, 2);
-        $razon_efectivo = round(($efectivo + $valores_corto_plazo)/$pasivo_corriente,2);
+        $razon_circulante = $pasivo_corriente == 0 ? 0 : (round($activo_corriente/$pasivo_corriente, 2));
+        $prueba_acida = $pasivo_corriente == 0 ? 0 : (round(($activo_corriente - $inventarios)/ $pasivo_corriente, 2));
+        $razon_capital_trabajo = $total_activos == 0 ? 0 : (round(($activo_corriente - $pasivo_corriente)/$total_activos, 2));
+        $razon_efectivo = $pasivo_corriente == 0 ? 0 : round(($efectivo + $valores_corto_plazo)/$pasivo_corriente,2);
 
         //Razones de actividad
         $razon_rotacion_inventario = $inventario_promedio == 0 ? 0 : (round($costo_venta / $inventario_promedio,2));
@@ -205,7 +224,7 @@ class RatioFinancieroController extends Controller
         $indice_rotacion_activo_total = $total_activo_promedio == 0 ? 0 : (round($total_ingresos / $total_activo_promedio,2));
         $indice_rotacion_activo_fijo = $activo_fijo_neto_promedio == 0 ? 0 : (round($total_ingresos / $activo_fijo_neto_promedio,2));
 
-        $indice_margen_bruto = $total_ingresos == 0 ? 0 : (round($utilidad_bruta / $total_ingresos, 3));
+        $indice_margen_bruto = $total_ingresos == 0 ? 0 : (round($utilidad_bruta / $total_ingresos, 2));
         $indice_margen_operativo = $total_ingresos == 0 ? 0 : (round($utilidad_operativa / $total_ingresos,2));
 
 
@@ -214,12 +233,23 @@ class RatioFinancieroController extends Controller
         $grado_propiedad = $total_activos == 0 ? 0 : (round($total_patrimonio / $total_activos,2));
         $razon_endeudamiento_patrimonial = $total_patrimonio == 0 ? 0 : (round($total_pasivos / $total_patrimonio,2));
         $razon_cobertura_gastos_financieros = $gastos_financieros == 0 ? 0 : (round($utilidades_antes_impuestos / $gastos_financieros,2));
+<<<<<<< HEAD
         } 
         else{
             $mensaje="Se debe registrar un estado de resultado correspondiente a este período para el cálculo de las razones financieras!!!";
         }
         return view('RatiosFinancieros/calcular_ratios', compact('estado_financiero_1', 'razon_circulante', 'prueba_acida', 'razon_capital_trabajo', 'razon_efectivo', 'grado_endeudamiento', 'grado_propiedad', 'razon_endeudamiento_patrimonial', 'razon_cobertura_gastos_financieros', 'indice_margen_bruto', 'indice_margen_operativo', 'periodos', 'razon_rotacion_inventario', 'dias_rotacion_inventario', 'razon_rotacion_cuentas_cobrar', 'razon_periodo_medio_cobranza', 'razon_periodo_medio_pago', 'razon_rotacion_cuentas_pagar', 'indice_rotacion_activo_fijo', 'indice_rotacion_activo_total', 'mensaje'));
+=======
 
+        //Razones de rentabilidad
+        $rentabilidad_del_patrimonio = $total_patrimonio_promedio == 0 ? 0 : round(($total_ingresos - $total_gastos)/$total_patrimonio_promedio,2);
+        $rentabilidad_activo = $total_activo_promedio == 0 ? 0 : round(($total_ingresos - $total_gastos)/$total_activo_promedio,2);
+        $rentabilidad_ventas = $ventas_netas  == 0 ? 0 : round(($total_ingresos - $total_gastos)/$ventas_netas,2);
+        $rentabilidad_inversion = $inversion  == 0 ? 0 : round(($total_ingresos - $inversion)/$inversion,2);
+>>>>>>> 51882297b3b31043891adfbf0d3fc96ee6bb1012
+
+        return view('RatiosFinancieros.calcular_ratios', compact('estado_financiero_1', 'razon_circulante', 'prueba_acida', 'razon_capital_trabajo', 'razon_efectivo', 'grado_endeudamiento', 'grado_propiedad', 'razon_endeudamiento_patrimonial', 'razon_cobertura_gastos_financieros', 'indice_margen_bruto', 'indice_margen_operativo', 'periodos', 'razon_rotacion_inventario', 'dias_rotacion_inventario', 'razon_rotacion_cuentas_cobrar', 'razon_periodo_medio_cobranza', 'razon_periodo_medio_pago', 'razon_rotacion_cuentas_pagar', 'indice_rotacion_activo_fijo', 'indice_rotacion_activo_total', 'rentabilidad_del_patrimonio', 'rentabilidad_activo', 'rentabilidad_ventas', 'rentabilidad_inversion'));
+        return view('RatiosFinancieros.comparar_ratios', compact('estado_financiero_1', 'razon_circulante', 'prueba_acida', 'razon_capital_trabajo', 'razon_efectivo', 'grado_endeudamiento', 'grado_propiedad', 'razon_endeudamiento_patrimonial', 'razon_cobertura_gastos_financieros', 'indice_margen_bruto', 'indice_margen_operativo', 'periodos', 'razon_rotacion_inventario', 'dias_rotacion_inventario', 'razon_rotacion_cuentas_cobrar', 'razon_periodo_medio_cobranza', 'razon_periodo_medio_pago', 'razon_rotacion_cuentas_pagar', 'indice_rotacion_activo_fijo', 'indice_rotacion_activo_total', 'rentabilidad_del_patrimonio', 'rentabilidad_activo', 'rentabilidad_ventas', 'rentabilidad_inversion'));
     }
 
     /**

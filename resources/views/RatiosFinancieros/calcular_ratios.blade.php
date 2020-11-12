@@ -134,6 +134,26 @@
                                   <td>Razón de cobertura de gastos financieros</td>
                                   <td><strong>{{$razon_cobertura_gastos_financieros}}</strong></td>
                                 </tr>
+
+                                <tr>
+                                <td><h3><strong>Razones de rentabilidad</strong></h3></td>
+                                </tr>
+                                <tr>
+                                  <td>Rentabilidad neta del patrimonio (ROE)</td>
+                                  <td><strong>{{$rentabilidad_del_patrimonio}}</strong></td>
+                                </tr>
+                                <tr>
+                                  <td>Rentabilidad del activo (ROA)</td>
+                                  <td><strong>{{$rentabilidad_activo}}</strong></td>
+                                </tr>
+                                <tr>
+                                  <td>Rentabilidad sobre ventas</td>
+                                  <td><strong>{{$rentabilidad_ventas}}</strong></td>
+                                </tr>
+                                <tr>
+                                  <td>Rentabilidad sobre la inversión (ROI)</td>
+                                  <td><strong>{{$rentabilidad_inversion}}</strong></td>
+                                </tr>
                                   
                             </tbody>
                                 
