@@ -81,6 +81,7 @@
               
               <li><a href="{{route('empresas')}}">Ver empresas</a></li>
               <li><a href="{{route('crear_empresa')}}">Agregar empresa</a></li>
+              <li><a href="{{route('seleccionar_sector')}}">Agregar empresa</a></li>
 
             </ul>
           </li>

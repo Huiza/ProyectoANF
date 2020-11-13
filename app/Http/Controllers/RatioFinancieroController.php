@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\EstadoFinanciero;
 use App\RatioFinanciero;
 use App\DetalleEstadosFinancieros;
+use App\Tipo;
+use App\Empresa;
 use \DB;
 
 class RatioFinancieroController extends Controller
@@ -361,9 +363,10 @@ class RatioFinancieroController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function comparar($id)
+    public function formulario_comparar()
     {
-    
+        $tipos = Tipo::all();
+        return view('RatiosFinancieros.formulario_comparar', compact('tipos')); 
     }
 
     /**
@@ -372,9 +375,9 @@ class RatioFinancieroController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function comparar()
     {
-        //
+ 
     }
 
     /**
