@@ -277,3 +277,9 @@ INSERT INTO `tipos` (`id`, `tipo`, `created_at`, `updated_at`) VALUES
 INSERT INTO `tipo_estado_financieros` (`id_tipo_estado_financiero`,`tipo_estado_financiero`) VALUES
 (1,'Balance general'),
 (2,'Estado de resultados');
+
+INSERT INTO `tipo_ratios` (`id`, `nombre_tipo_ratio`) VALUES
+(1,'Razones de liquidez'),
+(2,'Razones de actividad'),
+(3,'Razones de apalancamiento'),
+(4,'Razones de rentabilidad');

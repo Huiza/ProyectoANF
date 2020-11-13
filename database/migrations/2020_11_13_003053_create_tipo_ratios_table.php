@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateBalanceGeneralsTable extends Migration
+class CreateTipoRatiosTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,9 @@ class CreateBalanceGeneralsTable extends Migration
      */
     public function up()
     {
-        Schema::create('balance_generals', function (Blueprint $table) {
+        Schema::create('tipo_ratios', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('nombre_cuenta');
-            $table->integer('saldo');
+            $table->string('nombre_tipo_ratio');
             $table->timestamps();
         });
     }
@@ -28,6 +27,6 @@ class CreateBalanceGeneralsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('balance_generals');
+        Schema::dropIfExists('tipo_ratios');
     }
 }

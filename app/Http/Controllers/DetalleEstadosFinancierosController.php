@@ -6,6 +6,7 @@ use App\DetalleEstadosFinancieros;
 use App\Imports\DetalleEstadosFinancierosImport;
 use Illuminate\Http\Request;
 use App\EstadoFinanciero;
+use App\RatioFinanciero;
 use Excel;
 
 class DetalleEstadosFinancierosController extends Controller
@@ -62,12 +63,13 @@ class DetalleEstadosFinancierosController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function show($id)
-    {
+    {   
+        $ratio = RatioFinanciero::where('id_estado_financiero', $id)->get();
         $estado_financiero = EstadoFinanciero::findOrFail($id);
         $balance = DetalleEstadosFinancieros::where('id_estado_financiero', $id);
         if($estado_financiero->id_tipo_estado_financiero==1)
         {
-            return view('EstadosFinancieros.ver_balance_general', compact('balance', 'estado_financiero'));
+            return view('EstadosFinancieros.ver_balance_general', compact('balance', 'estado_financiero', 'ratio'));
         }
         else{
             return view('EstadosFinancieros.ver_estado_resultado', compact('balance', 'estado_financiero'));

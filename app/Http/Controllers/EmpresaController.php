@@ -9,6 +9,7 @@ use App\Empresa;
 use App\Catalogo;
 use App\EstadoFinanciero;
 use App\DetalleEstadosFinancieros;
+use RealRashid\SweetAlert\Facades\Alert;
 
 
 class EmpresaController extends Controller
@@ -51,7 +52,7 @@ class EmpresaController extends Controller
         $empresa->descripcion = $request->descripcion;
         $empresa->tipo_id = $request->tipo_id;
         $empresa->save();
-        return redirect('empresas');
+        return redirect('empresas')->with('success', 'Task Created Successfully!');
     }
 
     /**
