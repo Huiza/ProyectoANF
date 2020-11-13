@@ -61,4 +61,5 @@ Route::get('analisis_horizontal/calcular/{id}', 'AnalisisHorizontalController@sh
 //RUTAS PARA EL CÁLCULO DE RATIOS FINANCIEROS
 Route::get('ratios_financieros/calcular/{id}', 'RatioFinancieroController@store')->name('calcular_ratios_financieros');
 Route::get('ratios_financieros/ver/{id}', 'RatioFinancieroController@show')->name('ver_ratios_financieros');
+Route::get('ratios_financieros/comparar/{id}', 'RatioFinancieroController@comparar')->name('comparar_ratios_financieros');
 
