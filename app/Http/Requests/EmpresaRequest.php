@@ -44,7 +44,7 @@ class EmpresaRequest extends FormRequest
             
             'descripcion.required'=> 'El campo descripcion es obligatorio.',
             'descripcion.max'=> 'La cantidad máxima de carácteres es 100.',
-            'desccripcion.regex'=> 'Los carácteres deben ser solo letras.',
+            'descripcion.regex'=> 'Los carácteres deben ser solo letras.',
             
             'tipo_id.required'          => 'Debe seleccionar un tipo',
         ];

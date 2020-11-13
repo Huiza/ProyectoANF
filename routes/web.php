@@ -44,11 +44,13 @@ Route::get('catalogo/crear/{id}', 'CatalogoController@create')->name('crear_cata
 Route::get('estado_financiero/crear/{id}', 'EstadoFinancieroController@create')->name('crear_estado_financiero');
 Route::post('estado_financiero/guardar', 'EstadoFinancieroController@store')->name('guardar_estado_financiero');
 Route::post('detalle_estado_financiero/guardar/{id}', 'DetalleEstadosFinancierosController@store')->name('guardar_detalle_estado_financiero');
+Route::get('estado_financiero/editar/{id}', 'DetalleEstadosFinancierosController@edit')->name('editar_estado_financiero');
+Route::put('estado_financiero/actualizar/{id}', 'DetalleEstadosFinancierosController@update')->name('actualizar_estado_financiero');
 Route::get('balance_general/ver/{id}', 'DetalleEstadosFinancierosController@show')->name('ver_balance_general');
 Route::get('estado_resultado/ver/{id}', 'DetalleEstadosFinancierosController@show')->name('ver_estado_resultado');
+Route::put('empresas/actualizar/{id}', 'EmpresaController@update')->name('actualizar_empresa');
 
-Route::post('importarBalanceGeneral', 'ImportarExcelController@ImportarBalanceGeneral')->name('balance_general'); 
-Route::post('importarEstadoResultado', 'ImportarExcelController@ImportarEstadoResultado')->name('estado_resultado');   
+  
 Route::post('importarCatalogoCuentas', 'ImportarExcelController@importarCatalogoCuentas')->name('catalogo_cuentas');  
 
 

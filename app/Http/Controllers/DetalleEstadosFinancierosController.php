@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\DetalleEstadosFinancieros;
 use App\Imports\DetalleEstadosFinancierosImport;
+use App\Http\Requests\DetalleEstadosFinancierosRequest;
 use Illuminate\Http\Request;
 use App\EstadoFinanciero;
 use Excel;
@@ -82,9 +83,18 @@ class DetalleEstadosFinancierosController extends Controller
      * @param  \App\DetalleEstadosFinancieros  $detalleEstadosFinancieros
      * @return \Illuminate\Http\Response
      */
-    public function edit(DetalleEstadosFinancieros $detalleEstadosFinancieros)
+    public function edit($id)
     {
         //
+        $estado_financiero = EstadoFinanciero::findOrFail($id);
+        $balance = DetalleEstadosFinancieros::where('id_estado_financiero', $id);
+        if($estado_financiero->id_tipo_estado_financiero==1)
+        {
+            return view('EstadosFinancieros.editar_balance_general', compact('balance', 'estado_financiero'));
+        }
+        else{
+            return view('EstadosFinancieros.editar_estado_resultado', compact('balance', 'estado_financiero'));
+        }
     }
 
     /**
@@ -94,9 +104,17 @@ class DetalleEstadosFinancierosController extends Controller
      * @param  \App\DetalleEstadosFinancieros  $detalleEstadosFinancieros
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, DetalleEstadosFinancieros $detalleEstadosFinancieros)
+    public function update(DetalleEstadosFinancierosRequest $request,$id)
     {
         //
+        $estado_financiero_actualizar = EstadoFinanciero::findOrFail($id);
+        $detalle_estado_financiero_actualizar = DetalleEstadosFinancieros::where('id_estado_financiero',$id);
+        foreach ($request->cuenta as $key => $value) {
+            $detalle_estado_financiero_actualizar->cuenta=$request->cuenta;
+            $detalle_estado_financiero_actualizar->saldo = $request->saldo;
+            $detalle_estado_financiero_actualizar->update();
+            }
+        return redirect('empresas');
     }
 
     /**

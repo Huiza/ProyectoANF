@@ -89,6 +89,31 @@ class EstadoFinancieroController extends Controller
         }
         
     }
+        public function edit($id)
+    {
+        /*$estado_financiero_actualizar = EstadoFinanciero::findOrFail($id);
+        $detalle_estado_financiero_actualizar = DetalleEstadosFinancieros::where('id_estado_financiero',$estado_financiero_actualizar->id_estado_financiero->get());
+        return view('EstadosFinancieros.editar_estado_financiero', compact('estado_financiero_actualizar','detalle_estado_financiero_actualizar'));*/
 
+    }
+
+    public function update(EstadoFinancieroRequest $request, $id)
+    {
+
+        $estado_financiero_actualizar = EstadoFinanciero::findOrFail($id);
+        $detalle_estado_financiero_actualizar = DetalleEstadosFinancieros::where('id_estado_financiero',$estado_financiero_actualizar->id_estado_financiero->get());
+        $estado_financiero_actualizar->id_estado_financiero= $request->id_estado_financiero;
+        $estado_financiero_actualizar->id_tipo_estado_financiero= $request->id_tipo_estado_financiero;
+        $estado_financiero->id_empresa = $request->id_empresa;
+        $estado_financiero->fecha_inicio = $request->fecha_inicio;
+        $estado_financiero->fecha_final = $request->fecha_final;
+        $detalle_estado_financiero_actualizar->cuenta=$request->cuenta;
+        $detalle_estado_financiero_actualizar->saldo=$request->saldo;
+        $detalle_estado_financiero_actualizar->save();
+        $estado_financiero_actualizar->save();
+        return redirect('empresas');
+
+
+    }
 
 }

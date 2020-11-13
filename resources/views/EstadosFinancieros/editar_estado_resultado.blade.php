@@ -2,23 +2,13 @@
 
 @section('content')
 
-<h3><i class="fa fa-angle-right"></i> Estado de resultados</h3>
+<h3><i class="fa fa-angle-right"></i> Edición de Estado de resultados</h3>
 
 
         <!-- BASIC FORM ELELEMNTS -->
         <div class="row mt">
           <div class="col-lg-12">
             <div class="form-panel" >
-              
-            <h4><i class="fa fa-angle-right"></i> Análisis</h4>
-              <div class="btn-group">
-              <a  href="{{route('ver_balance_general', $estado_financiero->id_estado_financiero)}}"><button type="button" class="btn btn-theme"> Balance general</button></a>
-              <a href="{{route('calcular_analisis_horizontal', $estado_financiero->id_estado_financiero)}}"><button type="button" class="btn btn-default"> Análisis horizontal</button></a>
-              <a href="{{route('calcular_analisis_vertical', $estado_financiero->id_estado_financiero)}}"><button type="button" class="btn btn-default"> Análisis vertical</button></a>
-              </div>
-            <div style="padding-left:10%; padding-top:5%; padding-bottom:3%;"> 
-              
-              </div>
             <div style="text-align:center;">
               <h3 class="mb">{{$estado_financiero->empresa->nombre_empresa}}</h3>
               <h4 class="mb">Estado de resultados</h4>
