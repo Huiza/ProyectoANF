@@ -6,7 +6,6 @@ use Illuminate\Http\Request;
 use App\EstadoFinanciero;
 use App\RatioFinanciero;
 use App\DetalleEstadosFinancieros;
-use App\Tipo;
 use App\Empresa;
 use \DB;
 
@@ -358,15 +357,23 @@ class RatioFinancieroController extends Controller
     }
 
     /**
-     * Display the specified resource.
+     * Comparar razones financieras entre empresas del mismo tipo.
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
     public function formulario_comparar()
     {
-        $tipos = Tipo::all();
-        return view('RatiosFinancieros.formulario_comparar', compact('tipos')); 
+        $estado_financiero = EstadoFinanciero::findOrFail($id);
+        $tipo_empresa = $estado_financiero->empresa->tipo_id;
+        //$empresas = Empresa::where('tipo_id',$tipo_empresa)->get();
+        $estados = EstadoFinanciero::where('fecha_inicio',$estado_financiero->fecha_inicio)->get();
+
+        foreach($estados as $estado){
+            $empresas=$estado->empresa;
+        }
+
+        return view('RatiosFinancieros.comparar_ratios', compact('empresas', 'estados'));
     }
 
     /**

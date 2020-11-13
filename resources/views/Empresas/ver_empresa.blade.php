@@ -76,6 +76,9 @@
                       <td>
                         <a href="{{route('ver_balance_general', $bg->id_estado_financiero)}}" class="btn btn-info"><i class="fa fa-indent"></i> Consultar</a>
                       </td>
+                      <td>
+                        <a href="{{route('comparar_ratios_financieros', $bg->id_estado_financiero)}}" class="btn btn-warning"><i class="fa fa-indent"></i> Comparar razones</a>
+                      </td>
                   </tr>
                   @endforeach
                 </tbody>

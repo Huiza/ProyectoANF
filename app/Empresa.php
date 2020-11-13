@@ -4,6 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use App\Tipo;
+use App\EstadoFinanciero;
 
 class empresa extends Model
 {
@@ -18,5 +19,10 @@ class empresa extends Model
     public function tipo()
     {
         return $this->belongsTo(Tipo::class, 'tipo_id', 'id');
+    }
+
+    public function estadosFinancieros()
+    {
+        return $this->hasMany(EstadoFinanciero::class, 'id_empresa', 'id');
     }
 }

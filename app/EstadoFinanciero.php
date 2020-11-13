@@ -26,4 +26,9 @@ class EstadoFinanciero extends Model
     {
         return $this->hasMany(DetalleEstadosFinancieros::class, 'id_estado_financiero', 'id_estado_financiero');
     }
+
+    public function ratios()
+    {
+        return $this->hasMany(RatioFinanciero::class, 'id_estado_financiero', 'id_estado_financiero');
+    }
 }
