@@ -13,15 +13,6 @@
               <form class="form-horizontal style-form" method="POST" style="padding-left:10%;" action="{{route('actualizar_empresa', $empresa_actualizar->id)}}">
                 @method('PUT')
                 @csrf
-                <!--div class="form-group">
-                  <label class="col-sm-4 col-sm-2 control-label">Código </label>
-                  <div class="col-sm-8">
-                    <input type="text" class="form-control round-form" name="codigo" value="{{$empresa_actualizar->codigo}}" readonly>
-                    @foreach ($errors->get('codigo') as $mensaje)
-                      <small style="color:#B42020;">{{ $mensaje }}</small>
-                    @endforeach
-                  </div>
-                </div-->
 
                 <div class="form-group">
                   <label class="col-sm-4 col-sm-2 control-label">Nombre </label>

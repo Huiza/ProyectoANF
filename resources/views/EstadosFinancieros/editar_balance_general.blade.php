@@ -2,26 +2,21 @@
 
 @section('content')
 
-<h3><i class="fa fa-angle-right"></i> Estado de resultados</h3>
+<h3><i class="fa fa-angle-right"></i>EDICIÓN DE BALANCE GENERAL</h3>
 
 
         <!-- BASIC FORM ELELEMNTS -->
         <div class="row mt">
           <div class="col-lg-12">
             <div class="form-panel" >
-              
-            <h4><i class="fa fa-angle-right"></i> Análisis</h4>
-              <div class="btn-group">
-              <a  href="{{route('ver_balance_general', $estado_financiero->id_estado_financiero)}}"><button type="button" class="btn btn-theme"> Balance general</button></a>
-              <a href="{{route('calcular_analisis_horizontal', $estado_financiero->id_estado_financiero)}}"><button type="button" class="btn btn-default"> Análisis horizontal</button></a>
-              <a href="{{route('calcular_analisis_vertical', $estado_financiero->id_estado_financiero)}}"><button type="button" class="btn btn-default"> Análisis vertical</button></a>
-              </div>
+            <div class="showback">
+            
             <div style="padding-left:10%; padding-top:5%; padding-bottom:3%;"> 
               
               </div>
             <div style="text-align:center;">
               <h3 class="mb">{{$estado_financiero->empresa->nombre_empresa}}</h3>
-              <h4 class="mb">Estado de resultados</h4>
+              <h4 class="mb">Balance general</h4>
               <h4>Del {{date('j F, Y', strtotime($estado_financiero->fecha_inicio))}} al {{date('j F, Y', strtotime($estado_financiero->fecha_final))}}</h4>
             </div>
                 
@@ -54,7 +49,7 @@
                             @foreach($estado_financiero->detallesEstado as $cuenta)
                             <tr>
                                 
-                              @if($cuenta->cuenta == 'INGRESOS' || $cuenta->cuenta == 'GASTOS')
+                              @if($cuenta->cuenta == 'ACTIVO' || $cuenta->cuenta == 'PASIVO' ||$cuenta->cuenta == 'PATRIMONIO')
                               <td><h3><strong>{{$cuenta->cuenta}}</strong></h3></td>
                               
                               @else
