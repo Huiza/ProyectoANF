@@ -120,6 +120,9 @@
                             </tbody>
                              
                         </table>
+                          <div class="centered">
+                            <a href="{{route('graficos_ratios_financieros', $estado_financiero->id_estado_financiero)}}"><button type="button" class="btn btn-theme02"> Ver gráficos</button></a>
+                          </div>
                       
                     </div>
                   

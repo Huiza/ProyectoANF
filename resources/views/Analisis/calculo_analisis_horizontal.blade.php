@@ -89,7 +89,11 @@
                             </tbody>
                                 
                         </table>
-                        
+                        @if(!$mensaje)
+                          <div class="centered">
+                            <a href="{{route('ver_graficos_analisis_horizontal', $estado_financiero->id_estado_financiero)}}"><button type="button" class="btn btn-theme02"> Ver gráficos</button></a>
+                          </div>
+                        @endif
                     </div>
                  
                 </div>

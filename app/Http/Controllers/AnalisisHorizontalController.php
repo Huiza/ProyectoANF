@@ -74,7 +74,7 @@ class AnalisisHorizontalController extends Controller
         }
         else{
 
-            $mensaje = "No se han registrado períodos anteriores, nos es posible calcular el análisis horizontal!!!";
+            $mensaje = "No se han registrado períodos anteriores, no es posible calcular el análisis horizontal!!!";
         }
         return view('Analisis.calculo_analisis_horizontal', compact('estado_financiero', 'balance', 'estado_financiero_anterior', 'balance_anterior', 'variacion_absoluta', 'variacion_relativa', 'mensaje'));
 
