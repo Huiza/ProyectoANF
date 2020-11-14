@@ -54,15 +54,12 @@ Route::post('importarCatalogoCuentas', 'ImportarExcelController@importarCatalogo
 
 //RUTAS PARA EL ANÁLISIS VERTICAL
 Route::get('analisis_vertical/calcular/{id}', 'AnalisisVerticalController@show')->name('calcular_analisis_vertical');
+Route::get('analisis_vertical/graficos/{id}', 'GraficoController@analisis_vertical_graficos')->name('ver_graficos_analisis_vertical');
 
 //RUTAS PARA EL ANÁLISIS HORIZONTAL
 Route::get('analisis_horizontal/calcular/{id}', 'AnalisisHorizontalController@show')->name('calcular_analisis_horizontal');
 
 //RUTAS PARA EL CÁLCULO DE RATIOS FINANCIEROS
 Route::get('ratios_financieros/calcular/{id}', 'RatioFinancieroController@store')->name('calcular_ratios_financieros');
-Route::get('ratios_financieros/ver/{id}', 'RatioFinancieroController@show')->name('ver_ratios_financieros');
-Route::get('ratios_financieros/comparar/{id}', 'RatioFinancieroController@comparar')->name('comparar_ratios_financieros');
 
-//RUTAS PARA COMPARAR
-Route::get('sector/seleccionar', 'RatioFinancieroController@formulario_comparar')->name('seleccionar_sector');
-Route::post('ratios_financieros/comparar', 'RatioFinancieroController@comparar')->name('comparar_ratios_financieros');
+Route::get('ratios_financieros/comparar/{id}', 'RatioFinancieroController@comparar')->name('comparar_ratios_financieros');

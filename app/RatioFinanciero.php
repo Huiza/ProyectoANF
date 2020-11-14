@@ -12,7 +12,7 @@ class RatioFinanciero extends Model
 
     protected $fillable = ['id_estado_financiero', 'nombre_ratio', 'calculo_ratio'];
 
-    public function estadosFinanciero()
+    public function estadoFinanciero()
     {
         return $this->belongsTo(EstadoFinanciero::class, 'id_estado_financiero', 'id_estado_financiero');
     }

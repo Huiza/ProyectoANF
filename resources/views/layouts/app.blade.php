@@ -22,7 +22,7 @@
   <link href="{{ asset('css/style-responsive.css') }}" rel="stylesheet">
   <link rel="stylesheet" href="{{ asset('css/to-do.css') }}">
   <script src="{{ asset('lib/chart-master/Chart.js') }}"></script>
-
+  
 
   <!-- =======================================================
     Template Name: Dashio
@@ -81,7 +81,7 @@
               
               <li><a href="{{route('empresas')}}">Ver empresas</a></li>
               <li><a href="{{route('crear_empresa')}}">Agregar empresa</a></li>
-              <li><a href="{{route('seleccionar_sector')}}">Agregar empresa</a></li>
+            
 
             </ul>
           </li>

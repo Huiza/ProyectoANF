@@ -362,30 +362,66 @@ class RatioFinancieroController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function formulario_comparar()
-    {
+    public function comparar($id)
+    {   
+       
         $estado_financiero = EstadoFinanciero::findOrFail($id);
-        $tipo_empresa = $estado_financiero->empresa->tipo_id;
-        //$empresas = Empresa::where('tipo_id',$tipo_empresa)->get();
-        $estados = EstadoFinanciero::where('fecha_inicio',$estado_financiero->fecha_inicio)->get();
+        $empresa = Empresa::findOrFail($estado_financiero->id_empresa);
+        $empresa_tipo = $empresa->tipo_id;
+        $ratios_liquidez_promedio = DB::table('ratio_financieros')->join('estado_financieros', 'estado_financieros.id_estado_financiero', '=', 'ratio_financieros.id_estado_financiero')
+                        ->join('empresas', 'empresas.id', '=', 'estado_financieros.id_empresa')
+                        ->where('estado_financieros.fecha_inicio', $estado_financiero->fecha_inicio)
+                        ->where('empresas.tipo_id', $empresa_tipo)
+                        ->where('ratio_financieros.id_tipo_ratio', 1)
+                        ->select(DB::raw('round(avg(calculo_ratio),2) as promedio, nombre_ratio', 'id_tipo_ratio'))
+                        ->orderBy('id_tipo_ratio')
+                        ->groupBy('nombre_ratio')->get();
 
-        foreach($estados as $estado){
-            $empresas=$estado->empresa;
-        }
+        $ratios_actividad_promedio = DB::table('ratio_financieros')->join('estado_financieros', 'estado_financieros.id_estado_financiero', '=', 'ratio_financieros.id_estado_financiero')
+                        ->join('empresas', 'empresas.id', '=', 'estado_financieros.id_empresa')
+                        ->where('estado_financieros.fecha_inicio', $estado_financiero->fecha_inicio)
+                        ->where('empresas.tipo_id', $empresa_tipo)
+                        ->where('ratio_financieros.id_tipo_ratio', 2)
+                        ->select(DB::raw('round(avg(calculo_ratio),2) as promedio, nombre_ratio', 'id_tipo_ratio'))
+                        ->orderBy('id_tipo_ratio')
+                        ->groupBy('nombre_ratio')->get();
 
-        return view('RatiosFinancieros.comparar_ratios', compact('empresas', 'estados'));
+        $ratios_apalancamiento_promedio = DB::table('ratio_financieros')->join('estado_financieros', 'estado_financieros.id_estado_financiero', '=', 'ratio_financieros.id_estado_financiero')
+                        ->join('empresas', 'empresas.id', '=', 'estado_financieros.id_empresa')
+                        ->where('estado_financieros.fecha_inicio', $estado_financiero->fecha_inicio)
+                        ->where('empresas.tipo_id', $empresa_tipo)
+                        ->where('ratio_financieros.id_tipo_ratio', 3)
+                        ->select(DB::raw('round(avg(calculo_ratio),2) as promedio, nombre_ratio', 'id_tipo_ratio'))
+                        ->orderBy('id_tipo_ratio')
+                        ->groupBy('nombre_ratio')->get();
+
+        $ratios_rentabilidad_promedio = DB::table('ratio_financieros')->join('estado_financieros', 'estado_financieros.id_estado_financiero', '=', 'ratio_financieros.id_estado_financiero')
+                        ->join('empresas', 'empresas.id', '=', 'estado_financieros.id_empresa')
+                        ->where('estado_financieros.fecha_inicio', $estado_financiero->fecha_inicio)
+                        ->where('empresas.tipo_id', $empresa_tipo)
+                        ->where('ratio_financieros.id_tipo_ratio', 4)
+                        ->select(DB::raw('round(avg(calculo_ratio),2) as promedio, nombre_ratio', 'id_tipo_ratio'))
+                        ->orderBy('id_tipo_ratio')
+                        ->groupBy('nombre_ratio')->get();
+
+        $razones_liquidez = RatioFinanciero::where('id_estado_financiero', $id)->where('id_tipo_ratio', 1)->get();
+        $razones_actividad = RatioFinanciero::where('id_estado_financiero', $id)->where('id_tipo_ratio', 2)->get();
+        $razones_apalancamiento = RatioFinanciero::where('id_estado_financiero', $id)->where('id_tipo_ratio', 3)->get();
+        $razones_rentabilidad = RatioFinanciero::where('id_estado_financiero', $id)->where('id_tipo_ratio', 4)->get();
+
+        return view('RatiosFinancieros.comparar_ratios', compact('razones_liquidez', 'razones_actividad','razones_apalancamiento','razones_rentabilidad','ratios_apalancamiento_promedio','ratios_actividad_promedio','ratios_rentabilidad_promedio','ratios_liquidez_promedio', 'empresa', 'estado_financiero'));
     }
-
     /**
      * Show the form for editing the specified resource.
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function comparar()
+    public function show(Request $request, $id)
     {
- 
+        //
     }
+  
 
     /**
      * Update the specified resource in storage.

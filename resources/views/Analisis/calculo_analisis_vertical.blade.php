@@ -78,24 +78,34 @@
                             </tbody>
                                 
                         </table>
+
+                        <!-- Modal-->
+                        <div class="centered">
+                        <a href="{{route('ver_graficos_analisis_vertical', $estado_financiero->id_estado_financiero)}}"><button type="button" class="btn btn-theme02"> Ver gráficos</button></a>
+                        </div>
+                      
+                        <!-- Modal fin-->
                         
                     </div>
                  
                 </div>
                 
               </div>
+            
               
+           
                 <br>
             </section>
           </div>
           <!-- /col-md-12-->
         </div>
-               
+        
+                              
          
             </div>
           </div>
           <!-- col-lg-12-->
-        </div>
+
 
 
 @endsection
