@@ -10,7 +10,7 @@
             <div class="form-panel" >
             <div class="btn-group btn-group-justified">
                 <div class="btn-group">
-                <a href="{{route('calcular_ratios_financieros', $estado_financiero_1->id_estado_financiero)}}"><button type="button" class="btn btn-default"> Razones financieras</button></a>
+                <a href="{{route('calcular_ratios_financieros', $estado_financiero_1->id_estado_financiero)}}"><button type="button" class="btn btn-theme"> Razones financieras</button></a>
                 </div>
                 <div class="btn-group">
                 <a href="{{route('comparar_ratios_financieros', $estado_financiero_1->id_estado_financiero)}}"><button type="button" class="btn btn-default"> Comparación razones financieras</button></a>
@@ -29,7 +29,7 @@
               <div class="panel-body">
               <div class="col-md-12 alert alert-warning" style="text-align:center;">
                       <h5><strong>{{$mensaje}}</strong></h5>
-                      </div>
+              </div>
               @else
               
                 <div class="task-content" style="padding-left:15%; font-size:15px;" >

@@ -3,29 +3,38 @@
 @section('content')
 
 
-<h3><i class="fa fa-angle-right"></i> ANÁLISIS HORIZONTAL</h3>
+<h3><i class="fa fa-angle-right"></i> RAZONES FINANCIERAS</h3>
         <!-- BASIC FORM ELELEMNTS -->
         <div class="row mt">
           <div class="col-lg-12">
             <div class="form-panel" >
             <div class="btn-group btn-group-justified">
                 <div class="btn-group">
-                <a href="{{route('calcular_ratios_financieros', $estado_financiero->id_estado_financiero)}}"><button type="button" class="btn btn-default"> Razones financieras</button></a>
+                <a href="{{route('calcular_ratios_financieros', $estado_financiero->id_estado_financiero)}}"><button type="button" class="btn btn-theme"> Razones financieras</button></a>
                 </div>
                 <div class="btn-group">
                 <a href="{{route('comparar_ratios_financieros', $estado_financiero->id_estado_financiero)}}"><button type="button" class="btn btn-default"> Comparación razones financieras</button></a>
                 </div>
             </div>
+            
+                     
+            
             <div style="text-align:center; padding-top:5%; padding-bottom:3%;">
-            <h3 class="mb">{{$estado_financiero->empresa->nombre_empresa}}</h3>
-                <h4 class="mb">COMPARACIÓN DE RAZONES FINANCIERAS</h4>
-                <h4>Del {{date('j F, Y', strtotime($estado_financiero->fecha_inicio))}} al {{date('j F, Y', strtotime($estado_financiero->fecha_final))}}</h4>
+              <h3 class="mb">{{$estado_financiero->empresa->nombre_empresa}}</h3>
+              <h4 class="mb">RAZONES FINANCIERAS</h4>
+              <h4>Del {{date('j F, Y', strtotime($estado_financiero->fecha_inicio))}} al {{date('j F, Y', strtotime($estado_financiero->fecha_final))}}</h4>
+            </div>
+
+              @if($mensaje)
+              <div class="panel-body">
+              <div class="col-md-12 alert alert-warning" style="text-align:center;">
+                      <h5><strong>{{$mensaje}}</strong></h5>
+              </div>
+              @else
               
-                <div class="task-content" style="padding-left:10%; font-size:15px;" >
-                <div style="text-align:center;">
-                
-                </div>
-                <br><br>
+                <div class="task-content" style="padding-left:15%; font-size:15px;" >
+              
+            
                 <div class="row">
                       <div class="col-md-12">
                       
@@ -33,16 +42,14 @@
                       
                         <table class="table table-hover">
                            
-                            <td><h4><strong>Razones financieras</strong></h4></td>
-                            <td><h4><strong>Promedio a nivel de empresas (de tipo{{$empresa->tipo->tipo}})</strong></h4></td>
-                            <td><h4><strong>Ratios del período</strong></h4></td
+                            <hr>
                           
                             <tbody>
                                 <tr>
                                         <td><h4><strong>Razones de liquidez</strong></h4></td>
                                 </tr>
                             
-                            <tr>
+                            
                             @for ($i=0; $i<count($ratios_liquidez_promedio);$i++)
                             <tr>
                                 <td>{{$ratios_liquidez_promedio[$i]->nombre_ratio}}</td>
@@ -63,7 +70,7 @@
                                         <td><h4><strong>Razones de actividad</strong></h4></td>
                                 </tr>
                             
-                            <tr>
+                          
                             @for ($i=0; $i<count($ratios_actividad_promedio);$i++)
                             <tr>
                                 <td>{{$ratios_actividad_promedio[$i]->nombre_ratio}}</td>
@@ -84,7 +91,7 @@
                                         <td><h4><strong>Razones de apalancamiento</strong></h4></td>
                                 </tr>
                             
-                            <tr>
+                            
                             @for ($i=0; $i<count($ratios_apalancamiento_promedio);$i++)
                             <tr>
                                 <td>{{$ratios_apalancamiento_promedio[$i]->nombre_ratio}}</td>
@@ -105,7 +112,7 @@
                                         <td><h4><strong>Razones de rentabilidad</strong></h4></td>
                                 </tr>
                             
-                            <tr>
+                          
                             @for ($i=0; $i<count($ratios_rentabilidad_promedio);$i++)
                             <tr>
                                 <td>{{$ratios_rentabilidad_promedio[$i]->nombre_ratio}}</td>
@@ -119,23 +126,23 @@
                                 @if($razones_rentabilidad[$i]->calculo_ratio < $ratios_rentabilidad_promedio[$i]->promedio)
                                 <td><span class="badge bg-important"><strong>{{$razones_rentabilidad[$i]->calculo_ratio}}</strong> </span></td>
                                 @endif
+                              @endfor
                             </tr>   
-                            @endfor
-
-                           
-                            </tr>
                             </tbody>
-                             
+                                
                         </table>
+                        @if(!$mensaje)
                           <div class="centered">
                             <a href="{{route('graficos_ratios_financieros', $estado_financiero->id_estado_financiero)}}"><button type="button" class="btn btn-theme02"> Ver gráficos</button></a>
                           </div>
+                        @endif
                       
                     </div>
                   
                 </div>
                
               </div>
+             @endif
                 <br>
             </section>
           </div>

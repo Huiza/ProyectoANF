@@ -68,20 +68,20 @@
           <h5 class="centered">User</h5>
           <li class="mt">
             <a href="{{route('home')}}">
-              <i class="fa fa-dashboard"></i>
+            <i class="fa fa-th"></i>
               <span>Inicio</span>
               </a>
           </li>
           <li class="mt">
-            <a  href="{{route('empresas')}}">
-              <i class="fa fa-dashboard"></i>
-              <span>Empresas</span>
+            <a href="{{route('crear_empresa')}}">
+              <i class="fa fa-plus"></i>
+              <span>Agregar empresa</span>
               </a>
           </li>
           <li class="mt">
-            <a href="{{route('crear_empresa')}}">
-              <i class="fa fa-dashboard"></i>
-              <span>Agregar empresa</span>
+            <a  href="{{route('empresas')}}">
+              <i class="fa fa-building-o"></i>
+              <span>Empresas</span>
               </a>
           </li>
           

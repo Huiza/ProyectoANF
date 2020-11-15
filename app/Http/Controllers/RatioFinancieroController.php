@@ -363,7 +363,7 @@ class RatioFinancieroController extends Controller
      */
     public function comparar($id)
     {   
-       
+        $mensaje = "";
         $estado_financiero = EstadoFinanciero::findOrFail($id);
         $empresa = Empresa::findOrFail($estado_financiero->id_empresa);
         $empresa_tipo = $empresa->tipo_id;
@@ -408,7 +408,11 @@ class RatioFinancieroController extends Controller
         $razones_apalancamiento = RatioFinanciero::where('id_estado_financiero', $id)->where('id_tipo_ratio', 3)->get();
         $razones_rentabilidad = RatioFinanciero::where('id_estado_financiero', $id)->where('id_tipo_ratio', 4)->get();
 
-        return view('RatiosFinancieros.comparar_ratios', compact('razones_liquidez', 'razones_actividad','razones_apalancamiento','razones_rentabilidad','ratios_apalancamiento_promedio','ratios_actividad_promedio','ratios_rentabilidad_promedio','ratios_liquidez_promedio', 'empresa', 'estado_financiero'));
+        if(count($razones_liquidez)==0)
+        {
+            $mensaje="Se debe registrar un estado de resultado correspondiente a este período para el cálculo de las razones financieras!!!";
+        }
+        return view('RatiosFinancieros.comparar_ratios', compact('razones_liquidez', 'razones_actividad','razones_apalancamiento','razones_rentabilidad','ratios_apalancamiento_promedio','ratios_actividad_promedio','ratios_rentabilidad_promedio','ratios_liquidez_promedio', 'empresa', 'estado_financiero', 'mensaje'));
     }
     /**
      * Show the form for editing the specified resource.

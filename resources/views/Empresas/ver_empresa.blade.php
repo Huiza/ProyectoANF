@@ -78,7 +78,7 @@
                         <a href="{{route('ver_balance_general', $bg->id_estado_financiero)}}" class="btn btn-info"><i class="fa fa-indent"></i> Consultar</a>
                       </td>
                       <td>
-                        <a href="{{route('calcular_ratios_financieros', $bg->id_estado_financiero)}}" class="btn btn-warning"><i class="fa fa-pencil"></i> Razones financieras</a>
+                        <a href="{{route('calcular_ratios_financieros', $bg->id_estado_financiero)}}" class="btn btn-warning"><i class="fa fa-bar-chart-o"></i> Razones financieras</a>
                       </td>
                       <td>
                         <a href="{{route('editar_estado_financiero', $bg->id_estado_financiero)}}" class="btn btn-default"><i class="fa fa-pencil"></i> </a>
