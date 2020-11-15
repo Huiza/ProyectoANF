@@ -43,10 +43,15 @@ Route::get('catalogo/crear/{id}', 'CatalogoController@create')->name('crear_cata
 
 Route::get('estado_financiero/crear/{id}', 'EstadoFinancieroController@create')->name('crear_estado_financiero');
 Route::post('estado_financiero/guardar', 'EstadoFinancieroController@store')->name('guardar_estado_financiero');
+
 Route::post('detalle_estado_financiero/guardar/{id}', 'DetalleEstadosFinancierosController@store')->name('guardar_detalle_estado_financiero');
+
 Route::get('estado_financiero/editar/{id}', 'DetalleEstadosFinancierosController@edit')->name('editar_estado_financiero');
 Route::put('estado_financiero/actualizar/{id}', 'DetalleEstadosFinancierosController@update')->name('actualizar_estado_financiero');
+Route::delete('estado_financiero/eliminar/{id}', 'DetalleEstadosFinancierosController@destroy')->name('eliminar_estado_financiero');
+
 Route::get('balance_general/ver/{id}', 'DetalleEstadosFinancierosController@show')->name('ver_balance_general');
+
 Route::get('estado_resultado/ver/{id}', 'DetalleEstadosFinancierosController@show')->name('ver_estado_resultado');
 Route::put('empresas/actualizar/{id}', 'EmpresaController@update')->name('actualizar_empresa');
 
@@ -56,7 +61,8 @@ Route::post('importarCatalogoCuentas', 'ImportarExcelController@importarCatalogo
 
 //RUTAS PARA EL ANÁLISIS VERTICAL
 Route::get('analisis_vertical/calcular/{id}', 'AnalisisVerticalController@show')->name('calcular_analisis_vertical');
-Route::get('analisis_vertical/graficos/{id}', 'GraficoController@analisis_vertical_graficos')->name('ver_graficos_analisis_vertical');
+Route::get('analisis_vertical_balance_general/graficos/{id}', 'GraficoController@analisis_vertical_graficos')->name('ver_graficos_analisis_vertical');
+
 
 //RUTAS PARA EL ANÁLISIS HORIZONTAL
 Route::get('analisis_horizontal/calcular/{id}', 'AnalisisHorizontalController@show')->name('calcular_analisis_horizontal');

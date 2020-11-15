@@ -50,9 +50,12 @@ class AnalisisVerticalController extends Controller
     {
         $i = 0;
         $j = 0;
+        $m = 0;
         $total_activo = 0;
         $total_pasivo = 0;
         $total_patrimonio = 0;
+        $total_ingresos = 0;
+        $total_gastos = 0;
         $porcentaje_vertical = [];
         $estado_financiero = EstadoFinanciero::findOrFail($id);
         $balance = DB::select('select * from detalle_estados_financieros where id_estado_financiero ='.$id);
@@ -75,37 +78,76 @@ class AnalisisVerticalController extends Controller
             }
         }
 
-        while($balance[$j]->cuenta!='PASIVO'){
-            if($balance[$j]->saldo!=0){
-                $porcentaje_vertical[$j] = round((($balance[$j]->saldo)/$total_activo)*100, 2);
-                }
-                else{
-                    $porcentaje_vertical[$j] = 0;
-                }
-
-            $j++;
+        for($i = 0; $i < count($balance); $i++){
+            if($balance[$i]->cuenta=='TOTAL DE INGRESOS'){
+                $total_ingresos = $balance[$i]->saldo;
+            }
         }
 
-        while($balance[$j]->cuenta!='PATRIMONIO'){
-            if($balance[$j]->saldo!=0){
-                $porcentaje_vertical[$j] = round((($balance[$j]->saldo)/$total_pasivo)*100, 2);
-                }
-                else{
-                    $porcentaje_vertical[$j] = 0;
-                }
-
-            $j++;
+        for($i = 0; $i < count($balance); $i++){
+            if($balance[$i]->cuenta=='TOTAL DE GASTOS'){
+                $total_gastos = $balance[$i]->saldo;
+            }
         }
 
-        while($j!==count($balance)){
-            if($balance[$j]->saldo!=0){
-                $porcentaje_vertical[$j] = round((($balance[$j]->saldo)/$total_patrimonio)*100, 2);
-                }
-                else{
-                    $porcentaje_vertical[$j] = 0;
-                }
+       if($estado_financiero->id_tipo_estado_financiero==1)
+       {
+            while($balance[$j]->cuenta!='PASIVO'){
+                if($balance[$j]->saldo!=0){
+                    $porcentaje_vertical[$j] = round((($balance[$j]->saldo)/$total_activo)*100, 2);
+                    }
+                    else{
+                        $porcentaje_vertical[$j] = 0;
+                    }
 
-            $j++;
+                $j++;
+            }
+
+            while($balance[$j]->cuenta!='PATRIMONIO'){
+                if($balance[$j]->saldo!=0){
+                    $porcentaje_vertical[$j] = round((($balance[$j]->saldo)/$total_pasivo)*100, 2);
+                    }
+                    else{
+                        $porcentaje_vertical[$j] = 0;
+                    }
+
+                $j++;
+            }
+
+            while($j!==count($balance)){
+                if($balance[$j]->saldo!=0){
+                    $porcentaje_vertical[$j] = round((($balance[$j]->saldo)/$total_patrimonio)*100, 2);
+                    }
+                    else{
+                        $porcentaje_vertical[$j] = 0;
+                    }
+
+                $j++;
+            }
+      
+        }
+        else{
+            while($balance[$j]->cuenta!='GASTOS'){
+                if($balance[$j]->saldo!=0){
+                    $porcentaje_vertical[$j] = round((($balance[$j]->saldo)/$total_ingresos)*100, 2);
+                    }
+                    else{
+                        $porcentaje_vertical[$j] = 0;
+                    }
+    
+                $j++;
+            }
+
+            while($j!==count($balance)){
+                if($balance[$j]->saldo!=0){
+                    $porcentaje_vertical[$j] = round((($balance[$j]->saldo)/$total_gastos)*100, 2);
+                    }
+                    else{
+                        $porcentaje_vertical[$j] = 0;
+                    }
+
+                $j++;
+            }
         }
         
 

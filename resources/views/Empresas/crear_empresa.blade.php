@@ -12,15 +12,6 @@
               <br>
               <form class="form-horizontal style-form" method="POST" action="{{route('guardar_empresa')}}" style="padding-left:10%;">
                @csrf
-                <!--div class="form-group">
-                  <label class="col-sm-4 col-sm-2 control-label">Código </label>
-                  <div class="col-sm-8">
-                    <input type="text" class="form-control round-form" name="codigo">
-                    @foreach ($errors->get('codigo') as $mensaje)
-                      <small style="color:#B42020;">{{ $mensaje }}</small>
-                    @endforeach
-                  </div>
-                </div-->
 
                 <div class="form-group">
                   <label class="col-sm-4 col-sm-2 control-label">Nombre </label>
@@ -46,7 +37,7 @@
                   <label class="col-sm-4 col-sm-2 control-label">Tipo </label>
                   <div class="col-sm-8">
                   <select name="tipo_id" class="form-control round-form">
-                    <option>--Seleccione el tipo de empresa--</option>
+                    <option value="">--Seleccione el tipo de empresa--</option>
                     @foreach($tipos as $tipo)
                       <option value="{{$tipo->id}}">{{$tipo->tipo}}</option>
                     @endforeach

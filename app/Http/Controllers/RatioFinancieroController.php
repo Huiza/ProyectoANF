@@ -77,13 +77,12 @@ class RatioFinancieroController extends Controller
         
         $mensaje = "";
         $periodos =[];
-
-       
+   
         $total_patrimonio_promedio = 0;
         $total_gastos=0;
         $ventas_netas=0;
         $inversion=0;
-        
+
         $estado_financiero_1 = EstadoFinanciero::findOrFail($id);
         $balance = DB::select('select * from detalle_estados_financieros where id_estado_financiero ='.$id);
         $estado_financiero_2 = EstadoFinanciero::where('fecha_inicio','=',$estado_financiero_1->fecha_inicio)->

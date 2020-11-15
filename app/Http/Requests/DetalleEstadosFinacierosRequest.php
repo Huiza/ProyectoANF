@@ -25,9 +25,7 @@ class DetalleEstadosFinacierosRequest extends FormRequest
     {
         return [
             //'codigo'=> 'required|string',
-            'cuenta' => 'required|max:100|regex:/[a-zA-ZñÑáéíóúÁÉÍÓÚ]/',
             'saldo' => 'required',
-            'id_estado_financiero'          => 'required',
         ];
 
        
@@ -36,15 +34,7 @@ class DetalleEstadosFinacierosRequest extends FormRequest
     public function messages()
     {
         return [
-            //'codigo.required' => 'El campo código es obligatorio.',
-    
-            'cuenta.required'=> 'El campo cuenta es obligatorio.',
-            'cuenta.max' => 'La cantidad máxima de carácteres es 100.',
-            'cuenta.regex' => 'Los carácteres deben ser solo letras.',
-
-            'saldo'=>'Debe ingresar ekl monto de la cuenta',
-            
-            'id_estado_financiero.required'          => 'Debe seleccionar un tipo de estado financiero',
+            'saldo'=>'Debe ingresar el monto de la cuenta',
         ];
     }
 }

@@ -25,17 +25,18 @@
                       <td>{{$empresa->nombre_empresa}}</td>
                       <td>{{$empresa->descripcion}}</td>
                       <td>{{$empresa->tipo->tipo}}</td>
-                      <td>
-                        <a href="{{route('editar_empresa', $empresa->id)}}" class="btn btn-default"><i class="fa fa-pencil"></i> Editar</a>
-                      </td>
+                      
                       <td>
                         <a href="{{route('ver_empresa', $empresa->id)}}" class="btn btn-info"><i class="fa fa-indent"></i> Consultar</a>
+                      </td>
+                      <td>
+                        <a href="{{route('editar_empresa', $empresa->id)}}" class="btn btn-default"><i class="fa fa-pencil"></i> </a>
                       </td>
                       <td>
                       <form method="POST" id="formulario{{$empresa->id}}" action="{{route('eliminar_empresa', $empresa->id)}}" >
                           @csrf
                           @method('DELETE')
-                          <button type="button" onClick="confirmar({{$empresa->id}})" class="btn btn-danger notika-btn-danger"><span class="glyphicon glyphicon-trash"></span> Eliminar</button>
+                          <button type="button" onClick="confirmar({{$empresa->id}})" class="btn btn-danger notika-btn-danger"><span class="glyphicon glyphicon-trash"></span> </button>
                       </form>
                       </td>
                       

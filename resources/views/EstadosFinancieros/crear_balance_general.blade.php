@@ -57,7 +57,7 @@
                             
                                 @else
                                 <td>{{$cuenta->cuenta->nombre_cuenta}}</td>
-                                <td><input type="text" class="form-control round-form" name="saldo[]" placeholder="Monto en $"></td>
+                                <td><input type="number" step="any" class="form-control round-form" name="saldo[]" placeholder="Monto en $"></td>
                                 @endif
                                 <input type="text"  name="cuenta[]" value="{{ $cuenta->cuenta->nombre_cuenta }}" hidden>
                                 <div><input type="text"  name="id_estado_financiero[]" value="{{ $estado_financiero->id_estado_financiero}}" hidden></div>

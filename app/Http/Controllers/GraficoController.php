@@ -13,6 +13,8 @@ class GraficoController extends Controller
     {   
         $indice_activos = 0;
         $indice_pasivos = 0;
+        $indice_ingresos = 0;
+        $indice_gastos = 0;
         $estado_financiero = EstadoFinanciero::findOrFail($id);
         $balance = DB::select('select * from detalle_estados_financieros where saldo>0 and id_estado_financiero ='.$id);
         
@@ -32,8 +34,16 @@ class GraficoController extends Controller
             {
                 $indice_pasivos = $i;
             }
+            if(!strcasecmp($balance[$i]->cuenta,"TOTAL DE INGRESOS"))
+            {
+                $indice_ingresos = $i;
+            }
+            if(!strcasecmp($balance[$i]->cuenta,"TOTAL DE GASTOS"))
+            {
+                $indice_gastos = $i;
+            }
         }
-        return view('Analisis.graficos_analisis_vertical', compact('balance', 'indice_activos', 'indice_pasivos', 'estado_financiero'));
+        return view('Analisis.graficos_analisis_vertical', compact('balance', 'indice_activos', 'indice_pasivos', 'indice_ingresos', 'indice_gastos','estado_financiero'));
     }
 
 
@@ -41,6 +51,8 @@ class GraficoController extends Controller
     {
         $indice_activos = 0;
         $indice_pasivos = 0;
+        $indice_ingresos = 0;
+        $indice_gastos = 0;
         $balance_anterior = [];
         $mensaje = "";
         $estado_financiero = EstadoFinanciero::findOrFail($id);
@@ -71,8 +83,18 @@ class GraficoController extends Controller
             {
                 $indice_pasivos = $i;
             }
+            if(!strcasecmp($balance[$i]->cuenta,"TOTAL DE INGRESOS"))
+            {
+                $indice_ingresos = $i;
+            }
+
+            if(!strcasecmp($balance[$i]->cuenta,"TOTAL DE GASTOS"))
+            {
+                $indice_gastos = $i;
+            }
+            
         }
-        return view('Analisis.graficos_analisis_horizontal', compact('balance', 'balance_anterior', 'estado_financiero', 'estado_financiero_anterior', 'mensaje', 'indice_activos', 'indice_pasivos'));
+        return view('Analisis.graficos_analisis_horizontal', compact('balance', 'balance_anterior', 'estado_financiero', 'estado_financiero_anterior', 'mensaje', 'indice_activos', 'indice_pasivos', 'indice_ingresos', 'indice_gastos'));
     }
 
     public function comparacion_ratios_graficos($id){

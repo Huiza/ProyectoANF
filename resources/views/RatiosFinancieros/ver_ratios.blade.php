@@ -3,26 +3,21 @@
 @section('content')
 
 
-<h3><i class="fa fa-angle-right"></i> ANÁLISIS HORIZONTAL</h3>
+<h3><i class="fa fa-angle-right"></i> RAZONES FINANCIERAS</h3>
         <!-- BASIC FORM ELELEMNTS -->
         <div class="row mt">
           <div class="col-lg-12">
             <div class="form-panel" >
-                     
             <div class="btn-group btn-group-justified">
                 <div class="btn-group">
-                <a href="{{route('ver_balance_general', $estado_financiero_1->id_estado_financiero)}}"><button type="button" class="btn btn-default"> Balance general</button></a>
+                <a href="{{route('calcular_ratios_financieros', $estado_financiero_1->id_estado_financiero)}}"><button type="button" class="btn btn-default"> Razones financieras</button></a>
                 </div>
                 <div class="btn-group">
-                <a href="{{route('calcular_analisis_horizontal', $estado_financiero_1->id_estado_financiero)}}"><button type="button" class="btn btn-default"> Análisis horizontal</button></a>
+                <a href="{{route('comparar_ratios_financieros', $estado_financiero_1->id_estado_financiero)}}"><button type="button" class="btn btn-default"> Comparación razones financieras</button></a>
                 </div>
-                <div class="btn-group">
-                <a href="{{route('calcular_analisis_vertical', $estado_financiero_1->id_estado_financiero)}}"><button type="button" class="btn btn-default"> Análisis vertical</button></a>
-                </div>
-                <div class="btn-group">
-                <a href="{{route('calcular_ratios_financieros', $estado_financiero_1->id_estado_financiero)}}"><button type="button" class="btn btn-theme"> Razones financieras</button></a>
-                </div>
-              </div>
+            </div>
+            
+                     
             
             <div style="text-align:center; padding-top:5%; padding-bottom:3%;">
               <h3 class="mb">{{$estado_financiero_1->empresa->nombre_empresa}}</h3>
@@ -54,7 +49,7 @@
                             @foreach($razones_liquidez as $razon)     
                             <tr>
                               <td>{{$razon->nombre_ratio}}</td>
-                              <td>{{$razon->calculo_ratio}}</td>
+                              <td><strong>{{$razon->calculo_ratio}}</strong></td>
                             </tr>
                             @endforeach
                  
@@ -63,7 +58,7 @@
                             @foreach($razones_actividad as $razon)     
                             <tr>
                               <td>{{$razon->nombre_ratio}}</td>
-                              <td>{{$razon->calculo_ratio}}</td>
+                              <td><strong>{{$razon->calculo_ratio}}</strong></td>
                             </tr>
                             @endforeach
 
@@ -71,7 +66,7 @@
                             @foreach($razones_apalancamiento as $razon)     
                             <tr>
                               <td>{{$razon->nombre_ratio}}</td>
-                              <td>{{$razon->calculo_ratio}}</td>
+                              <td><strong>{{$razon->calculo_ratio}}</strong></td>
                             </tr>
                             @endforeach
 
@@ -79,7 +74,7 @@
                             @foreach($razones_rentabilidad as $razon)     
                             <tr>
                               <td>{{$razon->nombre_ratio}}</td>
-                              <td>{{$razon->calculo_ratio}}</td>
+                              <td><strong>{{$razon->calculo_ratio}}</strong></td>
                             </tr>
                             @endforeach
                             </tbody>

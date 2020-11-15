@@ -12,18 +12,12 @@
 
             <div class="btn-group btn-group-justified">
                 <div class="btn-group">
-                <a href="{{route('ver_balance_general', $estado_financiero->id_estado_financiero)}}"><button type="button" class="btn btn-default"> Balance general</button></a>
-                </div>
-                <div class="btn-group">
-                <a href="{{route('calcular_analisis_horizontal', $estado_financiero->id_estado_financiero)}}"><button type="button" class="btn btn-default"> Análisis horizontal</a>
-                </div>
-                <div class="btn-group">
-                <a href="{{route('calcular_analisis_vertical', $estado_financiero->id_estado_financiero)}}"><button type="button" class="btn btn-default"> Análisis vertical</button></a>
-                </div>
-                <div class="btn-group">
                 <a href="{{route('calcular_ratios_financieros', $estado_financiero->id_estado_financiero)}}"><button type="button" class="btn btn-default"> Razones financieras</button></a>
                 </div>
-              </div>
+                <div class="btn-group">
+                <a href="{{route('comparar_ratios_financieros', $estado_financiero->id_estado_financiero)}}"><button type="button" class="btn btn-default"> Comparación razones financieras</button></a>
+                </div>
+            </div>
             <br><br><br><br>
             <div style="text-align:center;">
               <h3 class="mb">{{$estado_financiero->empresa->nombre_empresa}}</h3>

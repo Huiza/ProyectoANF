@@ -67,68 +67,27 @@
           
           <h5 class="centered">User</h5>
           <li class="mt">
-            <a class="active" href="{{route('home')}}">
+            <a href="{{route('home')}}">
               <i class="fa fa-dashboard"></i>
               <span>Inicio</span>
               </a>
           </li>
-          <li class="sub-menu">
-            <a href="javascript:;">
-              <i class="fa fa-desktop"></i>
+          <li class="mt">
+            <a  href="{{route('empresas')}}">
+              <i class="fa fa-dashboard"></i>
               <span>Empresas</span>
               </a>
-            <ul class="sub">
-              
-              <li><a href="{{route('empresas')}}">Ver empresas</a></li>
-              <li><a href="{{route('crear_empresa')}}">Agregar empresa</a></li>
-            
-
-            </ul>
           </li>
-          <li class="sub-menu">
-            <a href="javascript:;">
-              <i class="fa fa-cogs"></i>
-              <span>Estados financieros</span>
+          <li class="mt">
+            <a href="{{route('crear_empresa')}}">
+              <i class="fa fa-dashboard"></i>
+              <span>Agregar empresa</span>
               </a>
-            <ul class="sub">
-              <li><a href="grids.html">Grids</a></li>
-              <li><a href="calendar.html">Calendar</a></li>
-              <li><a href="gallery.html">Gallery</a></li>
-              <li><a href="todo_list.html">Todo List</a></li>
-              <li><a href="dropzone.html">Dropzone File Upload</a></li>
-              <li><a href="inline_editor.html">Inline Editor</a></li>
-              <li><a href="file_upload.html">Multiple File Upload</a></li>
-            </ul>
           </li>
-          <li class="sub-menu">
-            <a href="javascript:;">
-              <i class="fa fa-book"></i>
-              <span>Análisis</span>
-              </a>
-            <ul class="sub">
-              <li><a href="blank.html">Blank Page</a></li>
-              <li><a href="login.html">Login</a></li>
-              <li><a href="lock_screen.html">Lock Screen</a></li>
-              <li><a href="profile.html">Profile</a></li>
-              <li><a href="invoice.html">Invoice</a></li>
-              <li><a href="pricing_table.html">Pricing Table</a></li>
-              <li><a href="faq.html">FAQ</a></li>
-              <li><a href="404.html">404 Error</a></li>
-              <li><a href="500.html">500 Error</a></li>
-            </ul>
-          </li>
-          <li class="sub-menu">
-            <a href="javascript:;">
-              <i class="fa fa-tasks"></i>
-              <span>Ratios financieros</span>
-              </a>
-            <ul class="sub">
-              <li><a href="form_component.html">Form Components</a></li>
-              <li><a href="advanced_form_components.html">Advanced Components</a></li>
-              <li><a href="form_validation.html">Form Validation</a></li>
-              <li><a href="contactform.html">Contact Form</a></li>
-            </ul>
-          </li>
+          
+         
+          
+          
         </ul>
         <!-- sidebar menu end-->
       </div>

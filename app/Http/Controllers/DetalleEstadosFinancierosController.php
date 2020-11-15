@@ -3,8 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\DetalleEstadosFinancieros;
+use App\Http\Requests\DetalleEstadosFinacierosRequest;
 use App\Imports\DetalleEstadosFinancierosImport;
-use App\Http\Requests\DetalleEstadosFinancierosRequest;
 use Illuminate\Http\Request;
 use App\EstadoFinanciero;
 use App\RatioFinanciero;
@@ -38,20 +38,22 @@ class DetalleEstadosFinancierosController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request,$id)
+    public function store(DetalleEstadosFinacierosRequest $request,$id)
     {
-        //$id=1;
+
         if ($request->hasFile('estado_financiero')){
             $file = $request->file('estado_financiero');
             Excel::import(new DetalleEstadosFinancierosImport($id), $file);
         }
-        else
+        else{
             foreach($request->cuenta as $key => $value){
                 DetalleEstadosFinancieros::create([
                     'cuenta' => $value, 
                     'id_estado_financiero' => $request['id_estado_financiero'][$key],
                     'saldo' => $request['saldo'][$key],
                 ]);
+         }
+         
         }
 
         return redirect('empresas');
@@ -67,13 +69,14 @@ class DetalleEstadosFinancierosController extends Controller
     {   
         $ratio = RatioFinanciero::where('id_estado_financiero', $id)->get();
         $estado_financiero = EstadoFinanciero::findOrFail($id);
+        $id_balance_general = EstadoFinanciero::where('fecha_inicio', $estado_financiero->fecha_inicio)->where('id_tipo_estado_financiero',1)->where('id_empresa',$estado_financiero->id_empresa)->first();
         $balance = DetalleEstadosFinancieros::where('id_estado_financiero', $id);
         if($estado_financiero->id_tipo_estado_financiero==1)
         {
             return view('EstadosFinancieros.ver_balance_general', compact('balance', 'estado_financiero', 'ratio'));
         }
         else{
-            return view('EstadosFinancieros.ver_estado_resultado', compact('balance', 'estado_financiero'));
+            return view('EstadosFinancieros.ver_estado_resultado', compact('balance', 'estado_financiero', 'id_balance_general'));
         }
         
         
@@ -89,7 +92,7 @@ class DetalleEstadosFinancierosController extends Controller
     {
         //
         $estado_financiero = EstadoFinanciero::findOrFail($id);
-        $balance = DetalleEstadosFinancieros::where('id_estado_financiero', $id);
+        $balance = DetalleEstadosFinancieros::where('id_estado_financiero', $id)->get();
         if($estado_financiero->id_tipo_estado_financiero==1)
         {
             return view('EstadosFinancieros.editar_balance_general', compact('balance', 'estado_financiero'));
@@ -106,17 +109,16 @@ class DetalleEstadosFinancierosController extends Controller
      * @param  \App\DetalleEstadosFinancieros  $detalleEstadosFinancieros
      * @return \Illuminate\Http\Response
      */
-    public function update(DetalleEstadosFinancierosRequest $request,$id)
+    public function update(Request $request,$id)
     {
-        //
-        $estado_financiero_actualizar = EstadoFinanciero::findOrFail($id);
-        $detalle_estado_financiero_actualizar = DetalleEstadosFinancieros::where('id_estado_financiero',$id);
-        foreach ($request->cuenta as $key => $value) {
-            $detalle_estado_financiero_actualizar->cuenta=$request->cuenta;
-            $detalle_estado_financiero_actualizar->saldo = $request->saldo;
-            $detalle_estado_financiero_actualizar->update();
+        foreach($request->cuenta as $key => $value){
+            DetalleEstadosFinancieros::where('id_detalle_estados_financieros', $request['id_detalle_estados_financieros'][$key])->update([
+                'cuenta' => $value, 
+                'id_estado_financiero' => $request['id_estado_financiero'][$key],
+                'saldo' => $request['saldo'][$key],
+            ]);
             }
-        return redirect('empresas');
+            return redirect()->route('empresas');
     }
 
     /**
@@ -125,8 +127,14 @@ class DetalleEstadosFinancierosController extends Controller
      * @param  \App\DetalleEstadosFinancieros  $detalleEstadosFinancieros
      * @return \Illuminate\Http\Response
      */
-    public function destroy(DetalleEstadosFinancieros $detalleEstadosFinancieros)
+    public function destroy($id)
     {
-        //
+        
+        $estado_financiero = EstadoFinanciero::findOrFail($id);
+        $detalles_estado = DetalleEstadosFinancieros::where('id_estado_financiero', $id)->get();
+
+        $estado_financiero->delete();
+
+        return redirect()->route('empresas');
     }
 }

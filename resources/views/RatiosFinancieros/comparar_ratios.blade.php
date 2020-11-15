@@ -8,7 +8,14 @@
         <div class="row mt">
           <div class="col-lg-12">
             <div class="form-panel" >
-                     
+            <div class="btn-group btn-group-justified">
+                <div class="btn-group">
+                <a href="{{route('calcular_ratios_financieros', $estado_financiero->id_estado_financiero)}}"><button type="button" class="btn btn-default"> Razones financieras</button></a>
+                </div>
+                <div class="btn-group">
+                <a href="{{route('comparar_ratios_financieros', $estado_financiero->id_estado_financiero)}}"><button type="button" class="btn btn-default"> Comparación razones financieras</button></a>
+                </div>
+            </div>
             <div style="text-align:center; padding-top:5%; padding-bottom:3%;">
             <h3 class="mb">{{$estado_financiero->empresa->nombre_empresa}}</h3>
                 <h4 class="mb">COMPARACIÓN DE RAZONES FINANCIERAS</h4>

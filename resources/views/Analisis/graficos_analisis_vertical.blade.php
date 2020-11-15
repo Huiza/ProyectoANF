@@ -20,9 +20,7 @@
                 <div class="btn-group">
                 <a href="{{route('calcular_analisis_vertical', $estado_financiero->id_estado_financiero)}}"><button type="button" class="btn btn-default"> Análisis vertical</button></a>
                 </div>
-                <div class="btn-group">
-                <a href="{{route('calcular_ratios_financieros', $estado_financiero->id_estado_financiero)}}"><button type="button" class="btn btn-default"> Razones financieras</button></a>
-                </div>
+                
               </div>
             <br><br><br><br>
             <div style="text-align:center;">
@@ -39,9 +37,14 @@
                         <h3> </h3>
 
                         <div class="col-md-10">
+                        @if($estado_financiero->id_tipo_estado_financiero==1)
                         <div id="activos" style="width: 900px; height: 500px;" ></div>
                         <div id="pasivos" style="width: 900px; height: 500px;" ></div>
                         <div id="patrimonio" style="width: 900px; height: 500px;" ></div>
+                        @else
+                        <div id="ingresos" style="width: 900px; height: 500px;" ></div>
+                        <div id="gastos" style="width: 900px; height: 500px;" ></div>
+                        @endif
                     </div>
                  
                 </div>
@@ -125,6 +128,50 @@
         };
 
         var chart = new google.visualization.PieChart(document.getElementById('patrimonio'));
+        chart.draw(data, options);
+      }
+      
+    </script>
+
+    <script type="text/javascript">
+      google.charts.load("current", {packages:["corechart"]});
+      google.charts.setOnLoadCallback(drawChart);
+      function drawChart() {
+        var data = google.visualization.arrayToDataTable([
+          ['cuentas', 'Porcentaje'],
+        @for($i=0; $i<$indice_ingresos; $i++)
+          ['{{$balance[$i]->cuenta}}',{{$balance[$i]->saldo}}],
+         @endfor
+        ]);
+
+        var options = {
+          title: 'PROPORCIÓN DE CUENTAS DE INGRESO',
+          pieHole: 0.4,
+        };
+
+        var chart = new google.visualization.PieChart(document.getElementById('ingresos'));
+        chart.draw(data, options);
+      }
+      
+    </script>
+
+    <script type="text/javascript">
+      google.charts.load("current", {packages:["corechart"]});
+      google.charts.setOnLoadCallback(drawChart);
+      function drawChart() {
+        var data = google.visualization.arrayToDataTable([
+          ['cuentas', 'Porcentaje'],
+        @for($i=$indice_ingresos+1; $i<count($balance)-1; $i++)
+          ['{{$balance[$i]->cuenta}}',{{$balance[$i]->saldo}}],
+         @endfor
+        ]);
+
+        var options = {
+          title: 'PROPORCIÓN DE CUENTAS DE GASTOS',
+          pieHole: 0.4,
+        };
+
+        var chart = new google.visualization.PieChart(document.getElementById('gastos'));
         chart.draw(data, options);
       }
       

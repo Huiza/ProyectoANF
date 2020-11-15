@@ -18,28 +18,39 @@
                     <input type="text" class="form-control round-form" name="id_empresa" value="{{$empresa->id}}">
                   </div>
                 </div>
-                
+
                 <div class="form-group">
-                  <label class="col-sm-8 col-sm-2 control-label">Período</label>
-                  <div class="col-md-8">
-                    <div class="input-group input-large" data-date="01/01/2014">
-                      <input type="text" class="form-control dpd1" name="fecha_inicio">
-                      <span class="input-group-addon">A</span>
-                      <input type="text" class="form-control dpd2" name="fecha_final">
-                    </div>
-                    <span class="help-block">Seleccione un rango</span>
+                  <label class="col-sm-4 col-sm-2 control-label">Fecha de inicio de período</label>
+                  <div class="col-sm-8">
+                    <input type="date" class="form-control round-form" name="fecha_inicio" value="{{$empresa->id}}">
+                    @foreach ($errors->get('fecha_inicio') as $mensaje)
+                      <small style="color:#B42020;">{{ $mensaje }}</small>
+                    @endforeach
                   </div>
                 </div>
-                
+
                 <div class="form-group">
-                  <label class="col-sm-4 col-sm-2 control-label">Tipo </label>
+                  <label class="col-sm-4 col-sm-2 control-label">Fecha de final de período </label>
+                  <div class="col-sm-8">
+                    <input type="date" class="form-control round-form" name="fecha_final" value="{{$empresa->id}}">
+                    @foreach ($errors->get('fecha_final') as $mensaje)
+                      <small style="color:#B42020;">{{ $mensaje }}</small>
+                    @endforeach
+                  </div>
+                </div>
+               
+                <div class="form-group">
+                  <label class="col-sm-4 col-sm-2 control-label">Estado financiero a registrar </label>
                   <div class="col-sm-8">
                   <select name="id_tipo_estado_financiero" class="form-control round-form">
-                    <option>--Seleccione el tipo de estado--</option>
+                    <option value="">--Seleccione el tipo de estado--</option>
                     @foreach($tipo_estados as $tipo)
                       <option value="{{$tipo->id_tipo_estado_financiero}}">{{$tipo->tipo_estado_financiero}}</option>
                     @endforeach
                   </select>
+                  @foreach ($errors->get('id_tipo_estado_financiero') as $mensaje)
+                      <small style="color:#B42020;">{{ $mensaje }}</small>
+                    @endforeach
                  
                 </div>
                 </div>

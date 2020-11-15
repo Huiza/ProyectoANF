@@ -8,6 +8,7 @@ use App\Catalogo;
 use App\TipoEstadoFinanciero;
 use App\EstadoFinanciero;
 use App\Http\Requests\EmpresaRequest;
+use App\Http\Requests\EstadoFinancieroRequest;
 use App\Imports\DetalleEstadosFinancierosImport;
 
 class EstadoFinancieroController extends Controller
@@ -24,6 +25,7 @@ class EstadoFinancieroController extends Controller
 
         return view('EstadosFinancieros.crear_estado_financiero', compact('empresa', 'tipo_estados'));
 
+
     }
 
     /**
@@ -32,9 +34,8 @@ class EstadoFinancieroController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
-    {
-        $estado_financiero = new EstadoFinanciero();
+    public function store(EstadoFinancieroRequest $request)
+    {$estado_financiero = new EstadoFinanciero();
         $estado_financiero->id_tipo_estado_financiero = $request->id_tipo_estado_financiero;
         $estado_financiero->id_empresa = $request->id_empresa;
         $estado_financiero->fecha_inicio = $request->fecha_inicio;
@@ -91,27 +92,11 @@ class EstadoFinancieroController extends Controller
     }
         public function edit($id)
     {
-        /*$estado_financiero_actualizar = EstadoFinanciero::findOrFail($id);
-        $detalle_estado_financiero_actualizar = DetalleEstadosFinancieros::where('id_estado_financiero',$estado_financiero_actualizar->id_estado_financiero->get());
-        return view('EstadosFinancieros.editar_estado_financiero', compact('estado_financiero_actualizar','detalle_estado_financiero_actualizar'));*/
 
     }
 
     public function update(EstadoFinancieroRequest $request, $id)
-    {
-
-        $estado_financiero_actualizar = EstadoFinanciero::findOrFail($id);
-        $detalle_estado_financiero_actualizar = DetalleEstadosFinancieros::where('id_estado_financiero',$estado_financiero_actualizar->id_estado_financiero->get());
-        $estado_financiero_actualizar->id_estado_financiero= $request->id_estado_financiero;
-        $estado_financiero_actualizar->id_tipo_estado_financiero= $request->id_tipo_estado_financiero;
-        $estado_financiero->id_empresa = $request->id_empresa;
-        $estado_financiero->fecha_inicio = $request->fecha_inicio;
-        $estado_financiero->fecha_final = $request->fecha_final;
-        $detalle_estado_financiero_actualizar->cuenta=$request->cuenta;
-        $detalle_estado_financiero_actualizar->saldo=$request->saldo;
-        $detalle_estado_financiero_actualizar->save();
-        $estado_financiero_actualizar->save();
-        return redirect('empresas');
+    {   
 
 
     }

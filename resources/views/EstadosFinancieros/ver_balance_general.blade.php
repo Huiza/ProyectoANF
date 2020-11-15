@@ -9,7 +9,7 @@
         <div class="row mt">
           <div class="col-lg-12">
             <div class="form-panel" >
-            <div class="showback">
+            
              
               <div class="btn-group btn-group-justified">
                 <div class="btn-group">
@@ -21,9 +21,7 @@
                 <div class="btn-group">
                 <a href="{{route('calcular_analisis_vertical', $estado_financiero->id_estado_financiero)}}"><button type="button" class="btn btn-default"> Análisis vertical</button></a>
                 </div>
-                <div class="btn-group">
-                <a href="{{route('calcular_ratios_financieros', $estado_financiero->id_estado_financiero)}}"><button type="button" class="btn btn-default"> Calcular razones financieras</button></a>
-                </div>
+                
               </div>
             
             
@@ -37,9 +35,8 @@
             </div>
                 
 
-              <form style="padding-left:15%; font-size:15px;" class="form-horizontal style-form" method="POST" action="{{route('guardar_detalle_estado_financiero', $estado_financiero->id_estado_financiero)}}" style="padding:2%;">
-               @csrf
-           
+              <div style="padding-left:15%; font-size:15px;">
+               
               <div class="panel-body">
                 <div class="task-content">
 
@@ -90,9 +87,9 @@
             </section>
           </div>
           <!-- /col-md-12-->
-        </div>
+      
                
-               </form>
+              
             </div>
           </div>
           <!-- col-lg-12-->

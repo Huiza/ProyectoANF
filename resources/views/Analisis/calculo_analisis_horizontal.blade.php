@@ -18,9 +18,7 @@
                 <div class="btn-group">
                 <a href="{{route('calcular_analisis_vertical', $estado_financiero->id_estado_financiero)}}"><button type="button" class="btn btn-default"> Análisis vertical</button></a>
                 </div>
-                <div class="btn-group">
-                <a href="{{route('calcular_ratios_financieros', $estado_financiero->id_estado_financiero)}}"><button type="button" class="btn btn-default"> Razones financieras</button></a>
-                </div>
+               
               </div>
 
             <div style="padding-left:10%; padding-top:5%; padding-bottom:3%;"> 
@@ -69,7 +67,7 @@
                             @for($i=0;$i<count($balance);$i++)
                             <tr>
 
-                              @if($balance[$i]->cuenta == 'ACTIVO' || $balance[$i]->cuenta == 'PASIVO' ||$balance[$i]->cuenta == 'PATRIMONIO')
+                              @if($balance[$i]->cuenta == 'ACTIVO' || $balance[$i]->cuenta == 'PASIVO' ||$balance[$i]->cuenta == 'PATRIMONIO' |$balance[$i]->cuenta == 'INGRESOS' |$balance[$i]->cuenta == 'GASTOS')
                               <td><h3><strong>{{$balance[$i]->cuenta}}</strong></h3></td>
 
                               @else
