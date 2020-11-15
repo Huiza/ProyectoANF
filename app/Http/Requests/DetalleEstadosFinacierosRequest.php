@@ -25,6 +25,7 @@ class DetalleEstadosFinacierosRequest extends FormRequest
     {
         return [
             //'codigo'=> 'required|string',
+            'cuenta'=>'required'
             'saldo' => 'required',
         ];
 
@@ -34,6 +35,7 @@ class DetalleEstadosFinacierosRequest extends FormRequest
     public function messages()
     {
         return [
+            'cuenta'=>'Debe ingresar la cuenta',
             'saldo'=>'Debe ingresar el monto de la cuenta',
         ];
     }
