@@ -412,7 +412,7 @@ class RatioFinancieroController extends Controller
         {
             $mensaje="Se debe registrar un estado de resultado correspondiente a este período para el cálculo de las razones financieras!!!";
         }
-        return view('RatiosFinancieros.comparar_ratios', compact('razones_liquidez', 'razones_actividad','razones_apalancamiento','razones_rentabilidad','ratios_apalancamiento_promedio','ratios_actividad_promedio','ratios_rentabilidad_promedio','ratios_liquidez_promedio', 'empresa', 'estado_financiero', 'mensaje'));
+        return redirect('comparar_ratios_financieros')->with('razones_liquidez', 'razones_actividad','razones_apalancamiento','razones_rentabilidad','ratios_apalancamiento_promedio','ratios_actividad_promedio','ratios_rentabilidad_promedio','ratios_liquidez_promedio', 'empresa', 'estado_financiero', 'mensaje');
     }
     /**
      * Show the form for editing the specified resource.

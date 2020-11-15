@@ -9,6 +9,11 @@
           <div class="col-lg-12">
             <div class="form-panel" style="padding:3%; font-size:15px;">
               <h4 class="mb"><i class="fa fa-angle-right"></i> {{$empresa->nombre_empresa}}: Registro de catálogo</h4>
+
+              <div class="panel-body">
+              <div class="col-md-12 alert alert-warning" >
+                      <h5><strong> * Las cuentas seleccionadas son las cuentas mayores y las necesarias para calcular las razones financieras</strong></h5>
+              </div>
               <form class="form-horizontal style-form" method="POST" action="{{route('guardar_catalogo')}}" style="padding:2%;">
                @csrf
            
@@ -38,7 +43,7 @@
                             @foreach($cuentas as $cuenta)
                             <tr>
                                 <div class="task-checkbox"><input type="text"  name="id_empresa[]" value="{{ $empresa->id }}" hidden></div>
-                                @if($cuenta->nombre_cuenta == 'ACTIVO' || $cuenta->nombre_cuenta == 'PASIVO' || $cuenta->nombre_cuenta == 'PATRIMONIO' || $cuenta->nombre_cuenta == 'INGRESOS' || $cuenta->nombre_cuenta == 'GASTOS' || $cuenta->nombre_cuenta == 'CUENTA LIQUIDADORA O DE CIERRE' || $cuenta->nombre_cuenta == 'CUENTAS DE MEMORANDUM DEUDORAS' || $cuenta->nombre_cuenta == 'CUENTAS DE MEMORANDUM DEUDORAS')
+                                @if($cuenta->nombre_cuenta == 'ACTIVO' || $cuenta->nombre_cuenta == 'PASIVO' || $cuenta->nombre_cuenta == 'PATRIMONIO' || $cuenta->nombre_cuenta == 'INGRESOS' || $cuenta->nombre_cuenta == 'GASTOS' || $cuenta->nombre_cuenta == 'CUENTA LIQUIDADORA O DE CIERRE' || $cuenta->nombre_cuenta == 'CUENTAS DE MEMORANDUM DEUDORAS' || $cuenta->nombre_cuenta == 'CUENTAS DE MEMORANDUM DEUDORAS' ||$cuenta->cuenta_ratios==1)
                                 <td><h4><strong>{{$cuenta->nombre_cuenta}}</strong></h4></td>
                                 <td><input type="text" class="form-control round-form" name="codigo_cuenta[]" placeholder="Código de cuenta"></td>
                                 <td><input style="height: 25px; width: 25px;background-color: #eee; cursor: pointer;" type="checkbox" class="list-child" name="id_cuenta[]" value="{{ $cuenta->id_cuenta }}" checked></td>

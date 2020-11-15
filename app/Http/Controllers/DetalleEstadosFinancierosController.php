@@ -67,16 +67,23 @@ class DetalleEstadosFinancierosController extends Controller
      */
     public function show($id)
     {   
+        $mensaje = "";
         $ratio = RatioFinanciero::where('id_estado_financiero', $id)->get();
         $estado_financiero = EstadoFinanciero::findOrFail($id);
         $id_balance_general = EstadoFinanciero::where('fecha_inicio', $estado_financiero->fecha_inicio)->where('id_tipo_estado_financiero',1)->where('id_empresa',$estado_financiero->id_empresa)->first();
-        $balance = DetalleEstadosFinancieros::where('id_estado_financiero', $id);
+        $balance = DetalleEstadosFinancieros::where('id_estado_financiero', $id)->get();
+
+        if(count($balance)==0)
+        {
+            $mensaje = "No se registraron datos para este período!";
+        }
+
         if($estado_financiero->id_tipo_estado_financiero==1)
         {
-            return view('EstadosFinancieros.ver_balance_general', compact('balance', 'estado_financiero', 'ratio'));
+            return view('EstadosFinancieros.ver_balance_general', compact('balance', 'estado_financiero', 'ratio', 'mensaje'));
         }
         else{
-            return view('EstadosFinancieros.ver_estado_resultado', compact('balance', 'estado_financiero', 'id_balance_general'));
+            return view('EstadosFinancieros.ver_estado_resultado', compact('balance', 'estado_financiero', 'id_balance_general', 'mensaje'));
         }
         
         

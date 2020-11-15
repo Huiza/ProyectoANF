@@ -13,7 +13,13 @@
                        
             <div class="btn-group btn-group-justified">
                 <div class="btn-group">
-                <a href="{{route('ver_balance_general', $estado_financiero->id_estado_financiero)}}"><button type="button" class="btn btn-default"> Balance general</button></a>
+                <a href="{{route('ver_balance_general', $estado_financiero->id_estado_financiero)}}"><button type="button" class="btn btn-default"> 
+                @if($estado_financiero->id_tipo_estado_financiero==1)
+                Balance general
+                @else
+                Estado de resultados
+                @endif
+                </button></a>
                 </div>
                 <div class="btn-group">
                 <a href="{{route('calcular_analisis_horizontal', $estado_financiero->id_estado_financiero)}}"><button type="button" class="btn btn-default"> Análisis horizontal</button></a>
@@ -32,6 +38,13 @@
               <h4 class="mb">ANÁLISIS VERTICAL</h4>
               <h4>Del {{date('j F, Y', strtotime($estado_financiero->fecha_inicio))}} al {{date('j F, Y', strtotime($estado_financiero->fecha_final))}}</h4>
             </div>
+
+            @if($mensaje)
+              <div class="panel-body">
+              <div class="col-md-12 alert alert-warning" style="text-align:center;">
+                      <h5><strong>{{$mensaje}}</strong></h5>
+              </div>
+            @else
     
               <div class="panel-body" style="padding-left:15%; font-size:15px;">
                 <div class="task-content">
@@ -82,8 +95,7 @@
                         <a href="{{route('ver_graficos_analisis_vertical', $estado_financiero->id_estado_financiero)}}"><button type="button" class="btn btn-theme02"> Ver gráficos</button></a>
                         </div>
                       
-                        <!-- Modal fin-->
-                        
+                     @endif
                     </div>
                  
                 </div>

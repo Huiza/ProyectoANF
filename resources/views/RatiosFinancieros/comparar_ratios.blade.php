@@ -10,10 +10,10 @@
             <div class="form-panel" >
             <div class="btn-group btn-group-justified">
                 <div class="btn-group">
-                <a href="{{route('calcular_ratios_financieros', $estado_financiero->id_estado_financiero)}}"><button type="button" class="btn btn-theme"> Razones financieras</button></a>
+                <a href="{{route('calcular_ratios_financieros', $estado_financiero->id_estado_financiero)}}"><button type="button" class="btn btn-default"> Calcular razones financieras</button></a>
                 </div>
                 <div class="btn-group">
-                <a href="{{route('comparar_ratios_financieros', $estado_financiero->id_estado_financiero)}}"><button type="button" class="btn btn-default"> Comparación razones financieras</button></a>
+                <a href="{{route('comparar_ratios_financieros', $estado_financiero->id_estado_financiero)}}"><button type="button" class="btn btn-theme"> Comparación razones financieras</button></a>
                 </div>
             </div>
             
@@ -43,7 +43,11 @@
                         <table class="table table-hover">
                            
                             <hr>
-                          
+                            <tr>
+                                        <td><h4><strong>Razones financieras</strong></h4></td>
+                                        <td><h4><strong>Promedio del sector {{$empresa->tipo->tipo}}</strong></h4></td>
+                                        <td><h4><strong>Ratios {{$empresa->nombre_empresa}}</strong></h4></td>
+                                </tr>
                             <tbody>
                                 <tr>
                                         <td><h4><strong>Razones de liquidez</strong></h4></td>

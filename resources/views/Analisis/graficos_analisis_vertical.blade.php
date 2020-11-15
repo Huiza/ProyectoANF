@@ -12,7 +12,13 @@
 
             <div class="btn-group btn-group-justified">
                 <div class="btn-group">
-                <a href="{{route('ver_balance_general', $estado_financiero->id_estado_financiero)}}"><button type="button" class="btn btn-default"> Balance general</button></a>
+                <a href="{{route('ver_balance_general', $estado_financiero->id_estado_financiero)}}"><button type="button" class="btn btn-default"> 
+                @if($estado_financiero->id_tipo_estado_financiero==1)
+                Balance general
+                @else
+                Estado de resultados
+                @endif
+                </button></a>
                 </div>
                 <div class="btn-group">
                 <a href="{{route('calcular_analisis_horizontal', $estado_financiero->id_estado_financiero)}}"><button type="button" class="btn btn-default"> Análisis horizontal</button></a>
