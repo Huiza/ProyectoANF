@@ -47,10 +47,11 @@
                             <hr>
                             <thead>
                             <tr>
-                                <th><h4><strong>Cuenta</strong></h4></th>
-                                <th><h4><strong>Monto [$]</strong></h4></th>
-                               
-
+                           <td>Fecha de inicio de período</td>
+                            <td><input type="date" class="form-control round-form" name="fecha_inicio"  value="{{$estado_financiero->fecha_inicio}}" ></td>  
+                            </tr>
+                            <td>Fecha de fin de período</td>
+                            <td><input type="date" class="form-control round-form" name="fecha_final"  value="{{$estado_financiero->fecha_final}}" ></td>  
                             </tr>
                             </thead>
                             <tbody>

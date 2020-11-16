@@ -38,9 +38,8 @@ class DetalleEstadosFinancierosController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(request $request,$id)
+    public function store(Request $request,$id)
     {
-
         if ($request->hasFile('estado_financiero')){
             $file = $request->file('estado_financiero');
             Excel::import(new DetalleEstadosFinancierosImport($id), $file);
@@ -122,6 +121,11 @@ class DetalleEstadosFinancierosController extends Controller
      */
     public function update(Request $request,$id)
     {
+            $estado_actualizar = EstadoFinanciero::findOrFail($id);
+            $estado_actualizar->fecha_inicio = $request->fecha_inicio;
+            $estado_actualizar->fecha_final =$request->fecha_final;
+            $estado_actualizar->update();
+
         foreach($request->cuenta as $key => $value){
             DetalleEstadosFinancieros::where('id_detalle_estados_financieros', $request['id_detalle_estados_financieros'][$key])->update([
                 'cuenta' => $value, 

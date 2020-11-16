@@ -10,14 +10,16 @@
           <div class="col-lg-12">
             <div class="form-panel" >
             <div style="text-align:center;">
+            <br><br>
               <h3 class="mb">{{$estado_financiero->empresa->nombre_empresa}}</h3>
               <h4 class="mb">Estado de resultados</h4>
               <h4>Del {{date('j F, Y', strtotime($estado_financiero->fecha_inicio))}} al {{date('j F, Y', strtotime($estado_financiero->fecha_final))}}</h4>
             </div>
                 
 
-              <form style="padding-left:15%; font-size:15px;" class="form-horizontal style-form" method="POST" action="{{route('guardar_detalle_estado_financiero',$estado_financiero->id_estado_financiero)}}" style="padding:2%;">
-               @csrf
+              <form style="padding-left:15%; font-size:15px;" class="form-horizontal style-form" method="POST" action="{{route('actualizar_estado_financiero',$estado_financiero->id_estado_financiero)}}" style="padding:2%;">
+              @method('PUT')
+                @csrf
            
               <div class="panel-body">
                 <div class="task-content">
@@ -32,12 +34,16 @@
                            
                             <hr>
                             <thead>
-                            <tr>
-                                <th><h4><strong>Cuenta</strong></h4></th>
-                                <th><h4><strong>Monto</strong></h4></th>
-                               
 
+                            <tr>
+                           <td>Fecha de inicio de período</td>
+                            <td><input type="date" class="form-control round-form" name="fecha_inicio"  value="{{$estado_financiero->fecha_inicio}}" ></td>  
                             </tr>
+                            <td>Fecha de fin de período</td>
+                            <td><input type="date" class="form-control round-form" name="fecha_final"  value="{{$estado_financiero->fecha_final}}" ></td>  
+                            </tr>
+                            <br><br>
+                            
                             </thead>
                             <tbody>
                             

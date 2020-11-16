@@ -51,13 +51,11 @@ class EstadoFinancieroController extends Controller
 
         if($estados_creados)
         {   
-            return back()->with('error', 'Ya se creó un estado financiero para el rango de fechas indicadas, ingrese otro período!');
+            return back()->withWarning('Ya se creó un estado financiero para el rango de fechas indicadas, ingrese otro período!');
    
         }
-        else{
-            $estado_financiero->save();
-        }
-
+      
+        $estado_financiero->save();
         
         
         $empresa = Empresa::findOrFail($estado_financiero->id_empresa);
