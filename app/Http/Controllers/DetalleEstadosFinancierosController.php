@@ -38,7 +38,7 @@ class DetalleEstadosFinancierosController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(DetalleEstadosFinacierosRequest $request,$id)
+    public function store(request $request,$id)
     {
 
         if ($request->hasFile('estado_financiero')){
