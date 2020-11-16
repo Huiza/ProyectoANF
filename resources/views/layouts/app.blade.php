@@ -33,7 +33,7 @@
 </head>
 
 <body>
-@include('sweetalert::alert')
+
   <section id="container">
     <!-- **********************************************************************************************************************************************************
         TOP BAR CONTENT & NOTIFICATIONS
@@ -121,6 +121,7 @@
     <!--footer end-->
     </section>
     <!-- js placed at the end of the document so the pages load faster -->
+    <script src="{{ asset('js/sweetalert.min.js') }}"></script>
     <script src="{{ asset('lib/jquery/jquery.min.js') }}"></script>
   
     <script src="{{ asset('lib/bootstrap/js/bootstrap.min.js') }}"></script>
@@ -156,7 +157,8 @@
       $("#sortable").disableSelection();
     });
   </script>
-    
+    @include('sweetalert::alert')
+
   </body>
   
   </html>

@@ -41,16 +41,19 @@
                             </thead>
                             <tbody>
                             
-                            @foreach($estado_financiero->detallesEstado as $cuenta)
+                            @foreach($balance as $cuenta)
                             <tr>
-                                
+                            <td hidden><input type="text" class="form-control round-form" name="id_detalle_estados_financieros[]" placeholder="Monto en $" value="{{$cuenta->id_detalle_estados_financieros}}" ></td>  
+                            <div hidden><input type="text"  name="cuenta[]" value="{{ $cuenta->cuenta}}" ></div> 
+                            <div hidden><input type="text"  name="id_estado_financiero[]" value="{{ $estado_financiero->id_estado_financiero}}" ></div>
                               @if($cuenta->cuenta == 'INGRESOS' || $cuenta->cuenta == 'GASTOS')
                               <td><h3><strong>{{$cuenta->cuenta}}</strong></h3></td>
-                              
+                              <td hidden><input type="text" class="form-control round-form" name="saldo[]" placeholder="Monto en $" value="0" ></td>
                               @else
                               <td><h4>{{$cuenta->cuenta}}</h4></td>
-                              <td><h4><strong>${{$cuenta->saldo}}</strong></h4></td>
+                                <td><input type="number" step="any" class="form-control round-form" name="saldo[]" placeholder="Monto en $" value="{{$cuenta->saldo}}" required></td>
                               @endif
+                              
                              
                                 
                             </tr>
@@ -58,7 +61,10 @@
                             </tbody>
                                 
                         </table>
-                        
+                        <div class="col-lg-offset-2 col-lg-10">
+                      <button class="btn btn-theme">Guardar</button>
+                      <button class="btn btn-theme04">Cancelar</button>
+                    </div>
                     </div>
                  
                 </div>

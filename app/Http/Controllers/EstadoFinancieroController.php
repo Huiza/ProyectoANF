@@ -9,6 +9,7 @@ use App\TipoEstadoFinanciero;
 use App\EstadoFinanciero;
 use App\Http\Requests\EmpresaRequest;
 use App\Http\Requests\EstadoFinancieroRequest;
+use RealRashid\SweetAlert\Facades\Alert;
 use App\Imports\DetalleEstadosFinancierosImport;
 
 class EstadoFinancieroController extends Controller
@@ -35,12 +36,30 @@ class EstadoFinancieroController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(EstadoFinancieroRequest $request)
-    {$estado_financiero = new EstadoFinanciero();
+    {   
+       
+        $estados_creados = EstadoFinanciero::where('id_empresa',$request->id_empresa)
+                                            ->where('id_tipo_estado_financiero',$request->id_tipo_estado_financiero)
+                                            ->whereBetween('fecha_inicio',[$request->fecha_inicio,$request->fecha_inicio])
+                                            ->whereBetween('fecha_final',[$request->fecha_inicio,$request->fecha_inicio])->first();
+        
+        $estado_financiero = new EstadoFinanciero();
         $estado_financiero->id_tipo_estado_financiero = $request->id_tipo_estado_financiero;
         $estado_financiero->id_empresa = $request->id_empresa;
         $estado_financiero->fecha_inicio = $request->fecha_inicio;
-        $estado_financiero->fecha_final = $request->fecha_final;
-        $estado_financiero->save();
+        $estado_financiero->fecha_final = $request->fecha_inicio;
+
+        if($estados_creados)
+        {   
+            return back()->with('error', 'Ya se creó un estado financiero para el rango de fechas indicadas, ingrese otro período!');
+   
+        }
+        else{
+            $estado_financiero->save();
+        }
+
+        
+        
         $empresa = Empresa::findOrFail($estado_financiero->id_empresa);
 
         if($estado_financiero->id_tipo_estado_financiero==1)
@@ -86,7 +105,7 @@ class EstadoFinancieroController extends Controller
                 }
                 
             }
-            return view('EstadosFinancieros.crear_estado_resultados', compact('ingresos','gastos','empresa', 'estado_financiero'));
+            return view('EstadosFinancieros.crear_estado_resultados', compact('ingresos','gastos','empresa', 'estado_financiero', ));
         }
         
     }

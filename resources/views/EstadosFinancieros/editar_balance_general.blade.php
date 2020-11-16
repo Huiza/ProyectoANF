@@ -66,7 +66,7 @@
                               <td hidden><input type="text" class="form-control round-form" name="saldo[]" placeholder="Monto en $" value="0" ></td>
                               @else
                               <td><h4>{{$cuenta->cuenta}}</h4></td>
-                                <td><input type="text" class="form-control round-form" name="saldo[]" placeholder="Monto en $" value="{{$cuenta->saldo}}" ></td>
+                                <td><input type="number" step="any" class="form-control round-form" name="saldo[]" placeholder="Monto en $" value="{{$cuenta->saldo}}" required ></td>
                               @endif
                               
                              
