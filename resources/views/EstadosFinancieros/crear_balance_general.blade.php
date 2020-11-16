@@ -57,7 +57,7 @@
                             
                                 @else
                                 <td>{{$cuenta->cuenta->nombre_cuenta}}</td>
-                                <td><input type="number" step="any" class="form-control round-form" name="saldo[]" placeholder="Monto en $"></td>
+                                <td><input type="number" step="any" class="form-control round-form" name="saldo[]" placeholder="Monto en $" required></td>
                                 @endif
                                 <input type="text"  name="cuenta[]" value="{{ $cuenta->cuenta->nombre_cuenta }}" hidden>
                                 <div><input type="text"  name="id_estado_financiero[]" value="{{ $estado_financiero->id_estado_financiero}}" hidden></div>
@@ -67,7 +67,7 @@
                                 <td><strong>TOTAL DE ACTIVOS</strong></td>
                                 <div><input type="text"  name="id_estado_financiero[]" value="{{ $estado_financiero->id_estado_financiero}}" hidden></div>
                                 <input type="text"  name="cuenta[]" value="TOTAL DE ACTIVOS" hidden>
-                                <td><input type="text" class="form-control round-form" name="saldo[]" placeholder="Monto en $"></td>
+                                <td><input type="number" step="any" class="form-control round-form" name="saldo[]" placeholder="Monto en $" required></td>
 
                                 
                             @foreach($pasivos as $cuenta)
@@ -78,7 +78,7 @@
                             
                                 @else
                                 <td>{{$cuenta->cuenta->nombre_cuenta}}</td>
-                                <td><input type="text" class="form-control round-form" name="saldo[]" placeholder="Monto en $"></td>
+                                <td><input type="number" step="any" class="form-control round-form" name="saldo[]" placeholder="Monto en $" required></td>
                                 @endif
                                 <input type="text"  name="cuenta[]" value="{{ $cuenta->cuenta->nombre_cuenta }}" hidden>
                                 <div><input type="text"  name="id_estado_financiero[]" value="{{ $estado_financiero->id_estado_financiero}}" hidden></div>
@@ -88,7 +88,7 @@
                                 <td><strong>TOTAL DE PASIVOS</strong></td>
                                 <div><input type="text"  name="id_estado_financiero[]" value="{{ $estado_financiero->id_estado_financiero}}" hidden></div>
                                 <input type="text"  name="cuenta[]" value="TOTAL DE PASIVOS" hidden>
-                                <td><input type="text" class="form-control round-form" name="saldo[]" placeholder="Monto en $"></td>
+                                <td><input type="number" step="any" class="form-control round-form" name="saldo[]" placeholder="Monto en $" required></td>
 
                                 
                             @foreach($patrimonio as $cuenta)
@@ -99,7 +99,7 @@
                             
                                 @else
                                 <td>{{$cuenta->cuenta->nombre_cuenta}}</td>
-                                <td><input type="text" class="form-control round-form" name="saldo[]" placeholder="Monto en $"></td>
+                                <td><input type="number" step="any" class="form-control round-form" name="saldo[]" placeholder="Monto en $" required></td>
                                 @endif
                                 <input type="text"  name="cuenta[]" value="{{ $cuenta->cuenta->nombre_cuenta }}" hidden>
                                 <div><input type="text"  name="id_estado_financiero[]" value="{{ $estado_financiero->id_estado_financiero}}" hidden></div>
@@ -109,7 +109,7 @@
                                 <td><strong>TOTAL DE PATRIMONIO</strong></td>
                                 <div><input type="text"  name="id_estado_financiero[]" value="{{ $estado_financiero->id_estado_financiero}}" hidden></div>
                                 <input type="text"  name="cuenta[]" value="TOTAL PATRIMONIO" hidden>
-                                <td><input type="text" class="form-control round-form" name="saldo[]" placeholder="Monto en $"></td>
+                                <td><input type="number" step="any" class="form-control round-form" name="saldo[]" placeholder="Monto en $" required></td>
 
                         </table>
                         
@@ -121,7 +121,7 @@
               <div class="form-group">
                     <div class="col-lg-offset-2 col-lg-10">
                       <button class="btn btn-theme">Guardar</button>
-                      <button class="btn btn-theme04">Cancelar</button>
+                      <a href="{{route('ver_empresa', $empresa->id)}}" class="btn btn-theme04"> Cancelar</a>
                     </div>
                 </div>
                 <br>

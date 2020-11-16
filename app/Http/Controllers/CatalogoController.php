@@ -41,6 +41,6 @@ class CatalogoController extends Controller
         //ID de la empresa
         $id = Empresa::findOrFail($request['id_empresa'][$value]);
 
-        return redirect()->route('ver_empresa', $id)->withSuccess('Catálogo creado correctamente');
+        return redirect()->route('ver_empresa', $id)->withSuccess('Catálogo guardado correctamente');
         }
 }

@@ -47,10 +47,11 @@
                             <hr>
                             <thead>
                             <tr>
-                                <th><h4><strong>Cuenta</strong></h4></th>
-                                <th><h4><strong>Monto [$]</strong></h4></th>
-                               
-
+                           <td>Fecha de inicio de período</td>
+                            <td><input type="date" class="form-control round-form" name="fecha_inicio"  value="{{$estado_financiero->fecha_inicio}}" ></td>  
+                            </tr>
+                            <td>Fecha de fin de período</td>
+                            <td><input type="date" class="form-control round-form" name="fecha_final"  value="{{$estado_financiero->fecha_final}}" ></td>  
                             </tr>
                             </thead>
                             <tbody>
@@ -66,7 +67,7 @@
                               <td hidden><input type="text" class="form-control round-form" name="saldo[]" placeholder="Monto en $" value="0" ></td>
                               @else
                               <td><h4>{{$cuenta->cuenta}}</h4></td>
-                                <td><input type="text" class="form-control round-form" name="saldo[]" placeholder="Monto en $" value="{{$cuenta->saldo}}" ></td>
+                                <td><input type="number" step="any" class="form-control round-form" name="saldo[]" placeholder="Monto en $" value="{{$cuenta->saldo}}" required ></td>
                               @endif
                               
                              
@@ -79,7 +80,7 @@
                         <div class="form-group">
                     <div class="col-lg-offset-2 col-lg-10">
                       <button class="btn btn-theme">Guardar</button>
-                      <button class="btn btn-theme04">Cancelar</button>
+                      <a href="{{route('ver_empresa', $estado_financiero->empresa->id)}}" class="btn btn-theme04"> Cancelar</a>
                     </div>
                 </div>
                         
