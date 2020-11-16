@@ -2,7 +2,7 @@
 
 @section('content')
 
-<h3><i class="fa fa-angle-right"></i> Estado de resultados</h3>
+<h3><i class="fa fa-angle-right"></i> ESTADO DE RESULTADOS</h3>
 
 
         <!-- BASIC FORM ELELEMNTS -->
@@ -12,7 +12,13 @@
               
             <div class="btn-group btn-group-justified">
                 <div class="btn-group">
-                <a href="{{route('ver_estado_resultado', $estado_financiero->id_estado_financiero)}}"><button type="button" class="btn btn-theme"> Balance general</button></a>
+                <a href="{{route('ver_estado_resultado', $estado_financiero->id_estado_financiero)}}"><button type="button" class="btn btn-theme"> 
+                @if($estado_financiero->id_tipo_estado_financiero==1)
+                Balance general
+                @else
+                Estado de resultados
+                @endif
+                </button></a>
                 </div>
                 <div class="btn-group">
                 <a href="{{route('calcular_analisis_horizontal', $estado_financiero->id_estado_financiero)}}"><button type="button" class="btn btn-default"> Análisis horizontal</button></a>
@@ -32,8 +38,15 @@
               <h4>Del {{date('j F, Y', strtotime($estado_financiero->fecha_inicio))}} al {{date('j F, Y', strtotime($estado_financiero->fecha_final))}}</h4>
             </div>
                 
+            @if($mensaje)
+              <div class="panel-body">
+              <div class="col-md-12 alert alert-warning" style="text-align:center;">
+                      <h5><strong>{{$mensaje}}</strong></h5>
+              </div>
+              
+              @else
 
-              <form style="padding-left:15%; font-size:15px;" class="form-horizontal style-form" method="POST" action="{{route('guardar_detalle_estado_financiero',$estado_financiero->id_estado_financiero)}}" style="padding:2%;">
+              <div style="padding-left:15%; font-size:15px;" class="form-horizontal style-form" method="POST" action="{{route('guardar_detalle_estado_financiero',$estado_financiero->id_estado_financiero)}}" style="padding:2%;">
                @csrf
            
               <div class="panel-body">
@@ -81,6 +94,7 @@
                 </div>
                 
               </div>
+              @endif
               
                 <br>
             </section>
@@ -88,7 +102,7 @@
           <!-- /col-md-12-->
         </div>
                
-               </form>
+               </div>
             </div>
           </div>
           <!-- col-lg-12-->
