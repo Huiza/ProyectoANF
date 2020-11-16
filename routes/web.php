@@ -18,3 +18,58 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home')->middleware('auth');
+
+//RUTAS PARA LAS EMPRESAS
+Route::get('empresas', 'EmpresaController@index')->name('empresas');
+
+Route::get('empresas/crear', 'EmpresaController@create')->name('crear_empresa');
+    
+Route::post('empresas/guardar', 'EmpresaController@store')->name('guardar_empresa');
+
+Route::get('empresas/ver/{id}', 'EmpresaController@show')->name('ver_empresa');
+    
+Route::get('empresas/editar/{id}', 'EmpresaController@edit')->name('editar_empresa');
+    
+Route::put('empresas/actualizar/{id}', 'EmpresaController@update')->name('actualizar_empresa');
+
+Route::delete('empresas/eliminar/{id}', 'EmpresaController@destroy')->name('eliminar_empresa');
+    
+//RUTAS PARA EL CATÁLOGO
+
+Route::post('catalogo/guardar', 'CatalogoController@store')->name('guardar_catalogo');   
+Route::get('catalogo/crear/{id}', 'CatalogoController@create')->name('crear_catalogo'); 
+
+//RUTAS PARA LOS ESTADOS FINANCIEROS
+
+Route::get('estado_financiero/crear/{id}', 'EstadoFinancieroController@create')->name('crear_estado_financiero');
+Route::post('estado_financiero/guardar', 'EstadoFinancieroController@store')->name('guardar_estado_financiero');
+
+Route::post('detalle_estado_financiero/guardar/{id}', 'DetalleEstadosFinancierosController@store')->name('guardar_detalle_estado_financiero');
+
+Route::get('estado_financiero/editar/{id}', 'DetalleEstadosFinancierosController@edit')->name('editar_estado_financiero');
+Route::put('estado_financiero/actualizar/{id}', 'DetalleEstadosFinancierosController@update')->name('actualizar_estado_financiero');
+Route::delete('estado_financiero/eliminar/{id}', 'DetalleEstadosFinancierosController@destroy')->name('eliminar_estado_financiero');
+
+Route::get('balance_general/ver/{id}', 'DetalleEstadosFinancierosController@show')->name('ver_balance_general');
+
+Route::get('estado_resultado/ver/{id}', 'DetalleEstadosFinancierosController@show')->name('ver_estado_resultado');
+Route::put('empresas/actualizar/{id}', 'EmpresaController@update')->name('actualizar_empresa');
+
+  
+Route::post('importarCatalogoCuentas', 'ImportarExcelController@importarCatalogoCuentas')->name('catalogo_cuentas');  
+
+
+//RUTAS PARA EL ANÁLISIS VERTICAL
+Route::get('analisis_vertical/calcular/{id}', 'AnalisisVerticalController@show')->name('calcular_analisis_vertical');
+Route::get('analisis_vertical_balance_general/graficos/{id}', 'GraficoController@analisis_vertical_graficos')->name('ver_graficos_analisis_vertical');
+
+
+//RUTAS PARA EL ANÁLISIS HORIZONTAL
+Route::get('analisis_horizontal/calcular/{id}', 'AnalisisHorizontalController@show')->name('calcular_analisis_horizontal');
+Route::get('analisis_horizontal/graficos/{id}', 'GraficoController@analisis_horizontal_graficos')->name('ver_graficos_analisis_horizontal');
+
+//RUTAS PARA EL CÁLCULO DE RATIOS FINANCIEROS
+Route::get('ratios_financieros/calcular/{id}', 'RatioFinancieroController@store')->name('calcular_ratios_financieros');
+Route::get('ratios_financieros/comparar/{id}', 'RatioFinancieroController@comparar')->name('comparar_ratios_financieros');
+Route::get('ratios_financieros/graficos/{id}', 'GraficoController@comparacion_ratios_graficos')->name('graficos_ratios_financieros');
+
