@@ -91,15 +91,15 @@ Route::get('catalogo/crear/{id}', 'CatalogoController@create')->name('crear_cata
 Route::get('estado_financiero/crear/{id}', 'EstadoFinancieroController@create')->name('crear_estado_financiero')
 ->middleware('has.permission:estado_financieros.create');
 Route::post('estado_financiero/guardar', 'EstadoFinancieroController@store')->name('guardar_estado_financiero')
-->middleware('has.permission:estado_financieros.create');
+->middleware('has.permission:estado_financieros.store');
 
 Route::post('detalle_estado_financiero/guardar/{id}', 'DetalleEstadosFinancierosController@store')->name('guardar_detalle_estado_financiero')
 ->middleware('has.permission:detalle_estados_financieros.create');
 
 Route::get('estado_financiero/editar/{id}', 'DetalleEstadosFinancierosController@edit')->name('editar_estado_financiero')
-->middleware('has.permission:detalle_estados_financiero.edit');
-Route::put('estado_financiero/actualizar/{id}', 'DetalleEstadosFinancierosController@update')->name('actualizar_estado_financiero')
 ->middleware('has.permission:detalle_estados_financieros.edit');
+Route::put('estado_financiero/actualizar/{id}', 'DetalleEstadosFinancierosController@update')->name('actualizar_estado_financiero')
+->middleware('has.permission:detalle_estados_financieros.update');
 Route::delete('estado_financiero/eliminar/{id}', 'DetalleEstadosFinancierosController@destroy')->name('eliminar_estado_financiero')
 ->middleware('has.permission:detalle_estados_financieros.destroy');
 

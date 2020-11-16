@@ -151,7 +151,9 @@ class DetalleEstadosFinancierosController extends Controller
         
         $estado_financiero = EstadoFinanciero::findOrFail($id);
         $detalles_estado = DetalleEstadosFinancieros::where('id_estado_financiero', $id)->get();
-
+        foreach($detalles_estado as $detalle_estado){
+            $detalle_estado->delete();
+        }
         $estado_financiero->delete();
 
         return back();

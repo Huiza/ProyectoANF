@@ -85,11 +85,11 @@
                       </td>
                      
                       <td>
-                      <form method="POST" id="formulario{{$bg->id_estado_financiero}}" action="{{route('eliminar_estado_financiero', $bg->id_estado_financiero)}}" >
-                          @csrf
+                        <form action="{{ route('eliminar_estado_financiero', $bg->id_estado_financiero)}}" method="post">
                           @method('DELETE')
-                          <button type="button" onClick="confirmar({{$bg->id_estado_financiero}})" class="btn btn-danger notika-btn-danger"><span class="glyphicon glyphicon-trash"></span> </button>
-                      </form>
+                          @csrf
+                          <input class="btn btn-danger" type="submit" value=""><i class="fa fa-pencil"></i>
+                       </form>
                       </td>
                   </tr>
                   @endforeach
