@@ -52,7 +52,7 @@ class EmpresaController extends Controller
         $empresa->descripcion = $request->descripcion;
         $empresa->tipo_id = $request->tipo_id;
         $empresa->save();
-        return redirect('empresas')->with('success', 'Task Created Successfully!');
+        return redirect('empresas')->withSuccess('Empresa guardada correctamente');
     }
 
     /**
@@ -111,9 +111,9 @@ class EmpresaController extends Controller
         $empresa_actualizar->descripcion = $request->descripcion;
         $empresa_actualizar->tipo_id = $request->tipo_id;
         $empresa_actualizar->save();
-        return redirect('empresas');
 
 
+        return redirect()->route('ver_empresa', $id)->withSuccess('Empresa actualizada correctamente');
     }
 
     /**
