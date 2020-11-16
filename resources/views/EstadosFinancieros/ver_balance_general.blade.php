@@ -10,7 +10,7 @@
           <div class="col-lg-12">
             <div class="form-panel" >
             
-             
+              
               <div class="btn-group btn-group-justified">
                 <div class="btn-group">
                 <a href="{{route('ver_balance_general', $estado_financiero->id_estado_financiero)}}"><button type="button" class="btn btn-theme"> Balance general</button></a>
@@ -33,13 +33,19 @@
               <h4 class="mb">Balance general</h4>
               <h4>Del {{date('j F, Y', strtotime($estado_financiero->fecha_inicio))}} al {{date('j F, Y', strtotime($estado_financiero->fecha_final))}}</h4>
             </div>
-                
+              @if($mensaje)
+              <div class="panel-body">
+              <div class="col-md-12 alert alert-warning" style="text-align:center;">
+                      <h5><strong>{{$mensaje}}</strong></h5>
+              </div>
+              
+              @else
 
               <div style="padding-left:15%; font-size:15px;">
                
               <div class="panel-body">
                 <div class="task-content">
-
+                
                 <div class="row">
                       <div class="col-md-12">
                         <h3> </h3>
@@ -80,7 +86,7 @@
                     </div>
                  
                 </div>
-                
+                @endif
               </div>
               
                 <br>

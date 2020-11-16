@@ -56,6 +56,7 @@ class AnalisisVerticalController extends Controller
         $total_patrimonio = 0;
         $total_ingresos = 0;
         $total_gastos = 0;
+        $mensaje = "";
         $porcentaje_vertical = [];
         $estado_financiero = EstadoFinanciero::findOrFail($id);
         $balance = DB::select('select * from detalle_estados_financieros where id_estado_financiero ='.$id);
@@ -89,7 +90,9 @@ class AnalisisVerticalController extends Controller
                 $total_gastos = $balance[$i]->saldo;
             }
         }
-
+        
+       if(count($balance)>0)
+       {
        if($estado_financiero->id_tipo_estado_financiero==1)
        {
             while($balance[$j]->cuenta!='PASIVO'){
@@ -148,10 +151,17 @@ class AnalisisVerticalController extends Controller
 
                 $j++;
             }
+
+            
         }
         
+        }
+        else
+        {
+            $mensaje = "No se registraron datos para este período!";
+        }
 
-        return view('Analisis.calculo_analisis_vertical', compact('estado_financiero', 'balance', 'porcentaje_vertical'));
+        return view('Analisis.calculo_analisis_vertical', compact('estado_financiero', 'balance', 'porcentaje_vertical', 'mensaje'));
     }
 
     /**

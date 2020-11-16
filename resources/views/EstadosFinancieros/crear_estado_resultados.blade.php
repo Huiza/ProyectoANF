@@ -17,7 +17,7 @@
 
                 <input type="file" name="estado_financiero">
                 <br>
-                <button class="btn btn-primary">Importar Balance General</button>
+                <button class="btn btn-primary">Importar Estado de Resultados</button>
             </form>
               </div>
             <div style="text-align:center;">

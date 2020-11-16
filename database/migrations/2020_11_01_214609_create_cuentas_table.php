@@ -16,6 +16,7 @@ class CreateCuentasTable extends Migration
         Schema::create('cuentas', function (Blueprint $table) {
             $table->bigIncrements('id_cuenta');
             $table->integer('id_tipo_cuenta')->unsigned()->foreign()->references('id_tipo_cuenta')->on('tipo_cuentas')->onDelete('cascade');
+            $table->integer('cuenta_ratios');
             $table->string('nombre_cuenta',250);
         });
     }
