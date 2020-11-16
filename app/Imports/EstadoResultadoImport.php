@@ -8,11 +8,18 @@ use Maatwebsite\Excel\Concerns\WithCalculatedFormulas;
 
 class EstadoResultadoImport implements ToModel,WithCalculatedFormulas
 {
+    
+    protected $tipo_id;
     /**
     * @param array $row
     *
     * @return \Illuminate\Database\Eloquent\Model|null
     */
+    public function __construct($tipo_id){
+        $this->$tipo_id=$tipo_id;
+    }
+
+
     public function model(array $row)
     {
         return new EstadoResultado([

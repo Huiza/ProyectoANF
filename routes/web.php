@@ -68,6 +68,10 @@ Route::get('analisis_vertical_balance_general/graficos/{id}', 'GraficoController
 Route::get('analisis_horizontal/calcular/{id}', 'AnalisisHorizontalController@show')->name('calcular_analisis_horizontal');
 Route::get('analisis_horizontal/graficos/{id}', 'GraficoController@analisis_horizontal_graficos')->name('ver_graficos_analisis_horizontal');
 
+Route::post('importarEstadoFinaciero', 'importarExcelController@importarEstadoFinanciero')->name('estado_financiero'); 
+Route::post('importarEstadoResultado', 'ImportarExcelController@importarEstadoResultado')->name('estado_resultado');   
+Route::post('importarCatalogoCuentas', 'ImportarExcelController@importarCatalogoCuentas')->name('catalogo_cuentas');   
+
 //RUTAS PARA EL CÁLCULO DE RATIOS FINANCIEROS
 Route::get('ratios_financieros/calcular/{id}', 'RatioFinancieroController@store')->name('calcular_ratios_financieros');
 Route::get('ratios_financieros/comparar/{id}', 'RatioFinancieroController@comparar')->name('comparar_ratios_financieros');

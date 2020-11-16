@@ -17,6 +17,7 @@ class CreateCuentasTable extends Migration
             $table->bigIncrements('id_cuenta');
             $table->integer('id_tipo_cuenta')->unsigned()->foreign()->references('id_tipo_cuenta')->on('tipo_cuentas')->onDelete('cascade');
             $table->string('nombre_cuenta',250);
+            $table->timestamps();
         });
     }
 
