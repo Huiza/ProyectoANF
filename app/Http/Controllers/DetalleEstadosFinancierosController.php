@@ -60,7 +60,7 @@ class DetalleEstadosFinancierosController extends Controller
         $estado_financiero_actual = EstadoFinanciero::findOrFail($id);
         $id_empresa = $estado_financiero_actual->empresa->id;
 
-        return redirect()->route('ver_empresa', $id_empresa)->withSuccess('Estado financiero creado correctamente');
+        return redirect()->route('ver_empresa', $id_empresa)->withSuccess('Estado financiero guardado correctamente');
     }
 
     /**
@@ -133,7 +133,7 @@ class DetalleEstadosFinancierosController extends Controller
             $estado_financiero_actual = EstadoFinanciero::findOrFail($id);
             $id_empresa = $estado_financiero_actual->empresa->id;
 
-            return redirect()->route('ver_empresa', $id_empresa)->withSuccess('Estado financiero actualizado correctamente');
+            return redirect()->route('ver_empresa', $id_empresa)->withSuccess('Estado financiero guardado correctamente');
     }
 
     /**
