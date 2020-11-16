@@ -57,7 +57,7 @@
                 <br><br>
                 <div class="form-group">
                     <div class="col-lg-offset-2 col-lg-10">
-                      <button class="btn btn-theme04">Cancelar</button>
+                      <a href="{{ url()->previous() }}" class="btn btn-theme04"> Cancelar</a>
                       <button class="btn btn-theme">Siguiente</button>
                     </div>
                 </div>

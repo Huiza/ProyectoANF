@@ -69,7 +69,7 @@
                         </table>
                         <div class="col-lg-offset-2 col-lg-10">
                       <button class="btn btn-theme">Guardar</button>
-                      <button class="btn btn-theme04">Cancelar</button>
+                      <a href="{{route('ver_empresa', $estado_financiero->empresa->id)}}" class="btn btn-theme04"> Cancelar</a>
                     </div>
                     </div>
                  
