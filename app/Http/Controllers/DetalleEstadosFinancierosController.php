@@ -56,7 +56,11 @@ class DetalleEstadosFinancierosController extends Controller
          
         }
 
-        return redirect('empresas');
+        //ID de la empresa
+        $estado_financiero_actual = EstadoFinanciero::findOrFail($id);
+        $id_empresa = $estado_financiero_actual->empresa->id;
+
+        return redirect()->route('ver_empresa', $id_empresa)->withSuccess('Estado financiero creado correctamente');
     }
 
     /**
@@ -125,7 +129,11 @@ class DetalleEstadosFinancierosController extends Controller
                 'saldo' => $request['saldo'][$key],
             ]);
             }
-            return redirect()->route('empresas');
+            //ID de la empresa
+            $estado_financiero_actual = EstadoFinanciero::findOrFail($id);
+            $id_empresa = $estado_financiero_actual->empresa->id;
+
+            return redirect()->route('ver_empresa', $id_empresa)->withSuccess('Estado financiero actualizado correctamente');
     }
 
     /**
@@ -142,6 +150,6 @@ class DetalleEstadosFinancierosController extends Controller
 
         $estado_financiero->delete();
 
-        return redirect()->route('empresas');
+        return back();
     }
 }

@@ -38,6 +38,9 @@ class CatalogoController extends Controller
                 ]);
         }
 
-            return redirect('empresas');
+        //ID de la empresa
+        $id = Empresa::findOrFail($request['id_empresa'][$value]);
+
+        return redirect()->route('ver_empresa', $id)->withSuccess('Catálogo creado correctamente');
         }
 }
