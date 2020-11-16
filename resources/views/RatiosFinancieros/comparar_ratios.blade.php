@@ -3,7 +3,9 @@
 @section('content')
 
 
-<h3><i class="fa fa-angle-right"></i> RAZONES FINANCIERAS</h3>
+<h3><i class="fa fa-angle-right"></i> RAZONES FINANCIERAS
+  <a href="{{route('ver_empresa', $estado_financiero->empresa->id)}}" style="float: right;"><button type="button" class="btn btn-default">Regresar</button></a>
+</h3>
         <!-- BASIC FORM ELELEMNTS -->
         <div class="row mt">
           <div class="col-lg-12">

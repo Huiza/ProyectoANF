@@ -2,7 +2,7 @@
 
 @section('content')
 
-<h3><i class="fa fa-angle-right"></i> BALANCE GENERAL</h3>
+<h3><i class="fa fa-angle-right"></i> ESTADO DE RESULTADOS</h3>
 
 
         <!-- BASIC FORM ELELEMNTS -->
@@ -22,7 +22,7 @@
               </div>
             <div style="text-align:center;">
               <h3 class="mb">{{$estado_financiero->empresa->nombre_empresa}}</h3>
-              <h4 class="mb">Registro de balance general</h4>
+              <h4 class="mb">Registro de estado de resultados</h4>
               <h4>Del {{date('j F, Y', strtotime($estado_financiero->fecha_inicio))}} al {{date('j F, Y', strtotime($estado_financiero->fecha_final))}}</h4>
             </div>
                 
@@ -110,7 +110,7 @@
                 <div class="form-group">
                     <div class="col-lg-offset-2 col-lg-10">
                       <button class="btn btn-theme">Guardar</button>
-                      <button class="btn btn-theme04">Cancelar</button>
+                      <a href="{{route('ver_empresa', $estado_financiero->empresa->id)}}" class="btn btn-theme04"> Cancelar</a>
                     </div>
                 </div>
             </section>
