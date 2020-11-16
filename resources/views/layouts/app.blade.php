@@ -23,13 +23,6 @@
   <link rel="stylesheet" href="{{ asset('css/to-do.css') }}">
   <script src="{{ asset('lib/chart-master/Chart.js') }}"></script>
   
-
-  <!-- =======================================================
-    Template Name: Dashio
-    Template URL: https://templatemag.com/dashio-bootstrap-admin-template/
-    Author: TemplateMag.com
-    License: https://templatemag.com/license/
-  ======================================================= -->
 </head>
 
 <body>
@@ -50,7 +43,14 @@
       <div class="top-menu">
         <ul class="nav pull-right top-menu">
           <li>
-            <a class="logout" href="login">Cerrar sesión</a>
+            
+            <a class="logout" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+              Cerrar sesión
+          </a>
+          
+          <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+              {{ csrf_field() }}
+          </form>
           </li>
         </ul>
       </div>
@@ -65,7 +65,7 @@
         <!-- sidebar menu start-->
         <ul class="sidebar-menu" id="nav-accordion">
           
-          <h5 class="centered">User</h5>
+          <h5 class="centered">{{ Auth::user()->name }}</h5>
           <li class="mt">
             <a href="{{route('home')}}">
             <i class="fa fa-th"></i>
@@ -82,6 +82,12 @@
             <a  href="{{route('empresas')}}">
               <i class="fa fa-building-o"></i>
               <span>Empresas</span>
+              </a>
+          </li>
+          <li class="mt">
+            <a  href="{{route('users.index')}}">
+              <i class="fa fa-users"></i>
+              <span>Usuarios</span>
               </a>
           </li>
           

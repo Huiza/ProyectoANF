@@ -13,62 +13,127 @@
 
 Route::get('/', function () {
     return view('welcome');
-});
+})->middleware('auth');
+
+Route::get('/home', function () {
+    return view('welcome');
+})->name('home')->middleware('auth');
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::middleware(['auth'])->group(function(){
+
+//RUTAS DE USUARIOS
+Route::post('users/store', 'usercontroller@store')->name('users.store')
+		->middleware('has.permission:users.create');
+
+Route::get('users', 'usercontroller@index')->name('users.index')
+		->middleware('has.permission:users.index');
+
+Route::get('users/create', 'usercontroller@create')->name('users.create')
+		->middleware('has.permission:users.create');
+
+Route::get('users/{user}/edit', 'usercontroller@edit')->name('users.edit')
+		->middleware('has.permission:users.edit');
+
+Route::put('users/{user}', 'usercontroller@update')->name('users.update')
+		->middleware('has.permission:users.edit');
+
+Route::get('users/{user}', 'usercontroller@show')->name('users.show')
+		->middleware('has.permission:users.show');
+
+Route::delete('users/{user}', 'usercontroller@destroy')->name('users.destroy')
+        ->middleware('has.permission:users.destroy');
+        
+
+////RUTAS DE PERMISOS
+Route::get('user/permissions/{user}', 'permissioncontroller@index')->name('permission.index')
+		->middleware('has.permission:permission_user.index');
+
+Route::post('user/permissions/', 'permissioncontroller@store')->name('permission.store')
+		->middleware('has.permission:permission_user.create');
+
+Route::post('user/permissions/delete', 'permissioncontroller@destroy')->name('permission.destroy')
+		->middleware('has.permission:permission_user.destroy');
+
 
 //RUTAS PARA LAS EMPRESAS
-Route::get('empresas', 'EmpresaController@index')->name('empresas');
+Route::get('empresas', 'EmpresaController@index')->name('empresas')
+->middleware('has.permission:empresas.index');
 
-Route::get('empresas/crear', 'EmpresaController@create')->name('crear_empresa');
+Route::get('empresas/crear', 'EmpresaController@create')->name('crear_empresa')
+->middleware('has.permission:empresas.create');
     
-Route::post('empresas/guardar', 'EmpresaController@store')->name('guardar_empresa');
+Route::post('empresas/guardar', 'EmpresaController@store')->name('guardar_empresa')
+->middleware('has.permission:empresas.create');
 
-Route::get('empresas/ver/{id}', 'EmpresaController@show')->name('ver_empresa');
+Route::get('empresas/ver/{id}', 'EmpresaController@show')->name('ver_empresa')
+->middleware('has.permission:empresas.show');
     
-Route::get('empresas/editar/{id}', 'EmpresaController@edit')->name('editar_empresa');
+Route::get('empresas/editar/{id}', 'EmpresaController@edit')->name('editar_empresa')
+->middleware('has.permission:empresas.edit');
     
-Route::put('empresas/actualizar/{id}', 'EmpresaController@update')->name('actualizar_empresa');
+Route::put('empresas/actualizar/{id}', 'EmpresaController@update')->name('actualizar_empresa')
+->middleware('has.permission:empresas.edit');
 
-Route::delete('empresas/eliminar/{id}', 'EmpresaController@destroy')->name('eliminar_empresa');
+Route::delete('empresas/eliminar/{id}', 'EmpresaController@destroy')->name('eliminar_empresa')
+->middleware('has.permission:empresas.destroy');
     
 //RUTAS PARA EL CATÁLOGO
 
-Route::post('catalogo/guardar', 'CatalogoController@store')->name('guardar_catalogo');   
-Route::get('catalogo/crear/{id}', 'CatalogoController@create')->name('crear_catalogo'); 
+Route::post('catalogo/guardar', 'CatalogoController@store')->name('guardar_catalogo')
+->middleware('has.permission:catalogo.create');   
+Route::get('catalogo/crear/{id}', 'CatalogoController@create')->name('crear_catalogo')
+->middleware('has.permission:catalogo.create'); 
 
 //RUTAS PARA LOS ESTADOS FINANCIEROS
 
-Route::get('estado_financiero/crear/{id}', 'EstadoFinancieroController@create')->name('crear_estado_financiero');
-Route::post('estado_financiero/guardar', 'EstadoFinancieroController@store')->name('guardar_estado_financiero');
+Route::get('estado_financiero/crear/{id}', 'EstadoFinancieroController@create')->name('crear_estado_financiero')
+->middleware('has.permission:estado_financieros.create');
+Route::post('estado_financiero/guardar', 'EstadoFinancieroController@store')->name('guardar_estado_financiero')
+->middleware('has.permission:estado_financieros.create');
 
-Route::post('detalle_estado_financiero/guardar/{id}', 'DetalleEstadosFinancierosController@store')->name('guardar_detalle_estado_financiero');
+Route::post('detalle_estado_financiero/guardar/{id}', 'DetalleEstadosFinancierosController@store')->name('guardar_detalle_estado_financiero')
+->middleware('has.permission:detalle_estados_financieros.create');
 
-Route::get('estado_financiero/editar/{id}', 'DetalleEstadosFinancierosController@edit')->name('editar_estado_financiero');
-Route::put('estado_financiero/actualizar/{id}', 'DetalleEstadosFinancierosController@update')->name('actualizar_estado_financiero');
-Route::delete('estado_financiero/eliminar/{id}', 'DetalleEstadosFinancierosController@destroy')->name('eliminar_estado_financiero');
+Route::get('estado_financiero/editar/{id}', 'DetalleEstadosFinancierosController@edit')->name('editar_estado_financiero')
+->middleware('has.permission:detalle_estados_financiero.edit');
+Route::put('estado_financiero/actualizar/{id}', 'DetalleEstadosFinancierosController@update')->name('actualizar_estado_financiero')
+->middleware('has.permission:detalle_estados_financieros.edit');
+Route::delete('estado_financiero/eliminar/{id}', 'DetalleEstadosFinancierosController@destroy')->name('eliminar_estado_financiero')
+->middleware('has.permission:detalle_estados_financieros.destroy');
 
-Route::get('balance_general/ver/{id}', 'DetalleEstadosFinancierosController@show')->name('ver_balance_general');
+Route::get('balance_general/ver/{id}', 'DetalleEstadosFinancierosController@show')->name('ver_balance_general')
+->middleware('has.permission:detalle_estados_financieros.show');
 
-Route::get('estado_resultado/ver/{id}', 'DetalleEstadosFinancierosController@show')->name('ver_estado_resultado');
-Route::put('empresas/actualizar/{id}', 'EmpresaController@update')->name('actualizar_empresa');
+Route::get('estado_resultado/ver/{id}', 'DetalleEstadosFinancierosController@show')->name('ver_estado_resultado')
+->middleware('has.permission:detalle_estados_financieros.show');
+Route::put('empresas/actualizar/{id}', 'EmpresaController@update')->name('actualizar_empresa')
+->middleware('has.permission:empresas.edit');
 
   
-Route::post('importarCatalogoCuentas', 'ImportarExcelController@importarCatalogoCuentas')->name('catalogo_cuentas');  
+Route::post('importarCatalogoCuentas', 'ImportarExcelController@importarCatalogoCuentas')->name('catalogo_cuentas')
+->middleware('has.permission:catalogo.create');  
 
 
 //RUTAS PARA EL ANÁLISIS VERTICAL
-Route::get('analisis_vertical/calcular/{id}', 'AnalisisVerticalController@show')->name('calcular_analisis_vertical');
-Route::get('analisis_vertical_balance_general/graficos/{id}', 'GraficoController@analisis_vertical_graficos')->name('ver_graficos_analisis_vertical');
+Route::get('analisis_vertical/calcular/{id}', 'AnalisisVerticalController@show')->name('calcular_analisis_vertical')
+->middleware('auth');
+Route::get('analisis_vertical_balance_general/graficos/{id}', 'GraficoController@analisis_vertical_graficos')->name('ver_graficos_analisis_vertical')
+->middleware('auth');
 
 
 //RUTAS PARA EL ANÁLISIS HORIZONTAL
-Route::get('analisis_horizontal/calcular/{id}', 'AnalisisHorizontalController@show')->name('calcular_analisis_horizontal');
-Route::get('analisis_horizontal/graficos/{id}', 'GraficoController@analisis_horizontal_graficos')->name('ver_graficos_analisis_horizontal');
+Route::get('analisis_horizontal/calcular/{id}', 'AnalisisHorizontalController@show')->name('calcular_analisis_horizontal')
+->middleware('auth');
+Route::get('analisis_horizontal/graficos/{id}', 'GraficoController@analisis_horizontal_graficos')->name('ver_graficos_analisis_horizontal')
+->middleware('auth');
 
 //RUTAS PARA EL CÁLCULO DE RATIOS FINANCIEROS
-Route::get('ratios_financieros/calcular/{id}', 'RatioFinancieroController@store')->name('calcular_ratios_financieros');
-Route::get('ratios_financieros/comparar/{id}', 'RatioFinancieroController@comparar')->name('comparar_ratios_financieros');
-Route::get('ratios_financieros/graficos/{id}', 'GraficoController@comparacion_ratios_graficos')->name('graficos_ratios_financieros');
+Route::get('ratios_financieros/calcular/{id}', 'RatioFinancieroController@store')->name('calcular_ratios_financieros')
+->middleware('auth');
+Route::get('ratios_financieros/comparar/{id}', 'RatioFinancieroController@comparar')->name('comparar_ratios_financieros')
+->middleware('auth');
+Route::get('ratios_financieros/graficos/{id}', 'GraficoController@comparacion_ratios_graficos')->name('graficos_ratios_financieros')
+->middleware('auth');
+});
