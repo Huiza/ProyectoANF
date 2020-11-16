@@ -39,7 +39,8 @@ class DetalleEstadosFinancierosController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request,$id)
-    {
+    {    
+
         if ($request->hasFile('estado_financiero')){
             $file = $request->file('estado_financiero');
             Excel::import(new DetalleEstadosFinancierosImport($id), $file);

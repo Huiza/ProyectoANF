@@ -67,7 +67,7 @@
                                 <td><strong>TOTAL DE ACTIVOS</strong></td>
                                 <div><input type="text"  name="id_estado_financiero[]" value="{{ $estado_financiero->id_estado_financiero}}" hidden></div>
                                 <input type="text"  name="cuenta[]" value="TOTAL DE ACTIVOS" hidden>
-                                <td><input type="number" step="any" class="form-control round-form" name="saldo[]" placeholder="Monto en $" required></td>
+                                <td><input id="total_activos" type="number" step="any" class="form-control round-form" name="saldo[]" placeholder="Monto en $" required></td>
 
                                 
                             @foreach($pasivos as $cuenta)
@@ -88,7 +88,7 @@
                                 <td><strong>TOTAL DE PASIVOS</strong></td>
                                 <div><input type="text"  name="id_estado_financiero[]" value="{{ $estado_financiero->id_estado_financiero}}" hidden></div>
                                 <input type="text"  name="cuenta[]" value="TOTAL DE PASIVOS" hidden>
-                                <td><input type="number" step="any" class="form-control round-form" name="saldo[]" placeholder="Monto en $" required></td>
+                                <td><input id="total_pasivos" type="number" step="any" class="form-control round-form" name="saldo[]" placeholder="Monto en $" required></td>
 
                                 
                             @foreach($patrimonio as $cuenta)
@@ -109,7 +109,7 @@
                                 <td><strong>TOTAL DE PATRIMONIO</strong></td>
                                 <div><input type="text"  name="id_estado_financiero[]" value="{{ $estado_financiero->id_estado_financiero}}" hidden></div>
                                 <input type="text"  name="cuenta[]" value="TOTAL PATRIMONIO" hidden>
-                                <td><input type="number" step="any" class="form-control round-form" name="saldo[]" placeholder="Monto en $" required></td>
+                                <td><input id="total_patrimonio" type="number" step="any" class="form-control round-form" name="saldo[]" placeholder="Monto en $" required></td>
 
                         </table>
                         
@@ -136,5 +136,12 @@
           <!-- col-lg-12-->
         </div>
 
+        <script>
+          var activos = document.getElementById('total_activos').value;
+          var pasivos = document.getElementById('total_pasivos').value;
+          var patrimonio = document.getElementById('total_patrimonio').value;
+          
+          
+        </script>
 
 @endsection
