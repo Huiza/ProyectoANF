@@ -32,11 +32,7 @@
                                 <strong>{{ $message }}</strong>
                             </span>
                             @enderror
-                            @if (Route::has('password.request'))
-                                <a class="btn btn-link" href="{{ route('password.request') }}">
-                                    {{ __('¿Olvidaste tu contraseña?') }}
-                                </a>
-                            @endif
+                            
                         </div>
                     </div>
 
@@ -60,4 +56,5 @@
                 </div>
             </form>
         </div>
+    </div>
     @endsection
