@@ -91,7 +91,7 @@ Route::get('catalogo/crear/{id}', 'CatalogoController@create')->name('crear_cata
 Route::get('estado_financiero/crear/{id}', 'EstadoFinancieroController@create')->name('crear_estado_financiero')
 ->middleware('has.permission:estado_financieros.create');
 Route::post('estado_financiero/guardar', 'EstadoFinancieroController@store')->name('guardar_estado_financiero')
-->middleware('has.permission:estado_financieros.store');
+->middleware('has.permission:estado_financieros.create');
 
 Route::post('detalle_estado_financiero/guardar/{id}', 'DetalleEstadosFinancierosController@store')->name('guardar_detalle_estado_financiero')
 ->middleware('has.permission:detalle_estados_financieros.create');
@@ -136,4 +136,7 @@ Route::get('ratios_financieros/comparar/{id}', 'RatioFinancieroController@compar
 ->middleware('auth');
 Route::get('ratios_financieros/graficos/{id}', 'GraficoController@comparacion_ratios_graficos')->name('graficos_ratios_financieros')
 ->middleware('auth');
+
+//RUTAS PARA LOS REPORTES
+Route::get('/reporte_balance_general/{id}','ReporteController@balance_general')->name('reporte_balance_general');
 });

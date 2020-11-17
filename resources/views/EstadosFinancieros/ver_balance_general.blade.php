@@ -27,8 +27,10 @@
               </div>
             
             
-            <div style="padding-left:10%; padding-top:5%; padding-bottom:3%;"> 
-              
+            <div style="padding-left:75%; padding-top:5%; padding-bottom:3%;"> 
+            <div class="btn-group">
+                <a href="{{route('reporte_balance_general', $estado_financiero->id_estado_financiero)}}"><button type="button" class="btn btn-danger"> <i class="fa fa-download"></i> Descargar PDF</button></a>
+                </div>
               </div>
             <div style="text-align:center;">
               <h3 class="mb">{{$estado_financiero->empresa->nombre_empresa}}</h3>

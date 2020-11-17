@@ -8,6 +8,9 @@ use App\Imports\DetalleEstadosFinancierosImport;
 use Illuminate\Http\Request;
 use App\EstadoFinanciero;
 use App\RatioFinanciero;
+use App\Catalogo;
+use App\Empresa;
+use RealRashid\SweetAlert\Facades\Alert;
 use Excel;
 
 class DetalleEstadosFinancierosController extends Controller
@@ -39,7 +42,66 @@ class DetalleEstadosFinancierosController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request,$id)
-    {
+    {  
+        $estado_financiero = EstadoFinanciero::findOrFail($id); 
+        $total_activos = 0;
+        $total_activos = 0;
+        $total_patrimonio = 0;
+        $cuentas = [];
+        $montos = [];
+
+        foreach($request->cuenta as $key => $value){
+            $cuentas[$key] = $value;  
+            $montos[$key] = $request['saldo'][$key];
+        }
+        for($i=0; $i<count($cuentas);$i++)
+        {
+            if(!strcasecmp($cuentas[$i],'Total de activos')){
+                $total_activos=$montos[$i];
+            }
+            if(!strcasecmp($cuentas[$i],'Total de pasivos')){
+                $total_pasivos=$montos[$i];
+            }
+            if(!strcasecmp($cuentas[$i],'Total patrimonio')){
+                $total_patrimonio=$montos[$i];
+            }
+        }
+
+        if($total_activos!=$total_pasivos+$total_patrimonio)
+        {   
+            $estado_financiero = EstadoFinanciero::findOrFail($id);
+            $empresa = Empresa::findOrFail($estado_financiero->id_empresa);
+            if($estado_financiero->id_tipo_estado_financiero==1)
+            {
+                
+                $activos = [];
+                $pasivos = [];
+                $patrimonio = [];
+                $catalogo = Catalogo::where('id_empresa', $empresa->id)->get();
+    
+                foreach($catalogo as $cuenta)
+                {
+                    if($cuenta->cuenta->id_tipo_cuenta == 1)
+                    {
+                        $activos[] = $cuenta;
+                    }
+                    elseif($cuenta->cuenta->id_tipo_cuenta == 2)
+                    {
+                        $pasivos[] = $cuenta;
+                    }
+                    elseif($cuenta->cuenta->id_tipo_cuenta == 3)
+                    {
+                        $patrimonio[] = $cuenta;
+                    }
+                }
+                Alert::error('Error', 'El total de activos debe ser igual al total de activos más patrimonio!');
+                return view('EstadosFinancieros.crear_balance_general', compact('activos', 'pasivos', 'patrimonio','empresa', 'estado_financiero'));
+            }
+           
+        }
+        else{
+
+        
         if ($request->hasFile('estado_financiero')){
             $file = $request->file('estado_financiero');
             Excel::import(new DetalleEstadosFinancierosImport($id), $file);
@@ -60,6 +122,7 @@ class DetalleEstadosFinancierosController extends Controller
         $id_empresa = $estado_financiero_actual->empresa->id;
 
         return redirect()->route('ver_empresa', $id_empresa)->withSuccess('Estado financiero guardado correctamente');
+        }
     }
 
     /**

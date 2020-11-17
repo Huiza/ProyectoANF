@@ -62,7 +62,6 @@ class EstadoFinancieroController extends Controller
 
         if($estado_financiero->id_tipo_estado_financiero==1)
         {
-            
             $activos = [];
             $pasivos = [];
             $patrimonio = [];
@@ -83,6 +82,7 @@ class EstadoFinancieroController extends Controller
                     $patrimonio[] = $cuenta;
                 }
             }
+           
             return view('EstadosFinancieros.crear_balance_general', compact('activos', 'pasivos', 'patrimonio','empresa', 'estado_financiero'));
         }
         elseif($estado_financiero->id_tipo_estado_financiero==2)
