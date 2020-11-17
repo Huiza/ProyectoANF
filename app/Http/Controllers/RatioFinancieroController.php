@@ -38,14 +38,15 @@ class RatioFinancieroController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store($id)
-    {   
+    {
+        
+        $ratios_actualizar = RatioFinanciero::where('id_estado_financiero', $id)->get();
+
+        foreach($ratios_actualizar as $ratio){
+            $ratio->delete();
+        }
 
         $ratios = RatioFinanciero::where('id_estado_financiero', $id)->get();
-
-        $razones_liquidez = RatioFinanciero::where('id_estado_financiero', $id)->where('id_tipo_ratio', 1)->get();
-        $razones_actividad = RatioFinanciero::where('id_estado_financiero', $id)->where('id_tipo_ratio', 2)->get();
-        $razones_apalancamiento = RatioFinanciero::where('id_estado_financiero', $id)->where('id_tipo_ratio', 3)->get();
-        $razones_rentabilidad = RatioFinanciero::where('id_estado_financiero', $id)->where('id_tipo_ratio', 4)->get();
 
         $estado_financiero_1 = EstadoFinanciero::findOrFail($id);
         $mensaje = "";
@@ -352,6 +353,12 @@ class RatioFinancieroController extends Controller
         }
 
         }
+
+        $razones_liquidez = RatioFinanciero::where('id_estado_financiero', $id)->where('id_tipo_ratio', 1)->get();
+        $razones_actividad = RatioFinanciero::where('id_estado_financiero', $id)->where('id_tipo_ratio', 2)->get();
+        $razones_apalancamiento = RatioFinanciero::where('id_estado_financiero', $id)->where('id_tipo_ratio', 3)->get();
+        $razones_rentabilidad = RatioFinanciero::where('id_estado_financiero', $id)->where('id_tipo_ratio', 4)->get();
+
         return view('RatiosFinancieros.ver_ratios', compact('estado_financiero_1', 'mensaje', 'ratios', 'razones_rentabilidad', 'razones_apalancamiento', 'razones_actividad', 'razones_liquidez')); 
     }
 

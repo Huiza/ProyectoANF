@@ -117,6 +117,8 @@ class DetalleEstadosFinancierosController extends Controller
          
         }
 
+        app('App\Http\Controllers\RatioFinancieroController')->store($id);
+
         //ID de la empresa
         $estado_financiero_actual = EstadoFinanciero::findOrFail($id);
         $id_empresa = $estado_financiero_actual->empresa->id;
@@ -196,6 +198,9 @@ class DetalleEstadosFinancierosController extends Controller
                 'saldo' => $request['saldo'][$key],
             ]);
             }
+
+            app('App\Http\Controllers\RatioFinancieroController')->store($id);
+            
             //ID de la empresa
             $estado_financiero_actual = EstadoFinanciero::findOrFail($id);
             $id_empresa = $estado_financiero_actual->empresa->id;

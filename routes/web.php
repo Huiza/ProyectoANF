@@ -99,7 +99,7 @@ Route::post('detalle_estado_financiero/guardar/{id}', 'DetalleEstadosFinancieros
 Route::get('estado_financiero/editar/{id}', 'DetalleEstadosFinancierosController@edit')->name('editar_estado_financiero')
 ->middleware('has.permission:detalle_estados_financieros.edit');
 Route::put('estado_financiero/actualizar/{id}', 'DetalleEstadosFinancierosController@update')->name('actualizar_estado_financiero')
-->middleware('has.permission:detalle_estados_financieros.update');
+->middleware('has.permission:detalle_estados_financieros.edit');
 Route::delete('estado_financiero/eliminar/{id}', 'DetalleEstadosFinancierosController@destroy')->name('eliminar_estado_financiero')
 ->middleware('has.permission:detalle_estados_financieros.destroy');
 
