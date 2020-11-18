@@ -125,7 +125,9 @@ class DetalleEstadosFinancierosController extends Controller
                                                 where('fecha_final','=',$estado_financiero->fecha_final)->
                                                 where('id_empresa','=',$estado_financiero->id_empresa)->
                                                 where('id_tipo_estado_financiero','=',1)->first();
-            app('App\Http\Controllers\RatioFinancieroController')->store($estado_complementario->id_estado_financiero);
+            if($estado_complementario){
+                app('App\Http\Controllers\RatioFinancieroController')->store($estado_complementario->id_estado_financiero);
+            }
         }
 
         //ID de la empresa
@@ -216,10 +218,12 @@ class DetalleEstadosFinancierosController extends Controller
                                                     where('fecha_final','=',$estado_actualizar->fecha_final)->
                                                     where('id_empresa','=',$estado_actualizar->id_empresa)->
                                                     where('id_tipo_estado_financiero','=',1)->first();
+                if($estado_complementario){
                 app('App\Http\Controllers\RatioFinancieroController')->store($estado_complementario->id_estado_financiero);
+                }
             }
             
-            app('App\Http\Controllers\RatioFinancieroController')->store($id);
+           
        
             //ID de la empresa
             $estado_financiero_actual = EstadoFinanciero::findOrFail($id);

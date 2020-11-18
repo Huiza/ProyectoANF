@@ -22,7 +22,7 @@
                 <div class="form-group">
                   <label class="col-sm-4 col-sm-2 control-label">Fecha de inicio de período</label>
                   <div class="col-sm-8">
-                    <input type="date" class="form-control round-form" name="fecha_inicio" value="{{$empresa->id}}">
+                    <input type="date" class="form-control round-form" name="fecha_inicio" value="{{old('fecha_inicio')}}">
                     @foreach ($errors->get('fecha_inicio') as $mensaje)
                       <small style="color:#B42020;">{{ $mensaje }}</small>
                     @endforeach
@@ -32,7 +32,7 @@
                 <div class="form-group">
                   <label class="col-sm-4 col-sm-2 control-label">Fecha de final de período </label>
                   <div class="col-sm-8">
-                    <input type="date" class="form-control round-form" name="fecha_final" value="{{$empresa->id}}">
+                    <input type="date" class="form-control round-form" name="fecha_final" value="{{old('fecha_final')}}">
                     @foreach ($errors->get('fecha_final') as $mensaje)
                       <small style="color:#B42020;">{{ $mensaje }}</small>
                     @endforeach
@@ -43,7 +43,7 @@
                   <label class="col-sm-4 col-sm-2 control-label">Estado financiero a registrar </label>
                   <div class="col-sm-8">
                   <select name="id_tipo_estado_financiero" class="form-control round-form">
-                    <option value="">--Seleccione el tipo de estado--</option>
+                    <option value="{{old('fecha_final')}}">--Seleccione el tipo de estado--</option>
                     @foreach($tipo_estados as $tipo)
                       <option value="{{$tipo->id_tipo_estado_financiero}}">{{$tipo->tipo_estado_financiero}}</option>
                     @endforeach

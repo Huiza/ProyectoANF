@@ -47,7 +47,7 @@ class EstadoFinancieroController extends Controller
         $estado_financiero->id_tipo_estado_financiero = $request->id_tipo_estado_financiero;
         $estado_financiero->id_empresa = $request->id_empresa;
         $estado_financiero->fecha_inicio = $request->fecha_inicio;
-        $estado_financiero->fecha_final = $request->fecha_inicio;
+        $estado_financiero->fecha_final = $request->fecha_final;
         $fecha_inicio =$request->fecha_inicio;
         $fecha_fin =$request->fecha_final;
 
