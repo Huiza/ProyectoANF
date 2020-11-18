@@ -18,9 +18,15 @@
                 <a href="{{route('comparar_ratios_financieros', $estado_financiero_1->id_estado_financiero)}}"><button type="button" class="btn btn-default"> Comparación razones financieras</button></a>
                 </div>
             </div>
-            
-                     
-            
+
+            @if(!$mensaje)
+            <div style="padding-left:75%; padding-top:5%; padding-bottom:3%;"> 
+              <div class="btn-group">
+                <a href="{{route('reporte_ratios_financieros', $estado_financiero_1->id_estado_financiero)}}"><button type="button" class="btn btn-danger"> <i class="fa fa-download"></i> Descargar PDF</button></a>
+              </div>
+            </div>
+            @endif
+
             <div style="text-align:center; padding-top:5%; padding-bottom:3%;">
               <h3 class="mb">{{$estado_financiero_1->empresa->nombre_empresa}}</h3>
               <h4 class="mb">RAZONES FINANCIERAS</h4>

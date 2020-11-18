@@ -11,7 +11,6 @@
         <div class="row mt">
           <div class="col-lg-12">
             <div class="form-panel" >
-            
               
               <div class="btn-group btn-group-justified">
                 <div class="btn-group">
@@ -32,10 +31,13 @@
                 
               </div>
             
-            
-            <div style="padding-left:10%; padding-top:5%; padding-bottom:3%;"> 
-              
+            @if(!$mensaje)
+            <div style="padding-left:75%; padding-top:5%; padding-bottom:3%;"> 
+              <div class="btn-group">
+                <a href="{{route('reporte_analisis_horizontal', $estado_financiero->id_estado_financiero)}}"><button type="button" class="btn btn-danger"> <i class="fa fa-download"></i> Descargar PDF</button></a>
               </div>
+            </div>
+            @endif
             <div style="text-align:center;">
               <h3 class="mb">{{$estado_financiero->empresa->nombre_empresa}}</h3>
               <h4 class="mb">Análisis horizontal</h4>
@@ -63,20 +65,6 @@
                         <table class="table table-hover">
                            
                             <hr>
-                            <thead>
-                            <tr>
-                                <th><h4><strong>Cuenta</strong></h4></th>
-                                @if(!$mensaje)
-                                <th><h4><strong>{{date('j F, Y', strtotime($estado_financiero_anterior->fecha_inicio))}} al <br>{{date('j F, Y', strtotime($estado_financiero_anterior->fecha_final))}}</strong></h4></th>
-                                @endif
-                                <th><h4><strong>{{date('j F, Y', strtotime($estado_financiero->fecha_inicio))}} al <br>{{date('j F, Y', strtotime($estado_financiero->fecha_final))}}</strong></h4></th>
-                                @if(!$mensaje)
-                                <th><h4><strong>Variación absoluta</strong></h4></th>
-                                <th><h4><strong>Variación relativa</strong></h4></th> 
-                                @endif
-
-                            </tr>
-                            </thead>
                             <tbody>
 
                             @for($i=0;$i<count($balance);$i++)

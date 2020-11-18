@@ -139,4 +139,11 @@ Route::get('ratios_financieros/graficos/{id}', 'GraficoController@comparacion_ra
 
 //RUTAS PARA LOS REPORTES
 Route::get('/reporte_balance_general/{id}','ReporteController@balance_general')->name('reporte_balance_general');
+Route::get('/reporte_estado_resultados/{id}','ReporteController@estado_resultados')->name('reporte_estado_resultados');
+Route::get('/reporte_analisis_horizontal/{id}','ReporteController@analisis_horizontal')->name('reporte_analisis_horizontal');
+Route::get('/reporte_analisis_vertical/{id}','ReporteController@analisis_vertical')->name('reporte_analisis_vertical');
+Route::get('/reporte_ratios_financieros/{id}','ReporteController@ratios_financieros')->name('reporte_ratios_financieros');
+Route::get('/reporte_comparacion_ratios/{id}','ReporteController@comparacion_ratios')->name('reporte_comparacion_ratios');
+
+
 });

@@ -45,7 +45,7 @@ class DetalleEstadosFinancierosController extends Controller
     {  
         $estado_financiero = EstadoFinanciero::findOrFail($id); 
         $total_activos = 0;
-        $total_activos = 0;
+        $total_pasivos = 0;
         $total_patrimonio = 0;
         $cuentas = [];
         $montos = [];
@@ -117,7 +117,16 @@ class DetalleEstadosFinancierosController extends Controller
          
         }
 
-        app('App\Http\Controllers\RatioFinancieroController')->store($id);
+        if($estado_financiero->id_tipo_estado_financiero==1){
+            app('App\Http\Controllers\RatioFinancieroController')->store($id);
+        }
+        else{
+            $estado_complementario = EstadoFinanciero::where('fecha_inicio','=',$estado_financiero->fecha_inicio)->
+                                                where('fecha_final','=',$estado_financiero->fecha_final)->
+                                                where('id_empresa','=',$estado_financiero->id_empresa)->
+                                                where('id_tipo_estado_financiero','=',1)->first();
+            app('App\Http\Controllers\RatioFinancieroController')->store($estado_complementario->id_estado_financiero);
+        }
 
         //ID de la empresa
         $estado_financiero_actual = EstadoFinanciero::findOrFail($id);
@@ -199,7 +208,16 @@ class DetalleEstadosFinancierosController extends Controller
             ]);
             }
 
-            app('App\Http\Controllers\RatioFinancieroController')->store($id);
+            if($estado_actualizar->id_tipo_estado_financiero==1){
+                app('App\Http\Controllers\RatioFinancieroController')->store($id);
+            }
+            else{
+                $estado_complementario = EstadoFinanciero::where('fecha_inicio','=',$estado_actualizar->fecha_inicio)->
+                                                    where('fecha_final','=',$estado_actualizar->fecha_final)->
+                                                    where('id_empresa','=',$estado_actualizar->id_empresa)->
+                                                    where('id_tipo_estado_financiero','=',1)->first();
+                app('App\Http\Controllers\RatioFinancieroController')->store($estado_complementario->id_estado_financiero);
+            }
             
             //ID de la empresa
             $estado_financiero_actual = EstadoFinanciero::findOrFail($id);
