@@ -9,6 +9,7 @@ use App\Empresa;
 use App\Catalogo;
 use App\EstadoFinanciero;
 use App\DetalleEstadosFinancieros;
+use DB;
 use RealRashid\SweetAlert\Facades\Alert;
 
 
@@ -114,6 +115,14 @@ class EmpresaController extends Controller
 
 
         return redirect()->route('ver_empresa', $id)->withSuccess('Empresa actualizada correctamente');
+    }
+
+    public function buscar(Request $request)
+    {
+        $busqueda = $request->get('busqueda');
+        $empresas = Empresa::where('nombre_empresa', 'like', '%' .$busqueda. '%')->paginate(10);
+        return view('Empresas.lista_empresas', compact('empresas'));
+
     }
 
     /**

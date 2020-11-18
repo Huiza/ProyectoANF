@@ -78,6 +78,9 @@ Route::put('empresas/actualizar/{id}', 'EmpresaController@update')->name('actual
 
 Route::delete('empresas/eliminar/{id}', 'EmpresaController@destroy')->name('eliminar_empresa')
 ->middleware('has.permission:empresas.destroy');
+Route::get('empresas/buscar', 'EmpresaController@buscar')->name('buscar_empresa');
+
+
     
 //RUTAS PARA EL CATÁLOGO
 

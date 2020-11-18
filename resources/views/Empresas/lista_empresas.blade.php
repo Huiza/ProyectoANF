@@ -8,6 +8,19 @@
             <a href="{{route('crear_empresa')}}"><button type="button" class="btn btn-round btn-default"> <i class="fa fa-plus"></i> Agregar</button></a>
             <br><br>
               <table class="table table-striped table-advance table-hover" >
+
+              <div class="col-10">
+                <form method="GET" action="{{route('buscar_empresa')}}">
+                <div class="input-group">
+                  <input type="text" class="form-control" name="busqueda" placeholder="Nombre de la empresa">
+                  <span class="input-group-btn">
+                    <button type="submit" class="btn btn-primary"> <i class="fa fa-search"></i> </button>
+                  </span>
+                </div>       
+                </form>
+              </div>
+
+                <br><br>
                 <h4><i class="fa fa-angle-right"></i> Empresas registradas</h4>
                 <hr>
                 <thead>
