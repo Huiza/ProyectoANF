@@ -85,11 +85,11 @@
                       </td>
                      
                       <td>
-                        <form action="{{ route('eliminar_estado_financiero', $bg->id_estado_financiero)}}" method="post">
-                          @method('DELETE')
+                      <form method="POST" id="formulario{{$bg->id_estado_financiero}}" action="{{route('eliminar_estado_financiero', $bg->id_estado_financiero)}}" >
                           @csrf
-                          <input class="btn btn-danger" type="submit" value=""><i class="fa fa-pencil"></i>
-                       </form>
+                          @method('DELETE')
+                          <button type="button" onClick="confirmar({{$bg->id_estado_financiero}})" class="btn btn-danger notika-btn-danger"><span class="glyphicon glyphicon-trash"></span> </button>
+                      </form>
                       </td>
                   </tr>
                   @endforeach
@@ -197,12 +197,12 @@
             </div>
             <!-- /col-lg-12 -->
           </div>
-          <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-<script>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<<script>
 function confirmar(valor){
     //ruta.concat(variable,")}}");
     swal({
-      title: "¿Eliminar estado financiero?",
+      title: "¿Eliminar aviso?",
       text: "Esta acción es irreversible.",
       icon: "warning",
       buttons: true,
@@ -210,7 +210,7 @@ function confirmar(valor){
     })
     .then((willDelete) => {
       if (willDelete) {
-        swal("Estado financiero eliminada", {
+        swal("Aviso eliminado", {
           icon: "success",
         });
         document.getElementById("formulario"+valor).submit();
@@ -220,6 +220,6 @@ function confirmar(valor){
     });
 }
 
-</script>     
+</script>       
 @endsection
 

@@ -48,10 +48,18 @@ class EstadoFinancieroController extends Controller
         $estado_financiero->id_empresa = $request->id_empresa;
         $estado_financiero->fecha_inicio = $request->fecha_inicio;
         $estado_financiero->fecha_final = $request->fecha_inicio;
+        $fecha_inicio =$request->fecha_inicio;
+        $fecha_fin =$request->fecha_final;
+
 
         if($estados_creados)
         {   
             return back()->withWarning('Ya se creó un estado financiero para el rango de fechas indicadas, ingrese otro período!');
+   
+        }
+        if($fecha_inicio>$fecha_fin)
+        {   
+            return back()->withWarning('La fecha de inicio debe ser menor a la fecha de fin de período!');
    
         }
       

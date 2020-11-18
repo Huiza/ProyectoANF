@@ -103,8 +103,7 @@ Route::get('estado_financiero/editar/{id}', 'DetalleEstadosFinancierosController
 ->middleware('has.permission:detalle_estados_financieros.edit');
 Route::put('estado_financiero/actualizar/{id}', 'DetalleEstadosFinancierosController@update')->name('actualizar_estado_financiero')
 ->middleware('has.permission:detalle_estados_financieros.edit');
-Route::delete('estado_financiero/eliminar/{id}', 'DetalleEstadosFinancierosController@destroy')->name('eliminar_estado_financiero')
-->middleware('has.permission:detalle_estados_financieros.destroy');
+Route::delete('estado_financiero/eliminar/{id}', 'DetalleEstadosFinancierosController@destroy')->name('eliminar_estado_financiero');
 
 Route::get('balance_general/ver/{id}', 'DetalleEstadosFinancierosController@show')->name('ver_balance_general')
 ->middleware('has.permission:detalle_estados_financieros.show');

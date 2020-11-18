@@ -219,11 +219,13 @@ class DetalleEstadosFinancierosController extends Controller
                 app('App\Http\Controllers\RatioFinancieroController')->store($estado_complementario->id_estado_financiero);
             }
             
+            app('App\Http\Controllers\RatioFinancieroController')->store($id);
+       
             //ID de la empresa
             $estado_financiero_actual = EstadoFinanciero::findOrFail($id);
             $id_empresa = $estado_financiero_actual->empresa->id;
 
-            return redirect()->route('ver_empresa', $id_empresa)->withSuccess('Estado financiero guardado correctamente');
+            return redirect()->route('ver_empresa', $id_empresa)->withSuccess('Estado financiero actualizado correctamente');
     }
 
     /**
@@ -233,9 +235,10 @@ class DetalleEstadosFinancierosController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
-    {
+    {   
         
         $estado_financiero = EstadoFinanciero::findOrFail($id);
+
         $detalles_estado = DetalleEstadosFinancieros::where('id_estado_financiero', $id)->get();
         foreach($detalles_estado as $detalle_estado){
             $detalle_estado->delete();
