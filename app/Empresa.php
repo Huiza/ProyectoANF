@@ -25,4 +25,9 @@ class empresa extends Model
     {
         return $this->hasMany(EstadoFinanciero::class, 'id_empresa', 'id');
     }
+
+    public function usuario()
+    {
+        return $this->belongsTo(User::class, 'id_usuario', 'id');
+    }
 }

@@ -22,7 +22,8 @@
   <link href="{{ asset('css/style-responsive.css') }}" rel="stylesheet">
   <link rel="stylesheet" href="{{ asset('css/to-do.css') }}">
   <script src="{{ asset('lib/chart-master/Chart.js') }}"></script>
-  
+  <script src="{{ asset('js/sweetalert.min.js') }}"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js" integrity="sha512-AA1Bzp5Q0K1KanKKmvN/4d3IRKVlv9PYgwFPvm32nPO6QS8yH1HO7LbgB1pgiOxPtfeg5zEn2ba64MUcqJx6CA==" crossorigin="anonymous"></script>
 </head>
 
 <body>
@@ -152,7 +153,7 @@
     <script src="{{ asset('lib/zabuto_calendar.js') }}"></script>
     <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
     <script src="{{ asset('lib/tasks.js') }}" type="text/javascript"></script>
-    <script src="lib/jquery-ui-1.9.2.custom.min.js"></script>
+    <script src="{{ asset('lib/jquery-ui-1.9.2.custom.min.js') }}"></script>
     <script type="text/javascript" src="{{ asset('lib/bootstrap-fileupload/bootstrap-fileupload.js') }}"></script>
     <script type="text/javascript" src="{{ asset('lib/bootstrap-datepicker/js/bootstrap-datepicker.js') }}"></script>
     <script type="text/javascript" src="{{ asset('lib/bootstrap-daterangepicker/date.js') }}"></script>

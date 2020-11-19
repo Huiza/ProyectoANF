@@ -133,7 +133,6 @@ class UserController extends Controller
 
     public function destroy($id)
     {
-        //dd($id);
         $user= User::findOrFail($id);
 
         DB::table('permission_user')->where('user_id', $id)->delete();

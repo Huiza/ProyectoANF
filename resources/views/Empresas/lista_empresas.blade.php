@@ -64,29 +64,5 @@
           <!-- /col-md-12 -->
         </div>
 
-<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-<script>
-function confirmar(valor){
-    //ruta.concat(variable,")}}");
-    swal({
-      title: "¿Eliminar empresa?",
-      text: "Esta acción es irreversible.",
-      icon: "warning",
-      buttons: true,
-      dangerMode: true,
-    })
-    .then((willDelete) => {
-      if (willDelete) {
-        swal("Empresa eliminada", {
-          icon: "success",
-        });
-        document.getElementById("formulario"+valor).submit();
-      } else {
-        swal("Eliminación cancelada");
-      }
-    });
-}
-
-</script>
 @endsection
 
