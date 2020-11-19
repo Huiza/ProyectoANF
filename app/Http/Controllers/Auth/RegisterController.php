@@ -7,6 +7,8 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
+use Caffeinated\Shinobi\Models\Role;
+use DB;
 
 class RegisterController extends Controller
 {
@@ -68,10 +70,27 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        return User::create([
+        $user=User::create([
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
         ]);
+        
+        $role = Role::where("id", 2)->first();
+
+        DB::table('role_user')->insert(
+            array('role_id' => $role->id, 'user_id' => $user->id)
+        );
+
+        $objetos = DB::select('SELECT * FROM permission_role WHERE role_id = 2');
+
+        foreach ($objetos as $objeto) {
+            DB::table('permission_user')->insert([
+                'permission_id' => $objeto->permission_id,
+                'user_id' => $user->id,
+            ]);
+        }
+
+        return $user;
     }
 }

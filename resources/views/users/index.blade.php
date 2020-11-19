@@ -47,7 +47,7 @@ Usuarios
                                 
                                 @csrf
                                 @method('DELETE')
-                                <button type="button" onClick="confirmar('formulario{{$use->id}}')" class="btn btn-danger">
+                                <button type="button" onClick="confirmar({{$use->id}})" class="btn btn-danger">
                                     Eliminar
                                 </button> 
                                 

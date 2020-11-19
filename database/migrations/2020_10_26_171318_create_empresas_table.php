@@ -18,6 +18,7 @@ class CreateEmpresasTable extends Migration
             $table->string('nombre_empresa');
             $table->string('descripcion');
             $table->integer('tipo_id')->unsigned()->foreign()->references('id')->on('tipos')->onDelete('cascade');
+            $table->integer('id_usuario')->unsigned()->foreign()->references('id')->on('users')->onDelete('cascade');
             $table->timestamps();
         });
     }
