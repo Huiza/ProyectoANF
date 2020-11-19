@@ -221,7 +221,7 @@ class RatioFinancieroController extends Controller
         $ratio = new RatioFinanciero();
         $ratio->id_estado_financiero = $id;
         $ratio->id_tipo_ratio = 2;
-        $ratio->nombre_ratio = "Razón de rotación de inventario";
+        $ratio->nombre_ratio = "Razón de rotación de inventario (Veces/año)";
         $ratio->calculo_ratio = $inventario_promedio == 0 ? 0 : (round($costo_venta / $inventario_promedio,2));
         $ratio->save();
 
@@ -235,28 +235,28 @@ class RatioFinancieroController extends Controller
         $ratio = new RatioFinanciero();
         $ratio->id_estado_financiero = $id;
         $ratio->id_tipo_ratio = 2;
-        $ratio->nombre_ratio = "Razón de rotación de cuentas por cobrar";
+        $ratio->nombre_ratio = "Razón de rotación de cuentas por cobrar (Veces/año)";
         $ratio->calculo_ratio = $cuentas_cobrar_comerciales_promedio == 0 ? 0 : (round(($total_ingresos) /$cuentas_cobrar_comerciales_promedio,2));
         $ratio->save();
 
         $ratio = new RatioFinanciero();
         $ratio->id_estado_financiero = $id;
         $ratio->id_tipo_ratio = 2;
-        $ratio->nombre_ratio = "Razón de período medio de cobranza";
+        $ratio->nombre_ratio = "Razón de período medio de cobranza (en días)";
         $ratio->calculo_ratio = $total_ingresos == 0 ? 0 : (round(($cuentas_cobrar_comerciales_promedio*365) /$total_ingresos,2));
         $ratio->save();
 
         $ratio = new RatioFinanciero();
         $ratio->id_estado_financiero = $id;
         $ratio->id_tipo_ratio = 2;
-        $ratio->nombre_ratio = "Razón de rotación de cuentas por pagar";
+        $ratio->nombre_ratio = "Razón de rotación de cuentas por pagar (Veces/año)";
         $ratio->calculo_ratio = $cuentas_pagar_comerciales_promedio == 0 ? 0 : (round(($compras) /$cuentas_pagar_comerciales_promedio,2));
         $ratio->save();
 
         $ratio = new RatioFinanciero();
         $ratio->id_estado_financiero = $id;
         $ratio->id_tipo_ratio = 2;
-        $ratio->nombre_ratio = "Período medio de pago";
+        $ratio->nombre_ratio = "Período medio de pago (en días)";
         $ratio->calculo_ratio = $compras == 0 ? 0 : (round(($cuentas_pagar_comerciales_promedio*365) /$compras,2));
         $ratio->save();
 

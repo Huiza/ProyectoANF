@@ -147,5 +147,8 @@ Route::get('/reporte_analisis_vertical/{id}','ReporteController@analisis_vertica
 Route::get('/reporte_ratios_financieros/{id}','ReporteController@ratios_financieros')->name('reporte_ratios_financieros');
 Route::get('/reporte_comparacion_ratios/{id}','ReporteController@comparacion_ratios')->name('reporte_comparacion_ratios');
 
+//RUTA CALCULADORA DE RATIOS
+Route::get('/calculadora_ratios_financieros','CalculadoraController@calcular_ratios')->name('calculadora_ratios');
+Route::get('/calculadora_ratios_financieros/resultados','CalculadoraController@resultados_ratios')->name('resultados_ratios');
 
 });
