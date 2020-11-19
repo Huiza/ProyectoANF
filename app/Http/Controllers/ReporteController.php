@@ -42,7 +42,7 @@ class ReporteController extends Controller
         $balance = DB::select('select * from detalle_estados_financieros where id_estado_financiero ='.$id);
         $estado_financiero_anterior = EstadoFinanciero::where('fecha_inicio','<',$estado_financiero->fecha_inicio)->where('id_empresa', $estado_financiero->id_empresa)->orderBy('fecha_inicio', 'DESC')->first();
 
-        $balance_anterior = DB::select('select * from detalle_estados_financieros where id_estado_financiero ='.$estado_financiero_anterior->id_estado_financiero);;
+        $balance_anterior = DB::select('select * from detalle_estados_financieros where id_estado_financiero ='.$estado_financiero_anterior->id_estado_financiero);
 
             for($i = 0; $i < count($balance); $i++){
                 $variacion_absoluta[$i] = $balance[$i]->saldo - $balance_anterior[$i]->saldo;
@@ -166,7 +166,7 @@ class ReporteController extends Controller
             
         }
 
-        $pdf=PDF::loadview('Analisis.calculo_analisis_vertical', compact('estado_financiero', 'balance', 'porcentaje_vertical'));
+        $pdf=PDF::loadview('Analisis.calculo_analisis_vertical', compact('estado_financiero', 'balance', 'porcentaje_vertical', 'mensaje'));
         return $pdf->download('analisis_vertical.pdf');
     }
 

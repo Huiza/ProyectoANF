@@ -89,7 +89,7 @@
           <li class="mt">
             <a  href="{{route('calculadora_ratios')}}">
               <i class="fa fa-table"></i>
-              <span>Calculadora de ratios financieros</span>
+              <span>Calculadora ratios financieros</span>
               </a>
           </li>
 

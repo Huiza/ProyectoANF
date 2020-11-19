@@ -149,6 +149,6 @@ Route::get('/reporte_comparacion_ratios/{id}','ReporteController@comparacion_rat
 
 //RUTA CALCULADORA DE RATIOS
 Route::get('/calculadora_ratios_financieros','CalculadoraController@calcular_ratios')->name('calculadora_ratios');
-Route::get('/calculadora_ratios_financieros/resultados','CalculadoraController@resultados_ratios')->name('resultados_ratios');
+
 
 });

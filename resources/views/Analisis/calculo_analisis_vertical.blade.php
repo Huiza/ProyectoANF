@@ -35,7 +35,7 @@
             @if(!$mensaje)
             <div style="padding-left:75%; padding-top:5%; padding-bottom:3%;"> 
               <div class="btn-group">
-                <a href="{{route('reporte_analisis_horizontal', $estado_financiero->id_estado_financiero)}}"><button type="button" class="btn btn-danger"> <i class="fa fa-download"></i> Descargar PDF</button></a>
+                <a href="{{route('reporte_analisis_vertical', $estado_financiero->id_estado_financiero)}}"><button type="button" class="btn btn-danger"> <i class="fa fa-download"></i> Descargar PDF</button></a>
               </div>
             </div>
             @endif

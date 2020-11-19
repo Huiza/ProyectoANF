@@ -59,7 +59,7 @@ class AnalisisHorizontalController extends Controller
         
         if($estado_financiero_anterior)
         {
-        $balance_anterior = DB::select('select * from detalle_estados_financieros where id_estado_financiero ='.$estado_financiero_anterior->id_estado_financiero);;
+        $balance_anterior = DB::select('select * from detalle_estados_financieros where id_estado_financiero ='.$estado_financiero_anterior->id_estado_financiero);
 
             for($i = 0; $i < count($balance); $i++){
                 $variacion_absoluta[$i] = $balance[$i]->saldo - $balance_anterior[$i]->saldo;
