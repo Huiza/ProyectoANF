@@ -47,9 +47,11 @@ Usuarios
                                 
                                 @csrf
                                 @method('DELETE')
+                                @if($use->id!=Auth::user()->id)
                                 <button type="button" onClick="confirmar({{$use->id}})" class="btn btn-danger">
                                     Eliminar
-                                </button> 
+                                </button>
+                                @endif 
                                 
                             </td>
                         </form>

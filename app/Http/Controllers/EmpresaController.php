@@ -11,7 +11,7 @@ use App\EstadoFinanciero;
 use App\DetalleEstadosFinancieros;
 use DB;
 use RealRashid\SweetAlert\Facades\Alert;
-
+use Auth;
 
 class EmpresaController extends Controller
 {
@@ -22,7 +22,16 @@ class EmpresaController extends Controller
      */
     public function index()
     {
-        $empresas = Empresa::all();
+        $rol = DB::select("SELECT RU.role_id FROM users U
+            JOIN role_user RU ON U.id = RU.user_id
+            WHERE U.id = ?", [Auth::user()->id])[0];
+        if($rol->role_id==1){
+            $empresas = Empresa::all();
+        }
+        else{
+            $empresas = Empresa::where('id_usuario', Auth::user()->id);
+        }
+        
         return view('Empresas.lista_empresas',compact('empresas'));
     }
   
@@ -52,6 +61,7 @@ class EmpresaController extends Controller
         $empresa->nombre_empresa = $request->nombre_empresa;
         $empresa->descripcion = $request->descripcion;
         $empresa->tipo_id = $request->tipo_id;
+        $empresa->id_usuario = Auth::user()->id;
         $empresa->save();
         return redirect('empresas')->withSuccess('Empresa creada correctamente');
     }
