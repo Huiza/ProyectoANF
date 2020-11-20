@@ -105,7 +105,9 @@
         var data = google.visualization.arrayToDataTable([
           ['Cuenta', '{{date('j F, Y', strtotime($estado_financiero_anterior->fecha_inicio))}} - {{date('j F, Y', strtotime($estado_financiero_anterior->fecha_final))}}', '{{date('j F, Y', strtotime($estado_financiero->fecha_inicio))}} - {{date('j F, Y', strtotime($estado_financiero->fecha_final))}}'],
           @for($i=1; $i<$indice_activos;$i++)
+          @if($balance[$i]->cuenta != 'Activo corriente' && $balance[$i]->cuenta != 'Activo no corriente')
           ['{{$balance[$i]->cuenta}}',{{$balance[$i]->saldo}}, {{$balance_anterior[$i]->saldo}}],
+          @endif
          @endfor
         ]);
 
@@ -146,7 +148,9 @@
         var data = google.visualization.arrayToDataTable([
           ['Cuenta', '{{date('j F, Y', strtotime($estado_financiero_anterior->fecha_inicio))}} - {{date('j F, Y', strtotime($estado_financiero_anterior->fecha_final))}}', '{{date('j F, Y', strtotime($estado_financiero->fecha_inicio))}} - {{date('j F, Y', strtotime($estado_financiero->fecha_final))}}'],
           @for($i=$indice_activos+2; $i<$indice_pasivos;$i++)
+          @if($balance[$i]->cuenta != 'Pasivo corriente' && $balance[$i]->cuenta != 'Pasivo no corriente')
           ['{{$balance[$i]->cuenta}}',{{$balance[$i]->saldo}}, {{$balance_anterior[$i]->saldo}}],
+          @endif
          @endfor
         ]);
 

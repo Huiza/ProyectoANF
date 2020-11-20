@@ -63,7 +63,15 @@
                         <div class="col-md-10">
                       
                         <table class="table table-hover">
-                           
+                        <thead>
+                            <tr>
+                                <th><h4><strong>Cuenta</strong></h4></th>
+                                <th><h4><strong>Período actual</strong></h4></th>
+                                <th><h4><strong>{{date('j F, Y', strtotime($estado_financiero_anterior->fecha_inicio))}} <br> al <br> {{date('j F, Y', strtotime($estado_financiero_anterior->fecha_final))}}</strong></h4></th>
+                                <th><h4><strong>Diferencia</strong></h4></th>
+                                <th><h4><strong>Varación absoluta</strong></h4></th>
+                            </tr>
+                            </thead>
                             <hr>
                             <tbody>
 
@@ -72,10 +80,12 @@
 
                               @if($balance[$i]->cuenta == 'ACTIVO' || $balance[$i]->cuenta == 'PASIVO' ||$balance[$i]->cuenta == 'PATRIMONIO' |$balance[$i]->cuenta == 'INGRESOS' |$balance[$i]->cuenta == 'GASTOS')
                               <td><h3><strong>{{$balance[$i]->cuenta}}</strong></h3></td>
-
+                              @elseif($balance[$i]->cuenta == 'ACTIVO CORRIENTE'|| $balance[$i]->cuenta == 'ACTIVO NO CORRIENTE'|| $balance[$i]->cuenta == 'PASIVO CORRIENTE'|| $balance[$i]->cuenta == 'PASIVO NO CORRIENTE' )
+                              <td><h4><strong>{{$balance[$i]->cuenta}}</strong></h4></td>
                               @else
                               <td><h4>{{$balance[$i]->cuenta}}</h4></td>
                               <td><h4><strong>${{$balance[$i]->saldo}}</strong></h4></td>
+                              
                               @if(!$mensaje)
                               <td><h4><strong>${{$balance_anterior[$i]->saldo}}</strong></h4></td>
                               <td><h4><strong>${{$variacion_absoluta[$i]}}</strong></h4></td>

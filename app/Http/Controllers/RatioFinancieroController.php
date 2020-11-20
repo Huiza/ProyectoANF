@@ -83,6 +83,8 @@ class RatioFinancieroController extends Controller
         $total_gastos=0;
         $ventas_netas=0;
         $inversion=0;
+        $m = 0;
+        $n = 0; 
 
         $estado_financiero_1 = EstadoFinanciero::findOrFail($id);
         $balance = DB::select('select * from detalle_estados_financieros where id_estado_financiero ='.$id);
@@ -97,12 +99,6 @@ class RatioFinancieroController extends Controller
         
         //Ceuntas de balance general
         foreach($balance as $cuentas){
-            if(!strcasecmp($cuentas->cuenta,'ACTIVO CORRIENTE')){
-                $activo_corriente=$cuentas->saldo;
-            }
-            if(!strcasecmp($cuentas->cuenta,'PASIVO CORRIENTE')){
-                $pasivo_corriente=$cuentas->saldo;
-            }
             if(!strcasecmp($cuentas->cuenta,'inventarios')){
                 $inventarios=$cuentas->saldo;
             }
@@ -133,6 +129,22 @@ class RatioFinancieroController extends Controller
             if(!strcasecmp($cuentas->cuenta,'Inversiones')){
                 $inversion=$cuentas->saldo;
             }
+        }
+
+        while($balance[$m]->cuenta!='ACTIVO NO CORRIENTE'){
+            $activo_corriente = $activo_corriente + $balance[$m]->saldo;
+        $m++;
+        }
+
+        for($n=$m; $n<count($balance);$n++){
+            if(!strcasecmp($balance[$n]->cuenta,'PASIVO')){
+                $m=$n;
+            }
+        }
+
+        while($balance[$m]->cuenta!='PASIVO NO CORRIENTE'){
+            $pasivo_corriente = $pasivo_corriente + $balance[$m]->saldo;
+        $m++;
         }
         //Promedio de cuentas del balance general
         foreach($periodos as $p){
@@ -193,7 +205,7 @@ class RatioFinancieroController extends Controller
         $ratio->id_estado_financiero = $id;
         $ratio->id_tipo_ratio = 1;
         $ratio->nombre_ratio = "Razón de circulante";
-        $ratio->calculo_ratio = $pasivo_corriente == 0 ? 0 : (round($activo_corriente/$pasivo_corriente, 2));
+        $ratio->calculo_ratio = $pasivo_corriente;
         $ratio->save();
 
         $ratio = new RatioFinanciero();

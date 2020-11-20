@@ -17,7 +17,7 @@ class CreateCatalogoTable extends Migration
             $table->bigIncrements('id');
             $table->integer('id_empresa')->unsigned()->foreign()->references('id')->on('empresas')->onDelete('cascade');
             $table->integer('id_cuenta')->unsigned()->foreign()->references('id_cuenta')->on('cuentas')->onDelete('cascade');
-            $table->string('codigo_cuenta',25)->nullable();
+            $table->string('codigo_cuenta',25)->nullable()->default('null');
             $table->timestamps();
         });
     }

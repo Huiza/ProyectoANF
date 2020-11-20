@@ -74,7 +74,8 @@
                                 
                               @if($cuenta->cuenta == 'ACTIVO' || $cuenta->cuenta == 'PASIVO' ||$cuenta->cuenta == 'PATRIMONIO')
                               <td><h3><strong>{{$cuenta->cuenta}}</strong></h3></td>
-                              
+                              @elseif($cuenta->cuenta == 'ACTIVO CORRIENTE'|| $cuenta->cuenta == 'ACTIVO NO CORRIENTE'|| $cuenta->cuenta == 'PASIVO CORRIENTE'|| $cuenta->cuenta == 'PASIVO NO CORRIENTE' )
+                              <td><h4><strong>{{$cuenta->cuenta}}</strong></h4></td>
                               @else
                               <td><h4>{{$cuenta->cuenta}}</h4></td>
                               <td><h4><strong>${{$cuenta->saldo}}</strong></h4></td>

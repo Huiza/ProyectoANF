@@ -43,8 +43,12 @@
                             @foreach($cuentas as $cuenta)
                             <tr>
                                 <div class="task-checkbox"><input type="text"  name="id_empresa[]" value="{{ $empresa->id }}" hidden></div>
-                                @if($cuenta->nombre_cuenta == 'ACTIVO' || $cuenta->nombre_cuenta == 'PASIVO' || $cuenta->nombre_cuenta == 'PATRIMONIO' || $cuenta->nombre_cuenta == 'INGRESOS' || $cuenta->nombre_cuenta == 'GASTOS' || $cuenta->nombre_cuenta == 'CUENTA LIQUIDADORA O DE CIERRE' || $cuenta->nombre_cuenta == 'CUENTAS DE MEMORANDUM DEUDORAS' || $cuenta->nombre_cuenta == 'CUENTAS DE MEMORANDUM DEUDORAS' ||$cuenta->cuenta_ratios==1)
+                                @if($cuenta->nombre_cuenta == 'ACTIVO' || $cuenta->nombre_cuenta == 'PASIVO' || $cuenta->nombre_cuenta == 'PATRIMONIO' || $cuenta->nombre_cuenta == 'INGRESOS' || $cuenta->nombre_cuenta == 'GASTOS' || $cuenta->nombre_cuenta == 'ACTIVO CORRIENTE' || $cuenta->nombre_cuenta == 'ACTIVO NO CORRIENTE' || $cuenta->nombre_cuenta == 'PASIVO CORRIENTE' || $cuenta->nombre_cuenta == 'PASIVO NO CORRIENTE')
                                 <td><h4><strong>{{$cuenta->nombre_cuenta}}</strong></h4></td>
+                                <td><input type="text" class="form-control round-form" name="codigo_cuenta[]" placeholder="Código de cuenta"></td>
+                                <td><input style="height: 25px; width: 25px;background-color: #eee; cursor: pointer;" type="checkbox" class="list-child" name="id_cuenta[]" value="{{ $cuenta->id_cuenta }}" checked></td>
+                                @elseif($cuenta->cuenta_ratios == 1)
+                                <td><strong>{{$cuenta->nombre_cuenta}}</strong></td>
                                 <td><input type="text" class="form-control round-form" name="codigo_cuenta[]" placeholder="Código de cuenta"></td>
                                 <td><input style="height: 25px; width: 25px;background-color: #eee; cursor: pointer;" type="checkbox" class="list-child" name="id_cuenta[]" value="{{ $cuenta->id_cuenta }}" checked></td>
                                 @else
