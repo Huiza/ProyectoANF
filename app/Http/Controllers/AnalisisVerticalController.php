@@ -97,7 +97,7 @@ class AnalisisVerticalController extends Controller
        {
             while($balance[$j]->cuenta!='PASIVO'){
                 if($balance[$j]->saldo!=0){
-                    $porcentaje_vertical[$j] = round((($balance[$j]->saldo)/$total_activo)*100, 2);
+                    $porcentaje_vertical[$j] = $total_activo == 0 ? 0 : (round((($balance[$j]->saldo)/$total_activo)*100, 2));
                     }
                     else{
                         $porcentaje_vertical[$j] = 0;
@@ -108,7 +108,7 @@ class AnalisisVerticalController extends Controller
 
             while($balance[$j]->cuenta!='PATRIMONIO'){
                 if($balance[$j]->saldo!=0){
-                    $porcentaje_vertical[$j] = round((($balance[$j]->saldo)/$total_pasivo)*100, 2);
+                    $porcentaje_vertical[$j] = $total_pasivo == 0 ? 0 : (round((($balance[$j]->saldo)/$total_pasivo)*100, 2));
                     }
                     else{
                         $porcentaje_vertical[$j] = 0;
@@ -119,7 +119,7 @@ class AnalisisVerticalController extends Controller
 
             while($j!==count($balance)){
                 if($balance[$j]->saldo!=0){
-                    $porcentaje_vertical[$j] = round((($balance[$j]->saldo)/$total_patrimonio)*100, 2);
+                    $porcentaje_vertical[$j] = $total_patrimonio == 0 ? 0 : (round((($balance[$j]->saldo)/$total_patrimonio)*100, 2));
                     }
                     else{
                         $porcentaje_vertical[$j] = 0;
@@ -132,7 +132,7 @@ class AnalisisVerticalController extends Controller
         else{
             while($balance[$j]->cuenta!='GASTOS'){
                 if($balance[$j]->saldo!=0){
-                    $porcentaje_vertical[$j] = round((($balance[$j]->saldo)/$total_ingresos)*100, 2);
+                    $porcentaje_vertical[$j] = $total_ingresos == 0 ? 0 : (round((($balance[$j]->saldo)/$total_ingresos)*100, 2));
                     }
                     else{
                         $porcentaje_vertical[$j] = 0;
@@ -143,7 +143,7 @@ class AnalisisVerticalController extends Controller
 
             while($j!==count($balance)){
                 if($balance[$j]->saldo!=0){
-                    $porcentaje_vertical[$j] = round((($balance[$j]->saldo)/$total_gastos)*100, 2);
+                    $porcentaje_vertical[$j] = $total_gastos == 0 ? 0 : (round((($balance[$j]->saldo)/$total_gastos)*100, 2));
                     }
                     else{
                         $porcentaje_vertical[$j] = 0;

@@ -181,12 +181,12 @@ class RatioFinancieroController extends Controller
                 }
         }
         //Calculo de promedios
-        $inventario_promedio = $inventario_promedio/$cantidad_periodos;
-        $cuentas_cobrar_comerciales_promedio = $cuentas_cobrar_comerciales_promedio/$cantidad_periodos;
-        $cuentas_pagar_comerciales_promedio = $cuentas_pagar_comerciales_promedio/$cantidad_periodos;
-        $total_activo_promedio = $total_activo_promedio/$cantidad_periodos;
-        $activo_fijo_neto_promedio = $activo_fijo_neto_promedio/$cantidad_periodos;
-        $total_patrimonio_promedio = $total_patrimonio_promedio/$cantidad_periodos;
+        $inventario_promedio = $inventario_promedio == 0 ? 0 : (round($inventario_promedio/$cantidad_periodos, 2));
+        $cuentas_cobrar_comerciales_promedio = $cuentas_cobrar_comerciales_promedio == 0 ? 0 : (round($cuentas_cobrar_comerciales_promedio/$cantidad_periodos, 2));
+        $cuentas_pagar_comerciales_promedio = $cuentas_pagar_comerciales_promedio == 0 ? 0 : (round($cuentas_pagar_comerciales_promedio/$cantidad_periodos, 2));
+        $total_activo_promedio = $total_activo_promedio == 0 ? 0 : (round($total_activo_promedio/$cantidad_periodos, 2));
+        $activo_fijo_neto_promedio = $activo_fijo_neto_promedio == 0 ? 0 : (round($activo_fijo_neto_promedio/$cantidad_periodos, 2));
+        $total_patrimonio_promedio = $total_patrimonio_promedio == 0 ? 0 : (round($total_patrimonio_promedio/$cantidad_periodos, 2));
         
         //Razones de liquidez////////////////////////////////////////////////////////////////////////////////////////////////
         $ratio = new RatioFinanciero();
@@ -214,7 +214,7 @@ class RatioFinancieroController extends Controller
         $ratio->id_estado_financiero = $id;
         $ratio->id_tipo_ratio = 1;
         $ratio->nombre_ratio = "Razón de efectivo";
-        $ratio->calculo_ratio = $pasivo_corriente == 0 ? 0 : round(($efectivo + $valores_corto_plazo)/$pasivo_corriente,2);
+        $ratio->calculo_ratio = $pasivo_corriente == 0 ? 0 : (round(($efectivo + $valores_corto_plazo)/$pasivo_corriente,2));
         $ratio->save();
 
         //Razones de actividad////////////////////////////////////////////////////////////////////////////////////////////////
@@ -323,28 +323,28 @@ class RatioFinancieroController extends Controller
         $ratio->id_estado_financiero = $id;
         $ratio->id_tipo_ratio = 4;
         $ratio->nombre_ratio = "Rentabilidad neta del patrimonio (ROE)";
-        $ratio->calculo_ratio = $total_patrimonio_promedio == 0 ? 0 : round(($total_ingresos - $total_gastos)/$total_patrimonio_promedio,2);
+        $ratio->calculo_ratio = $total_patrimonio_promedio == 0 ? 0 : (round(($total_ingresos - $total_gastos)/$total_patrimonio_promedio,2));
         $ratio->save();
 
         $ratio = new RatioFinanciero();
         $ratio->id_estado_financiero = $id;
         $ratio->id_tipo_ratio = 4;
         $ratio->nombre_ratio = "Rentabilidad del activo (ROA)";
-        $ratio->calculo_ratio = $total_activo_promedio == 0 ? 0 : round(($total_ingresos - $total_gastos)/$total_activo_promedio,2);
+        $ratio->calculo_ratio = $total_activo_promedio == 0 ? 0 : (round(($total_ingresos - $total_gastos)/$total_activo_promedio,2));
         $ratio->save();
 
         $ratio = new RatioFinanciero();
         $ratio->id_estado_financiero = $id;
         $ratio->id_tipo_ratio = 4;
         $ratio->nombre_ratio = "Rentabilidad sobre ventas";
-        $ratio->calculo_ratio = $ventas_netas  == 0 ? 0 : round(($total_ingresos - $total_gastos)/$ventas_netas,2);
+        $ratio->calculo_ratio = $ventas_netas  == 0 ? 0 : (round(($total_ingresos - $total_gastos)/$ventas_netas,2));
         $ratio->save();
 
         $ratio = new RatioFinanciero();
         $ratio->id_estado_financiero = $id;
         $ratio->id_tipo_ratio = 4;
         $ratio->nombre_ratio = "Rentabilidad sobre la inversión (ROI)";
-        $ratio->calculo_ratio = $inversion  == 0 ? 0 : round(($total_ingresos - $inversion)/$inversion,2);
+        $ratio->calculo_ratio = $inversion  == 0 ? 0 : (round(($total_ingresos - $inversion)/$inversion,2));
         $ratio->save();
         
         } 

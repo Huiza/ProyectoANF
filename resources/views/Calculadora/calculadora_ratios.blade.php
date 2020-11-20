@@ -342,12 +342,12 @@
 
                     <div class="form-group" >
                             <h4><strong>Rentabilidad por Acción</strong></h4><br>
-                            <label for="resultado_neto" class="col-sm-12 col-sm-12 control-label"><strong> Utilidad Neta [$]</strong></label>
-                            <input id="resultado_neto" type="number" step="any" min="0" class="form-control round-form" >
+                            <label for="utilidad_total" class="col-sm-12 col-sm-12 control-label"><strong> Utilidad Neta [$]</strong></label>
+                            <input id="utilidad_total" type="number" step="any" min="0" class="form-control round-form" >
                             <label for="numero_acciones" class="col-sm-12 col-sm-12 control-label"><strong> Número de acciones [$]</strong></label>
                             <input id="numero_acciones" type="number" step="any" min="0" class="form-control round-form" ><br>
                     
-                            <div id="rentabilidad_accion" class="col-md-12 alert alert-warning" hidden>
+                            <div id="rentabilidad_accion_cont" class="col-md-12 alert alert-warning" hidden>
                                 <strong>
                                 <span>RENTABILIDAD POR ACCIÓN = </span><span id="rentabilidad_accion"></span>  
                             </div>
@@ -362,9 +362,9 @@
                             <label for="activo_total_promedio" class="col-sm-12 col-sm-12 control-label"><strong>Activo Total Promedio [$]</strong></label>
                             <input id="activo_total_promedio" type="number" step="any" min="0" class="form-control round-form" ><br>
                     
-                            <div id="roa" class="col-md-12 alert alert-warning" hidden>
+                            <div id="roa_cont" class="col-md-12 alert alert-warning" hidden>
                                 <strong>
-                                <span>RENTABILIDAD POR ACTIVO </span><span id="roa"></span>  
+                                <span>RENTABILIDAD POR ACTIVO = </span><span id="roa"></span>  
                             </div>
                             <button class="btn btn-theme" onclick="calcular_roa()">Calcular</button>
                         </div>
@@ -377,9 +377,9 @@
                             <label for="ventas_totales" class="col-sm-12 col-sm-12 control-label"><strong>Ventas Netas [$]</strong></label>
                             <input id="ventas_totales" type="number" step="any" min="0" class="form-control round-form" ><br>
                     
-                            <div id="rentabilidad_ventas" class="col-md-12 alert alert-warning" hidden>
+                            <div id="rentabilidad_ventas_cont" class="col-md-12 alert alert-warning" hidden>
                                 <strong>
-                                <span>RENTABILIDAD SOBRE VENTAS </span><span id="rentabilidad_ventas"></span>  
+                                <span>RENTABILIDAD SOBRE VENTAS = </span><span id="rentabilidad_ventas"></span>  
                             </div>
                             <button class="btn btn-theme" onclick="calcular_rentabilidad_ventas()">Calcular</button>
                         </div>
@@ -391,9 +391,9 @@
                             <label for="inversion" class="col-sm-12 col-sm-12 control-label"><strong>Inversión [$]</strong></label>
                             <input id="inversion" type="number" step="any" min="0" class="form-control round-form" ><br>
                     
-                            <div id="roi" class="col-md-12 alert alert-warning" hidden>
+                            <div id="roi_cont" class="col-md-12 alert alert-warning" hidden>
                                 <strong>
-                                <span>RENTABILIDAD SOBRE INVERSÍÓN </span><span id="roi"></span>  
+                                <span>RENTABILIDAD SOBRE INVERSÍÓN = </span><span id="roi"></span>  
                             </div>
                             <button class="btn btn-theme" onclick="calcular_roi()">Calcular</button>
                         </div>
@@ -624,7 +624,7 @@ function calcular_rentabilidad_accion(){
     var utilidad_total =  parseFloat(document.getElementById('utilidad_total').value);
     var numero_acciones =  parseFloat(document.getElementById('numero_acciones').value);
     var razon = (numero_acciones==0) ? "El denominador es cero, no se puede calcular" : (utilidad_total/numero_acciones).toFixed(2);
-    document.getElementById('rentabilidad_accion').hidden = false;
+    document.getElementById('rentabilidad_accion_cont').hidden = false;
     document.getElementById('rentabilidad_accion').innerHTML = razon;
     if(isNaN(razon)){
       document.getElementById('rentabilidad_accion').innerHTML = "Llene los campos";
@@ -635,7 +635,7 @@ function calcular_roa(){
     var beneficio_neto =  parseFloat(document.getElementById('beneficio_neto').value);
     var activo_total_promedio =  parseFloat(document.getElementById('activo_total_promedio').value);
     var razon = (activo_total_promedio==0) ? "El denominador es cero, no se puede calcular" : (beneficio_neto/activo_total_promedio).toFixed(2);
-    document.getElementById('roa').hidden = false;
+    document.getElementById('roa_cont').hidden = false;
     document.getElementById('roa').innerHTML = razon;
     if(isNaN(razon)){
       document.getElementById('roa').innerHTML = "Llene los campos";
@@ -646,10 +646,10 @@ function calcular_rentabilidad_ventas(){
     var ganancia_neta =  parseFloat(document.getElementById('ganancia_neta').value);
     var ventas_totales =  parseFloat(document.getElementById('ventas_totales').value);
     var razon = (ventas_totales==0) ? "El denominador es cero, no se puede calcular" : (ganancia_neta/ventas_totales).toFixed(2);
-    document.getElementById('rentabilidad_ventas').hidden = false;
+    document.getElementById('rentabilidad_ventas_cont').hidden = false;
     document.getElementById('rentabilidad_ventas').innerHTML = razon;
     if(isNaN(razon)){
-      document.getElementById('roa').innerHTML = "Llene los campos";
+      document.getElementById('rentabilidad_ventas').innerHTML = "Llene los campos";
     }
 }
 
@@ -657,7 +657,7 @@ function calcular_roi(){
     var ingresos =  parseFloat(document.getElementById('ingresos').value);
     var inversion =  parseFloat(document.getElementById('inversion').value);
     var razon = (inversion==0) ? "El denominador es cero, no se puede calcular" : ((ingresos-inversion)/inversion).toFixed(2);
-    document.getElementById('roi').hidden = false;
+    document.getElementById('roi_cont').hidden = false;
     document.getElementById('roi').innerHTML = razon;
     if(isNaN(razon)){
       document.getElementById('roi').innerHTML = "Llene los campos";

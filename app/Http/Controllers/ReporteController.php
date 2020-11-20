@@ -47,7 +47,7 @@ class ReporteController extends Controller
             for($i = 0; $i < count($balance); $i++){
                 $variacion_absoluta[$i] = $balance[$i]->saldo - $balance_anterior[$i]->saldo;
                 if($balance_anterior[$i]->saldo!=0){
-                $variacion_relativa[$i] = round((($balance[$i]->saldo - $balance_anterior[$i]->saldo)/$balance_anterior[$i]->saldo)*100, 2);
+                $variacion_relativa[$i] = $balance_anterior[$i]->saldo == 0 ? 0 : (round((($balance[$i]->saldo - $balance_anterior[$i]->saldo)/$balance_anterior[$i]->saldo)*100, 2));
                 }
                 else{
                     $variacion_relativa[$i] = 0;
@@ -108,7 +108,7 @@ class ReporteController extends Controller
        {
             while($balance[$j]->cuenta!='PASIVO'){
                 if($balance[$j]->saldo!=0){
-                    $porcentaje_vertical[$j] = round((($balance[$j]->saldo)/$total_activo)*100, 2);
+                    $porcentaje_vertical[$j] = $total_activo == 0 ? 0 : (round((($balance[$j]->saldo)/$total_activo)*100, 2));
                     }
                     else{
                         $porcentaje_vertical[$j] = 0;
@@ -119,7 +119,7 @@ class ReporteController extends Controller
 
             while($balance[$j]->cuenta!='PATRIMONIO'){
                 if($balance[$j]->saldo!=0){
-                    $porcentaje_vertical[$j] = round((($balance[$j]->saldo)/$total_pasivo)*100, 2);
+                    $porcentaje_vertical[$j] = $total_pasivo == 0 ? 0 : (round((($balance[$j]->saldo)/$total_pasivo)*100, 2));
                     }
                     else{
                         $porcentaje_vertical[$j] = 0;
@@ -130,7 +130,7 @@ class ReporteController extends Controller
 
             while($j!==count($balance)){
                 if($balance[$j]->saldo!=0){
-                    $porcentaje_vertical[$j] = round((($balance[$j]->saldo)/$total_patrimonio)*100, 2);
+                    $porcentaje_vertical[$j] = $total_patrimonio == 0 ? 0 : (round((($balance[$j]->saldo)/$total_patrimonio)*100, 2));
                     }
                     else{
                         $porcentaje_vertical[$j] = 0;
@@ -143,7 +143,7 @@ class ReporteController extends Controller
         else{
             while($balance[$j]->cuenta!='GASTOS'){
                 if($balance[$j]->saldo!=0){
-                    $porcentaje_vertical[$j] = round((($balance[$j]->saldo)/$total_ingresos)*100, 2);
+                    $porcentaje_vertical[$j] = $total_ingresos == 0 ? 0 : (round((($balance[$j]->saldo)/$total_ingresos)*100, 2));
                     }
                     else{
                         $porcentaje_vertical[$j] = 0;
@@ -154,7 +154,7 @@ class ReporteController extends Controller
 
             while($j!==count($balance)){
                 if($balance[$j]->saldo!=0){
-                    $porcentaje_vertical[$j] = round((($balance[$j]->saldo)/$total_gastos)*100, 2);
+                    $porcentaje_vertical[$j] = $total_gastos == 0 ? 0 : (round((($balance[$j]->saldo)/$total_gastos)*100, 2));
                     }
                     else{
                         $porcentaje_vertical[$j] = 0;
