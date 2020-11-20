@@ -12,6 +12,7 @@ use App\Catalogo;
 use App\Empresa;
 use RealRashid\SweetAlert\Facades\Alert;
 use Excel;
+use DB;
 
 class DetalleEstadosFinancierosController extends Controller
 {
@@ -119,10 +120,50 @@ class DetalleEstadosFinancierosController extends Controller
      */
     public function edit($id)
     {
-        /*$estados_creados = EstadoFinanciero::where('id_empresa',$request->id_empresa)
-        ->where('id_tipo_estado_financiero',$request->id_tipo_estado_financiero)
-        ->whereBetween('fecha_inicio',[$request->fecha_inicio,$request->fecha_inicio])
-        ->whereBetween('fecha_final',[$request->fecha_final,$request->fecha_final])->first();
+        
+        $estado_actualizar = EstadoFinanciero::findOrFail($id);
+        $empresa = Empresa::findOrFail($estado_actualizar->id_empresa);
+        $balance = DB::select('select * from detalle_estados_financieros where id_estado_financiero ='.$id);
+
+        if($estado_actualizar->id_tipo_estado_financiero==1)
+        {   
+            $i = 0;
+            $activos = [];
+            $pasivos = [];
+            $patrimonio = [];
+            
+            while($balance[$i]->cuenta!='PASIVO'){
+                $activos[$i] = $balance[$i];
+                $i++;
+            }
+            while($balance[$i]->cuenta!='PATRIMONIO'){
+                $pasivos[$i] = $balance[$i];
+                $i++;
+            }
+            while($i!==count($balance)){
+                $patrimonio[$i] = $balance[$i];
+                $i++;
+            }
+     
+        return view('EstadosFinancieros.editar_balance_general', compact('activos', 'pasivos', 'patrimonio','empresa', 'estado_actualizar'));
+        }
+       
+        
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\DetalleEstadosFinancieros  $detalleEstadosFinancieros
+     * @return \Illuminate\Http\Response
+     */
+    public function update(Request $request,$id)
+    {
+        $estados_creados = EstadoFinanciero::where('id_empresa',$request->id_empresa)
+                            ->where('id_tipo_estado_financiero',$request->id_tipo_estado_financiero)
+                            ->whereBetween('fecha_inicio',[$request->fecha_inicio,$request->fecha_inicio])
+                            ->whereBetween('fecha_final',[$request->fecha_final,$request->fecha_final])->first();
         $fecha_inicio =$request->fecha_inicio;
         $fecha_fin =$request->fecha_final;
 
@@ -136,67 +177,7 @@ class DetalleEstadosFinancierosController extends Controller
         return back()->withWarning('La fecha de inicio debe ser menor a la fecha de fin de período!');
 
         }
-
-        $empresa = Empresa::findOrFail($estado_financiero->id_empresa);
-
-        if($estado_financiero->id_tipo_estado_financiero==1)
-        {
-            $activos = [];
-            $pasivos = [];
-            $patrimonio = [];
-            $catalogo = Catalogo::where('id_empresa', $empresa->id)->get();
-
-            foreach($catalogo as $cuenta)
-            {
-            if($cuenta->cuenta->id_tipo_cuenta == 1)
-            {
-            $activos[] = $cuenta;
-            }
-            elseif($cuenta->cuenta->id_tipo_cuenta == 2)
-            {
-            $pasivos[] = $cuenta;
-            }
-            elseif($cuenta->cuenta->id_tipo_cuenta == 3)
-            {
-            $patrimonio[] = $cuenta;
-            }
-        }
-
-        return view('EstadosFinancieros.editar_balance_general', compact('activos', 'pasivos', 'patrimonio','empresa', 'estado_financiero'));
-        }
-        elseif($estado_financiero->id_tipo_estado_financiero==2)
-            {
-            $ingresos = [];
-            $gastos = [];
-            $catalogo = Catalogo::where('id_empresa', $empresa->id)->get();
-
-            foreach($catalogo as $cuenta)
-            {
-            if($cuenta->cuenta->id_tipo_cuenta == 4)
-            {
-            $gastos[] = $cuenta;
-            }
-            elseif($cuenta->cuenta->id_tipo_cuenta == 5)
-            {
-            $ingresos[] = $cuenta;
-            }
-
-            }
-        return view('EstadosFinancieros.editar_estado_resultados', compact('ingresos','gastos','empresa', 'estado_financiero', ));
-       
-        }
-        */
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\DetalleEstadosFinancieros  $detalleEstadosFinancieros
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request,$id)
-    {
+    
             $estado_actualizar = EstadoFinanciero::findOrFail($id);
             $estado_actualizar->fecha_inicio = $request->fecha_inicio;
             $estado_actualizar->fecha_final =$request->fecha_final;

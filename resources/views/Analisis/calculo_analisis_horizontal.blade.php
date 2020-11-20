@@ -63,7 +63,15 @@
                         <div class="col-md-10">
                       
                         <table class="table table-hover">
-                           
+                        <thead>
+                            <tr>
+                                <th><h4><strong>Cuenta</strong></h4></th>
+                                <th><h4><strong>Período actual</strong></h4></th>
+                                <th><h4><strong>{{date('j F, Y', strtotime($estado_financiero_anterior->fecha_inicio))}} <br> al <br> {{date('j F, Y', strtotime($estado_financiero_anterior->fecha_final))}}</strong></h4></th>
+                                <th><h4><strong>Diferencia</strong></h4></th>
+                                <th><h4><strong>Varación absoluta</strong></h4></th>
+                            </tr>
+                            </thead>
                             <hr>
                             <tbody>
 

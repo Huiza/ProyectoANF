@@ -51,10 +51,12 @@
                            
                             @foreach($activos as $cuenta)
                             <tr>
-                                @if($cuenta->cuenta->nombre_cuenta == 'ACTIVO' || $cuenta->cuenta->nombre_cuenta == 'ACTIVO CORRIENTE' || $cuenta->cuenta->nombre_cuenta == 'ACTIVO NO CORRIENTE')
-                                <td name=><h4><strong>{{$cuenta->cuenta->nombre_cuenta}}</strong></h4></td>
+                                @if($cuenta->cuenta->nombre_cuenta == 'ACTIVO')
+                                <td><h4><strong>{{$cuenta->cuenta->nombre_cuenta}}</strong></h4></td>
                                 <td hidden><input id="monto" type="text" class="form-control round-form" name="saldo[]" placeholder="Monto en $" value="0" ></td>
-                            
+                                @elseif($cuenta->cuenta->nombre_cuenta == 'ACTIVO CORRIENTE' || $cuenta->cuenta->nombre_cuenta == 'ACTIVO NO CORRIENTE')
+                                <td><h5><strong>{{$cuenta->cuenta->nombre_cuenta}}</strong></h5></td>
+                                <td hidden><input id="monto" type="text" class="form-control round-form" name="saldo[]" placeholder="Monto en $" value="0" ></td>
                                 @else
                                 <td>{{$cuenta->cuenta->nombre_cuenta}}</td>
                                 <td><input onkeyup="calcular_activo()" type="number" step="any" min="0" class=" item form-control round-form monto_activo" name="saldo[]" placeholder="Monto en $"  required></td>
@@ -74,10 +76,12 @@
                                 
                             @foreach($pasivos as $cuenta)
                             <tr>
-                                @if($cuenta->cuenta->nombre_cuenta == 'PASIVO' || $cuenta->cuenta->nombre_cuenta == 'PASIVO CORRIENTE' || $cuenta->cuenta->nombre_cuenta == 'PASIVO NO CORRIENTE')
-                                <td name><h4><strong>{{$cuenta->cuenta->nombre_cuenta}}</strong></h4></td>
+                                @if($cuenta->cuenta->nombre_cuenta == 'PASIVO')
+                                <td><h4><strong>{{$cuenta->cuenta->nombre_cuenta}}</strong></h4></td>
                                 <td hidden><input type="text" class="form-control round-form" name="saldo[]" placeholder="Monto en $" value="0" ></td>
-                            
+                                @elseif($cuenta->cuenta->nombre_cuenta == 'PASIVO CORRIENTE' || $cuenta->cuenta->nombre_cuenta == 'PASIVO NO CORRIENTE')
+                                <td><h5><strong>{{$cuenta->cuenta->nombre_cuenta}}</strong></h5></td>
+                                <td hidden><input id="monto" type="text" class="form-control round-form" name="saldo[]" placeholder="Monto en $" value="0" ></td>
                                 @else
                                 <td>{{$cuenta->cuenta->nombre_cuenta}}</td>
                                 <td><input onkeyup="calcular_pasivo()" type="number" step="any" min="0" class="form-control round-form monto_pasivo" name="saldo[]" placeholder="Monto en $" required></td>
@@ -96,7 +100,7 @@
                             @foreach($patrimonio as $cuenta)
                             <tr>
                                 @if($cuenta->cuenta->nombre_cuenta == 'PATRIMONIO')
-                                <td name><h4><strong>{{$cuenta->cuenta->nombre_cuenta}}</strong></h4></td>
+                                <td><h4><strong>{{$cuenta->cuenta->nombre_cuenta}}</strong></h4></td>
                                 <td hidden><input type="text" class="form-control round-form" name="saldo[]" placeholder="Monto en $" value="0" ></td>
                             
                                 @else
