@@ -3,10 +3,7 @@ INSERT INTO `tipo_cuentas` (`id_tipo_cuenta`,`nombre_tipo_cuenta`) VALUES
 (2,'PASIVO'),
 (3,'PATRIMONIO'),
 (4,'GASTOS'),
-(5,'INGRESOS'),
-(6,'CUENTA LIQUIDADORA O DE CIERRE'),
-(7,'CUENTAS DE MEMORANDUM DEUDORAS'),
-(8,'CUENTAS DE MEMORANDUM ACREEDORAS');
+(5,'INGRESOS');
 
 INSERT INTO `cuentas` (`id_cuenta`, `id_tipo_cuenta`, `cuenta_ratios`, `nombre_cuenta`) VALUES
 (1, 1, 1, 'ACTIVO'),
@@ -260,11 +257,7 @@ INSERT INTO `cuentas` (`id_cuenta`, `id_tipo_cuenta`, `cuenta_ratios`, `nombre_c
 (249, 5, 0,'Diferenciales Cambiarios'),
 (250, 5, 0,'Otros Productos Financieros'),
 (251, 6, 0,'CUENTA LIQUIDADORA O DE CIERRE'),
-(252, 6, 0,'Pérdidas Y Ganancias'),
-(253, 7, 0,'CUENTAS DE MEMORANDUM DEUDORAS'),
-(254, 7, 0,'CUENTAS DE ORDEN DEUDORAS'),
-(255, 8, 0,'CUENTAS DE MEMORANDUM ACREEDORAS'),
-(256, 8, 0,'CUENTAS DE ORDEN ACREEDORAS');
+(252, 6, 0,'Pérdidas Y Ganancias');
 
 INSERT INTO `tipos` (`id`, `tipo`, `created_at`, `updated_at`) VALUES
 (1, 'Comercial', NULL, NULL),

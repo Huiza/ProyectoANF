@@ -59,7 +59,7 @@
                             
                                 @else
                                 <td>{{$cuenta->cuenta->nombre_cuenta}}</td>
-                                <td><input type="number" step="any" min="0" class="form-control round-form" name="saldo[]" placeholder="Monto en $" required></td>
+                                <td><input onkeyup="calcular_ingresos()" type="number" step="any" min="0" class="form-control round-form monto_ingresos" name="saldo[]" placeholder="Monto en $" required></td>
                                
                                 @endif
                                 <input type="text"  name="cuenta[]" value="{{ $cuenta->cuenta->nombre_cuenta }}" hidden>
@@ -70,7 +70,7 @@
                                 <td><strong>TOTAL DE INGRESOS</strong></td>
                                 <div><input type="text"  name="id_estado_financiero[]" value="{{ $estado_financiero->id_estado_financiero}}" hidden></div>
                                 <input type="text"  name="cuenta[]" value="TOTAL DE INGRESOS" hidden>
-                                <td><input type="number" step="any" min="0" class="form-control round-form" name="saldo[]" placeholder="Monto en $" required></td>
+                                <td><input id="total_ingresos" type="number" step="any" min="0" class="form-control round-form" name="saldo[]" placeholder="Monto en $" readonly></td>
                                
 
                                 
@@ -83,7 +83,7 @@
                             
                                 @else
                                 <td>{{$cuenta->cuenta->nombre_cuenta}}</td>
-                                <td><input type="number" step="any"  min="0" class="form-control round-form" name="saldo[]" placeholder="Monto en $" required></td>
+                                <td><input onkeyup="calcular_gastos()" type="number" step="any"  min="0" class="form-control round-form monto_gastos" name="saldo[]" placeholder="Monto en $" required></td>
                                 @endif
                                 <input type="text"  name="cuenta[]" value="{{ $cuenta->cuenta->nombre_cuenta }}" hidden>
                                 <div><input type="text"  name="id_estado_financiero[]" value="{{ $estado_financiero->id_estado_financiero}}" hidden></div>
@@ -93,7 +93,7 @@
                                 <td><strong>TOTAL DE GASTOS</strong></td>
                                 <div><input type="text"  name="id_estado_financiero[]" value="{{ $estado_financiero->id_estado_financiero}}" hidden></div>
                                 <input type="text"  name="cuenta[]" value="TOTAL DE GASTOS" hidden>
-                                <td><input type="number" step="any"  min="0" class="form-control round-form" name="saldo[]" placeholder="Monto en $" required></td>
+                                <td><input id="total_gastos" type="number" step="any"  min="0" class="form-control round-form" name="saldo[]" placeholder="Monto en $" readonly></td>
                                 
                               </tbody>
 
@@ -124,5 +124,34 @@
           <!-- col-lg-12-->
         </div>
 
+        <script>
+function calcular_ingresos() {
 
+var total = 0;
+$(".monto_ingresos").each(function() {
+  if (isNaN(parseFloat($(this).val()))) {
+    total += 0;
+  } else {
+    total += parseFloat($(this).val());
+  }
+});
+document.getElementById('total_ingresos').value = total;
+
+}
+
+
+function calcular_gastos() {
+
+var total = 0;
+$(".monto_gastos").each(function() {
+  if (isNaN(parseFloat($(this).val()))) {
+    total += 0;
+  } else {
+    total += parseFloat($(this).val());
+  }
+});
+document.getElementById('total_gastos').value = total;
+calcular_pasivo_patrimonio();
+}
+</script>
 @endsection
