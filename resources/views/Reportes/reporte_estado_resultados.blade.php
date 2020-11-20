@@ -3,23 +3,23 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <title>Reporte estado de resultados</title>
-    
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
 </head>
 
 <body>
     <header style="padding:5%; font-family:Arial, Helvetica, sans-serif; mrgin:5%; text-align:justify;" >
         <div style="text-align:center; line-height: 0.1;">
-            <h4>{{$estado_financiero->empresa->nombre_empresa}}</h4> 
-            <h5>ESTADO DE RESULTADOS</h5>
-            <h5>Del {{$fecha_inicio}} al {{$fecha_final}}</h5>
+            <p><strong>{{$estado_financiero->empresa->nombre_empresa}}</strong></p> 
+            <p><strong>ESTADO DE RESULTADOS</strong></p>
+            <p><strong>Del {{$fecha_inicio}} al {{$fecha_final}}</strong></p>
         </div>
-
         <hr>
     </header>
     <main>
-        <div>
-            <table class="table table-striped" align="justify">
-                <thead class="table-dark">
+        <div class="col-md-10">
+            <table class="table table-sm" align="justify">
+                <thead class="table-active">
                     <tr>
                         <th scope="col">Cuenta</th>
                         <th scope="col">Monto</th>
@@ -31,7 +31,7 @@
                             <tr>
                                 
                               @if($cuenta->cuenta == 'INGRESOS' || $cuenta->cuenta == 'GASTOS')
-                              <td><h3><strong>{{$cuenta->cuenta}}</strong></h3></td>
+                              <td><p><strong>{{$cuenta->cuenta}}</strong></p></td>
                               
                               @else
                               <td><p>{{$cuenta->cuenta}}</h4></p>

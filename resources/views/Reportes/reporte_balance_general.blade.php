@@ -4,12 +4,11 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <title>Reporte balance general</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
 </head>
 
 <body>
     <header style="padding:5%; font-family:Arial, Helvetica, sans-serif; mrgin:5%; text-align:justify;">
-        
         <div style="text-align:center; line-height: 0.1;">
             <p><strong>{{$estado_financiero->empresa->nombre_empresa}}</strong></p> 
             <p><strong>BALANCE GENERAL</strong></p>
@@ -31,7 +30,7 @@
                             <tr>
                                 
                               @if($cuenta->cuenta == 'ACTIVO' || $cuenta->cuenta == 'PASIVO' ||$cuenta->cuenta == 'PATRIMONIO')
-                              <td><h5><strong>{{$cuenta->cuenta}}</strong></h5></td>
+                              <td><p><strong>{{$cuenta->cuenta}}</strong></p></td>
                               
                               @else
                               <td><p>{{$cuenta->cuenta}}</h4></p>
