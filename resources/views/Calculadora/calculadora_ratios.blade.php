@@ -20,10 +20,10 @@
                   <button id="actividad" onclick="ver_razones_actividad()" type="button" class="btn btn-default">Razones de actividad</button>
                 </div>
                 <div class="btn-group">
-                  <button id="rentabilidad" onclick="ver_razones_apalancamiento()" type="button" class="btn btn-default">Razones de apalancamiento</button>
+                  <button id="apalancamiento" onclick="ver_razones_apalancamiento()" type="button" class="btn btn-default">Razones de apalancamiento</button>
                 </div>
                 <div class="btn-group">
-                  <button id="apalancamiento"  type="button" class="btn btn-default">Razones de rentabilidad</button>
+                  <button id="rentabilidad" onclick="ver_razones_rentabilidad()" type="button" class="btn btn-default">Razones de rentabilidad</button>
                 </div>
               </div>
          
@@ -37,20 +37,18 @@
                
                 <p>Ingrese los montos de las razones que desea calcular.</p><br><br>
                 <div style="width:100%;">
-                <div class="form-group" >
-
-                    <h4><strong>Razón de circulante/liquidez corriente</strong></h4><br>
-                    <label for="activo_corriente" class="col-sm-12 col-sm-12 control-label"><strong> Activo corriente [$]</strong></label>
-                    <input id="activo_corriente" type="number" step="any" min="0" class="form-control round-form" >
-                    <label for="pasivo_corriente" class="col-sm-12 col-sm-12 control-label"><strong> Pasivo corriente [$]</strong></label>
-                    <input id="pasivo_corriente" type="number" step="any" min="0" class="form-control round-form" ><br>
+                    <div class="form-group" >
+                        <h4><strong>Razón de circulante/liquidez corriente</strong></h4><br>
+                        <label for="activo_corriente" class="col-sm-12 col-sm-12 control-label"><strong> Activo corriente [$]</strong></label>
+                        <input id="activo_corriente" type="number" step="any" min="0" class="form-control round-form" >
+                        <label for="pasivo_corriente" class="col-sm-12 col-sm-12 control-label"><strong> Pasivo corriente [$]</strong></label>
+                        <input id="pasivo_corriente" type="number" step="any" min="0" class="form-control round-form" ><br>
                     
-                    <div id="razon_circulante_cont" class="col-md-12 alert alert-warning" hidden>
-                    <strong>
-                    <span>RAZÓN CIRCULANTE = </span><span id="razon_circulante"></span>  
+                        <div id="razon_circulante_cont" class="col-md-12 alert alert-warning" hidden>
+                        <strong>
+                        <span>RAZÓN CIRCULANTE = </span><span id="razon_circulante"></span>  
                     </div>
                     <button class="btn btn-theme" onclick="calcular_razon_circulante()">Calcular</button>
-
                 </div>
                 
                 <br><br>
@@ -240,27 +238,25 @@
          
                 <!-- RAZONES DE APALANCAMIENTO -->
                 <div id="razones_apalancamiento" hidden>
-                <div class="servicetitle">
-                  <h4>Razones de apalancamiento</h4>
-                  <hr>
+                    <div class="servicetitle">
+                    <h4>Razones de apalancamiento</h4>
+                    <hr>
                 </div>
                
                 <p>Ingrese los montos de las razones que desea calcular.</p><br><br>
                 <div style="width:50%;">
-                <div class="form-group">
-
-                    <h4><strong>Grado de endeudamiento</strong></h4><br>
-                    <label for="pasivo_total_ge" class="col-sm-12 col-sm-12 control-label"><strong> Pasivo total [$]</strong></label>
-                    <input id="pasivo_total_ge" type="number" step="any" min="0" class="form-control round-form" >
-                    <label for="activo_total_ge" class="col-sm-12 col-sm-12 control-label"><strong> Activo total [$]</strong></label>
-                    <input id="activo_total_ge" type="number" step="any" min="0" class="form-control round-form" ><br>
+                    <div class="form-group">
+                        <h4><strong>Grado de endeudamiento</strong></h4><br>
+                        <label for="pasivo_total_ge" class="col-sm-12 col-sm-12 control-label"><strong> Pasivo total [$]</strong></label>
+                        <input id="pasivo_total_ge" type="number" step="any" min="0" class="form-control round-form" >
+                        <label for="activo_total_ge" class="col-sm-12 col-sm-12 control-label"><strong> Activo total [$]</strong></label>
+                        <input id="activo_total_ge" type="number" step="any" min="0" class="form-control round-form" ><br>
                     
-                    <div id="razon_endeudamiento_cont" class="col-md-12 alert alert-warning" hidden>
-                    <strong>
-                    <span>GRADO DE ENDEUDAMIENTO = </span><span id="razon_endeudamiento"></span>  
+                        <div id="razon_endeudamiento_cont" class="col-md-12 alert alert-warning" hidden>
+                        <strong>
+                        <span>GRADO DE ENDEUDAMIENTO = </span><span id="razon_endeudamiento"></span>  
                     </div>
                     <button class="btn btn-theme" onclick="calcular_razon_endeudamiento()">Calcular</button>
-                
                 </div>
                 <br><br>
 
@@ -315,21 +311,96 @@
 
                 </div>
                 <br><br>
-                
-                </div>
-              </div>
               </div>
               
               </div>
               </div>
               </div>
-          
 
-            
+              <div id="razones_rentabilidad" hidden>
+                    <div class="servicetitle">
+                        <h4>Razones de Rentabilidad</h4>
+                        <hr>
+                    </div>
+               
+                    <p>Ingrese los montos de las razones que desea calcular.</p><br><br>
+                    <div style="width:100%;">
+                        <div class="form-group" >
+                            <h4><strong>Rentabilidad del Patrimnio(ROE)</strong></h4><br>
+                            <label for="utilidad_neta" class="col-sm-12 col-sm-12 control-label"><strong> Utilidad Neta [$]</strong></label>
+                            <input id="utilidad_neta" type="number" step="any" min="0" class="form-control round-form" >
+                            <label for="patrimonio_promedio" class="col-sm-12 col-sm-12 control-label"><strong> Patrimonio Promedio [$]</strong></label>
+                            <input id="patrimonio_promedio" type="number" step="any" min="0" class="form-control round-form" ><br>
+                    
+                            <div id="roe" class="col-md-12 alert alert-warning" hidden>
+                                <strong>
+                                <span>RENTABILIDAD NETA DEL PATRIMONIO = </span><span id="rentabilidad_neta_patrimonio"></span>  
+                            </div>
+                            <button class="btn btn-theme" onclick="calcular_roe()">Calcular</button>
+                        </div>
+                    </div><br><br>
 
-            
+                    <div class="form-group" >
+                            <h4><strong>Rentabilidad por Acción</strong></h4><br>
+                            <label for="resultado_neto" class="col-sm-12 col-sm-12 control-label"><strong> Utilidad Neta [$]</strong></label>
+                            <input id="resultado_neto" type="number" step="any" min="0" class="form-control round-form" >
+                            <label for="numero_acciones" class="col-sm-12 col-sm-12 control-label"><strong> Número de acciones [$]</strong></label>
+                            <input id="numero_acciones" type="number" step="any" min="0" class="form-control round-form" ><br>
+                    
+                            <div id="rentabilidad_accion" class="col-md-12 alert alert-warning" hidden>
+                                <strong>
+                                <span>RENTABILIDAD POR ACCIÓN = </span><span id="rentabilidad_accion"></span>  
+                            </div>
+                            <button class="btn btn-theme" onclick="calcular_rentabilidad_accion()">Calcular</button>
+                        </div>
+                    </div><br><br>
 
-           
+                    <div class="form-group" >
+                            <h4><strong>Rentabilidad del Activo</strong></h4><br>
+                            <label for="beneficio_neto" class="col-sm-12 col-sm-12 control-label"><strong> Utilidad Neta [$]</strong></label>
+                            <input id="beneficio_neto" type="number" step="any" min="0" class="form-control round-form" >
+                            <label for="activo_total_promedio" class="col-sm-12 col-sm-12 control-label"><strong>Activo Total Promedio [$]</strong></label>
+                            <input id="activo_total_promedio" type="number" step="any" min="0" class="form-control round-form" ><br>
+                    
+                            <div id="roa" class="col-md-12 alert alert-warning" hidden>
+                                <strong>
+                                <span>RENTABILIDAD POR ACTIVO </span><span id="roa"></span>  
+                            </div>
+                            <button class="btn btn-theme" onclick="calcular_roa()">Calcular</button>
+                        </div>
+                    </div><br><br>
+
+                    <div class="form-group" >
+                            <h4><strong>Rentabilidad sobre Ventas</strong></h4><br>
+                            <label for="ganancia_neta" class="col-sm-12 col-sm-12 control-label"><strong> Utilidad Neta [$]</strong></label>
+                            <input id="ganancia_neta" type="number" step="any" min="0" class="form-control round-form" >
+                            <label for="ventas_totales" class="col-sm-12 col-sm-12 control-label"><strong>Ventas Netas [$]</strong></label>
+                            <input id="ventas_totales" type="number" step="any" min="0" class="form-control round-form" ><br>
+                    
+                            <div id="rentabilidad_ventas" class="col-md-12 alert alert-warning" hidden>
+                                <strong>
+                                <span>RENTABILIDAD SOBRE VENTAS </span><span id="rentabilidad_ventas"></span>  
+                            </div>
+                            <button class="btn btn-theme" onclick="calcular_rentabilidad_ventas()">Calcular</button>
+                        </div>
+                    </div><br><br>
+                    <div class="form-group" >
+                            <h4><strong>Rentabilidad sobre Inversión</strong></h4><br>
+                            <label for="ingresos" class="col-sm-12 col-sm-12 control-label"><strong> Ingresos [$]</strong></label>
+                            <input id="ingresos" type="number" step="any" min="0" class="form-control round-form" >
+                            <label for="inversion" class="col-sm-12 col-sm-12 control-label"><strong>Inversión [$]</strong></label>
+                            <input id="inversion" type="number" step="any" min="0" class="form-control round-form" ><br>
+                    
+                            <div id="roi" class="col-md-12 alert alert-warning" hidden>
+                                <strong>
+                                <span>RENTABILIDAD SOBRE INVERSÍÓN </span><span id="roi"></span>  
+                            </div>
+                            <button class="btn btn-theme" onclick="calcular_roi()">Calcular</button>
+                        </div>
+                    </div>
+              </div>
+              
+
 
 <script>
 
@@ -338,23 +409,28 @@ function ver_razones_liquidez(){
   document.getElementById('razones_liquidez').hidden = false;
   document.getElementById('razones_actividad').hidden = true;
   document.getElementById('razones_apalancamiento').hidden = true;
-  //document.getElementById('razones_rentabilidad').hidden = true;
+  document.getElementById('razones_rentabilidad').hidden = true;
 }
 
 function ver_razones_actividad(){
   document.getElementById('razones_liquidez').hidden = true;
   document.getElementById('razones_actividad').hidden = false;
   document.getElementById('razones_apalancamiento').hidden = true;
-  //document.getElementById('razones_rentabilidad').hidden = true;
+  document.getElementById('razones_rentabilidad').hidden = true;
 }
 
 function ver_razones_apalancamiento(){
   document.getElementById('razones_liquidez').hidden = true;
   document.getElementById('razones_actividad').hidden = true;
   document.getElementById('razones_apalancamiento').hidden = false;
-  //document.getElementById('razones_rentabilidad').hidden = true;
+  document.getElementById('razones_rentabilidad').hidden = true;
 }
-
+function ver_razones_rentabilidad(){
+  document.getElementById('razones_liquidez').hidden = true;
+  document.getElementById('razones_actividad').hidden = true;
+  document.getElementById('razones_apalancamiento').hidden = true;
+  document.getElementById('razones_rentabilidad').hidden = false;
+}
 //////RAZONES DE LIQUIDEZ
 function calcular_razon_circulante(){
     var act_cte =  parseFloat(document.getElementById('activo_corriente').value);
@@ -533,8 +609,60 @@ function calcular_razon_gastos_fin(){
       document.getElementById('razon_gastos_fin').innerHTML = "Llene los campos";
     }
 }
+function calcular_roe(){
+    var utilidad_neta =  parseFloat(document.getElementById('utilidad_neta').value);
+    var patrimonio_promedio =  parseFloat(document.getElementById('patrimonio_promedio').value);
+    var razon = (patrimonio_promedio==0) ? "El denominador es cero, no se puede calcular" : (utilidad_neta/patrimonio_promedio).toFixed(2);
+    document.getElementById('roe').hidden = false;
+    document.getElementById('rentabilidad_neta_patrimonio').innerHTML = razon;
+    if(isNaN(razon)){
+      document.getElementById('rentabilidad_neta_patrimonio').innerHTML = "Llene los campos";
+    }
+}
 
+function calcular_rentabilidad_accion(){
+    var utilidad_total =  parseFloat(document.getElementById('utilidad_total').value);
+    var numero_acciones =  parseFloat(document.getElementById('numero_acciones').value);
+    var razon = (numero_acciones==0) ? "El denominador es cero, no se puede calcular" : (utilidad_total/numero_acciones).toFixed(2);
+    document.getElementById('rentabilidad_accion').hidden = false;
+    document.getElementById('rentabilidad_accion').innerHTML = razon;
+    if(isNaN(razon)){
+      document.getElementById('rentabilidad_accion').innerHTML = "Llene los campos";
+    }
+}
 
+function calcular_roa(){
+    var beneficio_neto =  parseFloat(document.getElementById('beneficio_neto').value);
+    var activo_total_promedio =  parseFloat(document.getElementById('activo_total_promedio').value);
+    var razon = (activo_total_promedio==0) ? "El denominador es cero, no se puede calcular" : (beneficio_neto/activo_total_promedio).toFixed(2);
+    document.getElementById('roa').hidden = false;
+    document.getElementById('roa').innerHTML = razon;
+    if(isNaN(razon)){
+      document.getElementById('roa').innerHTML = "Llene los campos";
+    }
+}
+
+function calcular_rentabilidad_ventas(){
+    var ganancia_neta =  parseFloat(document.getElementById('ganancia_neta').value);
+    var ventas_totales =  parseFloat(document.getElementById('ventas_totales').value);
+    var razon = (ventas_totales==0) ? "El denominador es cero, no se puede calcular" : (ganancia_neta/ventas_totales).toFixed(2);
+    document.getElementById('rentabilidad_ventas').hidden = false;
+    document.getElementById('rentabilidad_ventas').innerHTML = razon;
+    if(isNaN(razon)){
+      document.getElementById('roa').innerHTML = "Llene los campos";
+    }
+}
+
+function calcular_roi(){
+    var ingresos =  parseFloat(document.getElementById('ingresos').value);
+    var inversion =  parseFloat(document.getElementById('inversion').value);
+    var razon = (inversion==0) ? "El denominador es cero, no se puede calcular" : ((ingresos-inversion)/inversion).toFixed(2);
+    document.getElementById('roi').hidden = false;
+    document.getElementById('roi').innerHTML = razon;
+    if(isNaN(razon)){
+      document.getElementById('roi').innerHTML = "Llene los campos";
+    }
+}
 </script>
 
 
