@@ -149,69 +149,69 @@
           <!-- col-lg-12-->
         </div>
 
-        <script>
-          function calcular_activo() {
+<script>
+function calcular_activo() {
 
-          var total = 0;
-          $(".monto_activo").each(function() {
-            if (isNaN(parseFloat($(this).val()))) {
-              total += 0;
-            } else {
-              total += parseFloat($(this).val());
-            }
-          });
-          document.getElementById('total_activos').value = total;
-          document.getElementById('validacion_activo').innerHTML = total;
-          }
-
-
-          function calcular_pasivo() {
-
-          var total = 0;
-          $(".monto_pasivo").each(function() {
-            if (isNaN(parseFloat($(this).val()))) {
-              total += 0;
-            } else {
-              total += parseFloat($(this).val());
-            }
-          });
-          document.getElementById('total_pasivos').value = total;
-          calcular_pasivo_patrimonio();
-          }
+var total = 0;
+$(".monto_activo").each(function() {
+  if (isNaN(parseFloat($(this).val()))) {
+    total += 0;
+  } else {
+    total += parseFloat($(this).val());
+  }
+});
+document.getElementById('total_activos').value = total;
+document.getElementById('validacion_activo').innerHTML = total;
+}
 
 
-          function calcular_patrimonio() {
+function calcular_pasivo() {
 
-          var total = 0;
-          $(".monto_patrimonio").each(function() {
-            if (isNaN(parseFloat($(this).val()))) {
-              total += 0;
-            } else {
-              total += parseFloat($(this).val());
-            }
-          });
-          document.getElementById('total_patrimonio').value = total;
-
-
-          calcular_pasivo_patrimonio();
-          }
-
-          function calcular_pasivo_patrimonio(){
-            var total_activo = parseFloat(document.getElementById('total_activos').value);
-            var total_pasivo_patrimonio = parseFloat(document.getElementById('total_pasivos').value) + parseFloat(document.getElementById('total_patrimonio').value);
-            document.getElementById('validacion_pasivo_patrimonio').innerHTML = total_pasivo_patrimonio;
-
-            if(total_activo != total_pasivo_patrimonio){
-              document.getElementById('mensaje_validacion').innerHTML = 'EL TOTAL DE ACTIVOS ES DISTINTO DE TOTAL DE PASIVOS + PATRIMONIO. No se puede almacenar.';
-              document.getElementById('boton_guardar').disabled = true;
-            }
-            else{
-              document.getElementById('mensaje_validacion').innerHTML = '';
-              document.getElementById('boton_guardar').disabled = false;
-            }
-          }
+var total = 0;
+$(".monto_pasivo").each(function() {
+  if (isNaN(parseFloat($(this).val()))) {
+    total += 0;
+  } else {
+    total += parseFloat($(this).val());
+  }
+});
+document.getElementById('total_pasivos').value = total;
+calcular_pasivo_patrimonio();
+}
 
 
-        </script>
+function calcular_patrimonio() {
+
+var total = 0;
+$(".monto_patrimonio").each(function() {
+  if (isNaN(parseFloat($(this).val()))) {
+    total += 0;
+  } else {
+    total += parseFloat($(this).val());
+  }
+});
+document.getElementById('total_patrimonio').value = total;
+
+
+calcular_pasivo_patrimonio();
+}
+
+function calcular_pasivo_patrimonio(){
+  var total_activo = parseFloat(document.getElementById('total_activos').value);
+  var total_pasivo_patrimonio = parseFloat(document.getElementById('total_pasivos').value) + parseFloat(document.getElementById('total_patrimonio').value);
+  document.getElementById('validacion_pasivo_patrimonio').innerHTML = total_pasivo_patrimonio;
+
+  if(total_activo != total_pasivo_patrimonio){
+    document.getElementById('mensaje_validacion').innerHTML = 'EL TOTAL DE ACTIVOS ES DISTINTO DE TOTAL DE PASIVOS + PATRIMONIO. No se puede almacenar.';
+    document.getElementById('boton_guardar').disabled = true;
+  }
+  else{
+    document.getElementById('mensaje_validacion').innerHTML = '';
+    document.getElementById('boton_guardar').disabled = false;
+  }
+}
+
+
+</script>
 
 @endsection

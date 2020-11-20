@@ -43,6 +43,7 @@ class DetalleEstadosFinancierosController extends Controller
      */
     public function store(Request $request,$id)
     {  
+        $estado_financiero = EstadoFinanciero::findOrFail($id);
 
         if ($request->hasFile('estado_financiero')){
             $file = $request->file('estado_financiero');
@@ -118,16 +119,73 @@ class DetalleEstadosFinancierosController extends Controller
      */
     public function edit($id)
     {
-        //
-        $estado_financiero = EstadoFinanciero::findOrFail($id);
-        $balance = DetalleEstadosFinancieros::where('id_estado_financiero', $id)->get();
+        /*$estados_creados = EstadoFinanciero::where('id_empresa',$request->id_empresa)
+        ->where('id_tipo_estado_financiero',$request->id_tipo_estado_financiero)
+        ->whereBetween('fecha_inicio',[$request->fecha_inicio,$request->fecha_inicio])
+        ->whereBetween('fecha_final',[$request->fecha_final,$request->fecha_final])->first();
+        $fecha_inicio =$request->fecha_inicio;
+        $fecha_fin =$request->fecha_final;
+
+        if($estados_creados)
+        {   
+        return back()->withWarning('Ya se creó un estado financiero para el rango de fechas indicadas, ingrese otro período!');
+
+        }
+        if($fecha_inicio>$fecha_fin)
+        {   
+        return back()->withWarning('La fecha de inicio debe ser menor a la fecha de fin de período!');
+
+        }
+
+        $empresa = Empresa::findOrFail($estado_financiero->id_empresa);
+
         if($estado_financiero->id_tipo_estado_financiero==1)
         {
-            return view('EstadosFinancieros.editar_balance_general', compact('balance', 'estado_financiero'));
+            $activos = [];
+            $pasivos = [];
+            $patrimonio = [];
+            $catalogo = Catalogo::where('id_empresa', $empresa->id)->get();
+
+            foreach($catalogo as $cuenta)
+            {
+            if($cuenta->cuenta->id_tipo_cuenta == 1)
+            {
+            $activos[] = $cuenta;
+            }
+            elseif($cuenta->cuenta->id_tipo_cuenta == 2)
+            {
+            $pasivos[] = $cuenta;
+            }
+            elseif($cuenta->cuenta->id_tipo_cuenta == 3)
+            {
+            $patrimonio[] = $cuenta;
+            }
         }
-        else{
-            return view('EstadosFinancieros.editar_estado_resultado', compact('balance', 'estado_financiero'));
+
+        return view('EstadosFinancieros.editar_balance_general', compact('activos', 'pasivos', 'patrimonio','empresa', 'estado_financiero'));
         }
+        elseif($estado_financiero->id_tipo_estado_financiero==2)
+            {
+            $ingresos = [];
+            $gastos = [];
+            $catalogo = Catalogo::where('id_empresa', $empresa->id)->get();
+
+            foreach($catalogo as $cuenta)
+            {
+            if($cuenta->cuenta->id_tipo_cuenta == 4)
+            {
+            $gastos[] = $cuenta;
+            }
+            elseif($cuenta->cuenta->id_tipo_cuenta == 5)
+            {
+            $ingresos[] = $cuenta;
+            }
+
+            }
+        return view('EstadosFinancieros.editar_estado_resultados', compact('ingresos','gastos','empresa', 'estado_financiero', ));
+       
+        }
+        */
     }
 
     /**
