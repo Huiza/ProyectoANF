@@ -205,7 +205,7 @@ class RatioFinancieroController extends Controller
         $ratio->id_estado_financiero = $id;
         $ratio->id_tipo_ratio = 1;
         $ratio->nombre_ratio = "Razón de circulante";
-        $ratio->calculo_ratio = $pasivo_corriente;
+        $ratio->calculo_ratio = $pasivo_corriente == 0 ? 0 : (round($activo_corriente/ $pasivo_corriente, 2));
         $ratio->save();
 
         $ratio = new RatioFinanciero();

@@ -36,7 +36,7 @@
                 </div>
                
                 <p>Ingrese los montos de las razones que desea calcular.</p><br><br>
-                <div style="width:100%;">
+                <div style="width:90%; padding-left:10%;">
                     <div class="form-group" >
                         <h4><strong>Razón de circulante/liquidez corriente</strong></h4><br>
                         <label for="activo_corriente" class="col-sm-12 col-sm-12 control-label"><strong> Activo corriente [$]</strong></label>
@@ -117,7 +117,7 @@
                 </div>
                
                 <p>Ingrese los montos de las razones que desea calcular.</p><br><br>
-                <div style="width:50%;">
+                <div style="width:90%; padding-left:10%;">
                 <div class="form-group">
 
                     <h4><strong>Razón y días de rotación de inventario</strong></h4><br>
@@ -244,7 +244,7 @@
                 </div>
                
                 <p>Ingrese los montos de las razones que desea calcular.</p><br><br>
-                <div style="width:50%;">
+                <div style="width:90%; padding-left:10%;">
                     <div class="form-group">
                         <h4><strong>Grado de endeudamiento</strong></h4><br>
                         <label for="pasivo_total_ge" class="col-sm-12 col-sm-12 control-label"><strong> Pasivo total [$]</strong></label>
@@ -310,12 +310,12 @@
                 <button class="btn btn-theme" onclick="calcular_razon_gastos_fin()">Calcular</button>
 
                 </div>
-                <br><br>
+               
               </div>
               
               </div>
-              </div>
-              </div>
+           
+            
 
               <div id="razones_rentabilidad" hidden>
                     <div class="servicetitle">
@@ -324,7 +324,7 @@
                     </div>
                
                     <p>Ingrese los montos de las razones que desea calcular.</p><br><br>
-                    <div style="width:100%;">
+                    <div style="width:90%; padding-left:10%;">
                         <div class="form-group" >
                             <h4><strong>Rentabilidad del Patrimnio(ROE)</strong></h4><br>
                             <label for="utilidad_neta" class="col-sm-12 col-sm-12 control-label"><strong> Utilidad Neta [$]</strong></label>
@@ -338,7 +338,7 @@
                             </div>
                             <button class="btn btn-theme" onclick="calcular_roe()">Calcular</button>
                         </div>
-                    </div><br><br>
+                   <br><br>
 
                     <div class="form-group" >
                             <h4><strong>Rentabilidad por Acción</strong></h4><br>
@@ -353,7 +353,7 @@
                             </div>
                             <button class="btn btn-theme" onclick="calcular_rentabilidad_accion()">Calcular</button>
                         </div>
-                    </div><br><br>
+                    <br><br>
 
                     <div class="form-group" >
                             <h4><strong>Rentabilidad del Activo</strong></h4><br>
@@ -368,7 +368,7 @@
                             </div>
                             <button class="btn btn-theme" onclick="calcular_roa()">Calcular</button>
                         </div>
-                    </div><br><br>
+                    <br><br>
 
                     <div class="form-group" >
                             <h4><strong>Rentabilidad sobre Ventas</strong></h4><br>
@@ -383,7 +383,7 @@
                             </div>
                             <button class="btn btn-theme" onclick="calcular_rentabilidad_ventas()">Calcular</button>
                         </div>
-                    </div><br><br>
+                    <br><br>
                     <div class="form-group" >
                             <h4><strong>Rentabilidad sobre Inversión</strong></h4><br>
                             <label for="ingresos" class="col-sm-12 col-sm-12 control-label"><strong> Ingresos [$]</strong></label>
@@ -398,6 +398,7 @@
                             <button class="btn btn-theme" onclick="calcular_roi()">Calcular</button>
                         </div>
                     </div>
+              </div>
               </div>
               
 

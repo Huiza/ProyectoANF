@@ -66,7 +66,7 @@
                         <thead>
                             <tr>
                                 <th><h4><strong>Cuenta</strong></h4></th>
-                                <th><h4><strong>Período actual</strong></h4></th>
+                                <th><h4><strong>{{date('j F, Y', strtotime($estado_financiero->fecha_inicio))}} <br> al <br> {{date('j F, Y', strtotime($estado_financiero->fecha_final))}}</strong></h4></th>
                                 <th><h4><strong>{{date('j F, Y', strtotime($estado_financiero_anterior->fecha_inicio))}} <br> al <br> {{date('j F, Y', strtotime($estado_financiero_anterior->fecha_final))}}</strong></h4></th>
                                 <th><h4><strong>Diferencia</strong></h4></th>
                                 <th><h4><strong>Varación absoluta</strong></h4></th>
@@ -82,6 +82,12 @@
                               <td><h3><strong>{{$balance[$i]->cuenta}}</strong></h3></td>
                               @elseif($balance[$i]->cuenta == 'ACTIVO CORRIENTE'|| $balance[$i]->cuenta == 'ACTIVO NO CORRIENTE'|| $balance[$i]->cuenta == 'PASIVO CORRIENTE'|| $balance[$i]->cuenta == 'PASIVO NO CORRIENTE' )
                               <td><h4><strong>{{$balance[$i]->cuenta}}</strong></h4></td>
+                              @elseif($balance[$i]->cuenta == 'TOTAL DE ACTIVOS'|| $balance[$i]->cuenta == 'TOTAL DE PASIVOS'|| $balance[$i]->cuenta == 'TOTAL PATRIMONIO' || $balance[$i]->cuenta == 'TOTAL DE INGRESOS' || $balance[$i]->cuenta == 'TOTAL DE GASTOS')
+                              <td><h3><strong>{{$balance[$i]->cuenta}}</strong></h3></td>
+                              <td><h3><strong>${{$balance[$i]->saldo}}</strong></h3></td>
+                              <td><h3><strong>${{$balance_anterior[$i]->saldo}}</strong></h3></td>
+                              <td><h3><strong>${{$variacion_absoluta[$i]}}</strong></h3></td>
+                              <td><h3><strong>{{$variacion_relativa[$i]}}%</strong></h3></td>
                               @else
                               <td><h4>{{$balance[$i]->cuenta}}</h4></td>
                               <td><h4><strong>${{$balance[$i]->saldo}}</strong></h4></td>

@@ -59,7 +59,7 @@
                                 <td hidden><input id="monto" type="text" class="form-control round-form" name="saldo[]" placeholder="Monto en $" value="0" ></td>
                                 @else
                                 <td>{{$cuenta->cuenta->nombre_cuenta}}</td>
-                                <td><input onkeyup="calcular_activo()" type="number" step="any" min="0" class=" item form-control round-form monto_activo" name="saldo[]" placeholder="Monto en $"  required></td>
+                                <td><input onkeyup="calcular_activo()" type="number" step="any" class=" item form-control round-form monto_activo" name="saldo[]" placeholder="Monto en $"  required></td>
                                 @endif
                                 <input type="text"  name="cuenta[]" value="{{ $cuenta->cuenta->nombre_cuenta }}" hidden>
                                 <div><input type="text"  name="id_estado_financiero[]" value="{{ $estado_financiero->id_estado_financiero}}" hidden></div>
@@ -71,7 +71,7 @@
                                 <td><strong>TOTAL DE ACTIVOS</strong></td>
                                 <div><input type="text"  name="id_estado_financiero[]" value="{{ $estado_financiero->id_estado_financiero}}" hidden></div>
                                 <input type="text"  name="cuenta[]" value="TOTAL DE ACTIVOS" hidden>
-                                <td><input id="total_activos" type="number" step="any" min="0" class="form-control round-form" name="saldo[]" placeholder="Monto en $" readonly></td>
+                                <td><input id="total_activos" type="number" step="any"  class="form-control round-form" name="saldo[]" placeholder="Monto en $" readonly></td>
 
                                 
                             @foreach($pasivos as $cuenta)
@@ -79,12 +79,12 @@
                                 @if($cuenta->cuenta->nombre_cuenta == 'PASIVO')
                                 <td><h4><strong>{{$cuenta->cuenta->nombre_cuenta}}</strong></h4></td>
                                 <td hidden><input type="text" class="form-control round-form" name="saldo[]" placeholder="Monto en $" value="0" ></td>
-                                @elseif($cuenta->cuenta->nombre_cuenta == 'PASIVO CORRIENTE' || $cuenta->cuenta->nombre_cuenta == 'PASIVO NO CORRIENTE')
-                                <td><h5><strong>{{$cuenta->cuenta->nombre_cuenta}}</strong></h5></td>
+                                @elseif($cuenta->cuenta->nombre_cuenta == 'PASIVO CORRIENTE' || $cuenta->cuenta== 'PASIVO NO CORRIENTE')
+                                <td><h5><strong>{{$cuenta->cuenta}}</strong></h5></td>
                                 <td hidden><input id="monto" type="text" class="form-control round-form" name="saldo[]" placeholder="Monto en $" value="0" ></td>
                                 @else
                                 <td>{{$cuenta->cuenta->nombre_cuenta}}</td>
-                                <td><input onkeyup="calcular_pasivo()" type="number" step="any" min="0" class="form-control round-form monto_pasivo" name="saldo[]" placeholder="Monto en $" required></td>
+                                <td><input onkeyup="calcular_pasivo()" type="number" step="any" class="form-control round-form monto_pasivo" name="saldo[]" placeholder="Monto en $" required></td>
                                 @endif
                                 <input type="text"  name="cuenta[]" value="{{ $cuenta->cuenta->nombre_cuenta }}" hidden>
                                 <div><input type="text"  name="id_estado_financiero[]" value="{{ $estado_financiero->id_estado_financiero}}" hidden></div>
@@ -94,7 +94,7 @@
                                 <td><strong>TOTAL DE PASIVOS</strong></td>
                                 <div><input type="text"  name="id_estado_financiero[]" value="{{ $estado_financiero->id_estado_financiero}}" hidden></div>
                                 <input type="text"  name="cuenta[]" value="TOTAL DE PASIVOS" hidden>
-                                <td><input id="total_pasivos" type="number" step="any" min="0" class="form-control round-form" name="saldo[]" placeholder="Monto en $" required readonly></td>
+                                <td><input id="total_pasivos" type="number" step="any" class="form-control round-form" name="saldo[]" placeholder="Monto en $" required readonly></td>
 
                                 
                             @foreach($patrimonio as $cuenta)
@@ -105,7 +105,7 @@
                             
                                 @else
                                 <td>{{$cuenta->cuenta->nombre_cuenta}}</td>
-                                <td><input onkeyup="calcular_patrimonio()" type="number" step="any" min="0" class="form-control round-form monto_patrimonio" name="saldo[]" placeholder="Monto en $" required></td>
+                                <td><input onkeyup="calcular_patrimonio()" type="number" step="any" class="form-control round-form monto_patrimonio" name="saldo[]" placeholder="Monto en $" required></td>
                                 @endif
                                 <input type="text"  name="cuenta[]" value="{{ $cuenta->cuenta->nombre_cuenta }}" hidden>
                                 <div><input type="text"  name="id_estado_financiero[]" value="{{ $estado_financiero->id_estado_financiero}}" hidden></div>
@@ -115,7 +115,7 @@
                                 <td><strong>TOTAL DE PATRIMONIO</strong></td>
                                 <div><input type="text"  name="id_estado_financiero[]" value="{{ $estado_financiero->id_estado_financiero}}" hidden></div>
                                 <input type="text"  name="cuenta[]" value="TOTAL PATRIMONIO" hidden>
-                                <td><input id="total_patrimonio" type="number" step="any" min="0" class="form-control round-form" name="saldo[]" placeholder="Monto en $" required readonly></td>
+                                <td><input id="total_patrimonio" type="number" step="any" class="form-control round-form" name="saldo[]" placeholder="Monto en $" required readonly></td>
 
                         </table>
                         <div class="col-md-12 alert alert-warning" >

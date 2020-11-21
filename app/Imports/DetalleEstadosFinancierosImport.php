@@ -35,5 +35,6 @@ class DetalleEstadosFinancierosImport implements ToModel
             'cuenta'=>$row[0],
             'saldo'=>$row[1],
         ]);
+       
     }
 }

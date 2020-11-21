@@ -42,10 +42,10 @@
                 <div class="task-content">
 
                 <div class="row">
-                      <div class="col-md-12">
+                      <div class="col-md-10">
                         <h3> </h3>
 
-                        <div class="col-md-12">
+                        <div class="col-md-10">
                        @if($estado_financiero->id_tipo_estado_financiero==1)
                         <div id="grafico_activos"></div> <br>
                         <div id="btn-group">

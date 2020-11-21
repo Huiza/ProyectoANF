@@ -43,12 +43,32 @@ class DetalleEstadosFinancierosController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request,$id)
-    {  
+    { 
         $estado_financiero = EstadoFinanciero::findOrFail($id);
+        
 
         if ($request->hasFile('estado_financiero')){
             $file = $request->file('estado_financiero');
             Excel::import(new DetalleEstadosFinancierosImport($id), $file);
+
+            if($estado_financiero->id_tipo_estado_financiero==1){
+                app('App\Http\Controllers\RatioFinancieroController')->store($id);
+            }
+            else{
+                $estado_complementario = EstadoFinanciero::where('fecha_inicio','=',$estado_financiero->fecha_inicio)->
+                                                    where('fecha_final','=',$estado_financiero->fecha_final)->
+                                                    where('id_empresa','=',$estado_financiero->id_empresa)->
+                                                    where('id_tipo_estado_financiero','=',1)->first();
+                if($estado_complementario){
+                    app('App\Http\Controllers\RatioFinancieroController')->store($estado_complementario->id_estado_financiero);
+                }
+            }    
+
+        //ID de la empresa
+        $estado_financiero_actual = EstadoFinanciero::findOrFail($id);
+        $id_empresa = $estado_financiero_actual->empresa->id;
+        return redirect()->route('ver_empresa', $id_empresa)->withSuccess('Estado financiero guardado correctamente');
+        
         }
         else{
             foreach($request->cuenta as $key => $value){
@@ -57,28 +77,26 @@ class DetalleEstadosFinancierosController extends Controller
                     'id_estado_financiero' => $request['id_estado_financiero'][$key],
                     'saldo' => $request['saldo'][$key],
                 ]);
-         }
-         
-        
-
-        if($estado_financiero->id_tipo_estado_financiero==1){
-            app('App\Http\Controllers\RatioFinancieroController')->store($id);
-        }
-        else{
-            $estado_complementario = EstadoFinanciero::where('fecha_inicio','=',$estado_financiero->fecha_inicio)->
-                                                where('fecha_final','=',$estado_financiero->fecha_final)->
-                                                where('id_empresa','=',$estado_financiero->id_empresa)->
-                                                where('id_tipo_estado_financiero','=',1)->first();
-            if($estado_complementario){
-                app('App\Http\Controllers\RatioFinancieroController')->store($estado_complementario->id_estado_financiero);
+            }            
+            if($estado_financiero->id_tipo_estado_financiero==1){
+                app('App\Http\Controllers\RatioFinancieroController')->store($id);
             }
-        }
+            else{
+                $estado_complementario = EstadoFinanciero::where('fecha_inicio','=',$estado_financiero->fecha_inicio)->
+                                                    where('fecha_final','=',$estado_financiero->fecha_final)->
+                                                    where('id_empresa','=',$estado_financiero->id_empresa)->
+                                                    where('id_tipo_estado_financiero','=',1)->first();
+                if($estado_complementario){
+                    app('App\Http\Controllers\RatioFinancieroController')->store($estado_complementario->id_estado_financiero);
+                }
+            }    
 
         //ID de la empresa
         $estado_financiero_actual = EstadoFinanciero::findOrFail($id);
         $id_empresa = $estado_financiero_actual->empresa->id;
 
         return redirect()->route('ver_empresa', $id_empresa)->withSuccess('Estado financiero guardado correctamente');
+        
         }
     }
 
@@ -95,6 +113,7 @@ class DetalleEstadosFinancierosController extends Controller
         $estado_financiero = EstadoFinanciero::findOrFail($id);
         $id_balance_general = EstadoFinanciero::where('fecha_inicio', $estado_financiero->fecha_inicio)->where('id_tipo_estado_financiero',1)->where('id_empresa',$estado_financiero->id_empresa)->first();
         $balance = DetalleEstadosFinancieros::where('id_estado_financiero', $id)->get();
+        
 
         if(count($balance)==0)
         {
@@ -131,6 +150,8 @@ class DetalleEstadosFinancierosController extends Controller
             $activos = [];
             $pasivos = [];
             $patrimonio = [];
+            $gastos = [];
+            $ingresos = [];
             
             while($balance[$i]->cuenta!='PASIVO'){
                 $activos[$i] = $balance[$i];
@@ -144,8 +165,22 @@ class DetalleEstadosFinancierosController extends Controller
                 $patrimonio[$i] = $balance[$i];
                 $i++;
             }
-     
-        return view('EstadosFinancieros.editar_balance_general', compact('activos', 'pasivos', 'patrimonio','empresa', 'estado_actualizar'));
+            return view('EstadosFinancieros.editar_balance_general', compact('activos', 'pasivos', 'patrimonio','empresa', 'estado_actualizar'));
+        
+        }
+        else{
+            $j = 0;
+
+            while($balance[$j]->cuenta!='GASTOS'){
+                $ingresos[$j] = $balance[$j];
+                $j++;
+            }
+            while($j!==count($balance)){
+                $gastos[$j] = $balance[$j];
+                $j++;
+            }
+            return view('EstadosFinancieros.editar_estado_resultado', compact('gastos', 'ingresos','empresa', 'estado_actualizar'));
+
         }
        
         
@@ -160,57 +195,68 @@ class DetalleEstadosFinancierosController extends Controller
      */
     public function update(Request $request,$id)
     {
-        $estados_creados = EstadoFinanciero::where('id_empresa',$request->id_empresa)
-                            ->where('id_tipo_estado_financiero',$request->id_tipo_estado_financiero)
-                            ->whereBetween('fecha_inicio',[$request->fecha_inicio,$request->fecha_inicio])
-                            ->whereBetween('fecha_final',[$request->fecha_final,$request->fecha_final])->first();
-        $fecha_inicio =$request->fecha_inicio;
-        $fecha_fin =$request->fecha_final;
+        
+        $estado_financiero = EstadoFinanciero::findOrFail($id);
+        $estados_actualizar = DetalleEstadosFinancieros::where('id_estado_financiero', $id)->get();
 
-        if($estados_creados)
-        {   
-        return back()->withWarning('Ya se creó un estado financiero para el rango de fechas indicadas, ingrese otro período!');
-
+        foreach($estados_actualizar as $estado)
+        {
+            $estado->delete();
         }
-        if($fecha_inicio>$fecha_fin)
-        {   
-        return back()->withWarning('La fecha de inicio debe ser menor a la fecha de fin de período!');
+        
 
-        }
-    
-            $estado_actualizar = EstadoFinanciero::findOrFail($id);
-            $estado_actualizar->fecha_inicio = $request->fecha_inicio;
-            $estado_actualizar->fecha_final =$request->fecha_final;
-            $estado_actualizar->update();
+        if ($request->hasFile('estado_financiero')){
+            $file = $request->file('estado_financiero');
+            Excel::import(new DetalleEstadosFinancierosImport($id), $file);
 
-        foreach($request->cuenta as $key => $value){
-            DetalleEstadosFinancieros::where('id_detalle_estados_financieros', $request['id_detalle_estados_financieros'][$key])->update([
-                'cuenta' => $value, 
-                'id_estado_financiero' => $request['id_estado_financiero'][$key],
-                'saldo' => $request['saldo'][$key],
-            ]);
-            }
-
-            if($estado_actualizar->id_tipo_estado_financiero==1){
+            if($estado_financiero->id_tipo_estado_financiero==1){
                 app('App\Http\Controllers\RatioFinancieroController')->store($id);
             }
             else{
-                $estado_complementario = EstadoFinanciero::where('fecha_inicio','=',$estado_actualizar->fecha_inicio)->
-                                                    where('fecha_final','=',$estado_actualizar->fecha_final)->
-                                                    where('id_empresa','=',$estado_actualizar->id_empresa)->
+                $estado_complementario = EstadoFinanciero::where('fecha_inicio','=',$estado_financiero->fecha_inicio)->
+                                                    where('fecha_final','=',$estado_financiero->fecha_final)->
+                                                    where('id_empresa','=',$estado_financiero->id_empresa)->
                                                     where('id_tipo_estado_financiero','=',1)->first();
                 if($estado_complementario){
-                app('App\Http\Controllers\RatioFinancieroController')->store($estado_complementario->id_estado_financiero);
+                    app('App\Http\Controllers\RatioFinancieroController')->store($estado_complementario->id_estado_financiero);
                 }
-            }
-            
-           
-       
-            //ID de la empresa
-            $estado_financiero_actual = EstadoFinanciero::findOrFail($id);
-            $id_empresa = $estado_financiero_actual->empresa->id;
+            }    
 
-            return redirect()->route('ver_empresa', $id_empresa)->withSuccess('Estado financiero actualizado correctamente');
+        //ID de la empresa
+        $estado_financiero_actual = EstadoFinanciero::findOrFail($id);
+        $id_empresa = $estado_financiero_actual->empresa->id;
+        return redirect()->route('ver_empresa', $id_empresa)->withSuccess('Estado financiero actualizado correctamente');
+        
+        }
+        else{
+            foreach($request->cuenta as $key => $value){
+                DetalleEstadosFinancieros::create([
+                    'cuenta' => $value, 
+                    'id_estado_financiero' => $request['id_estado_financiero'][$key],
+                    'saldo' => $request['saldo'][$key],
+                ]);
+            }            
+            if($estado_financiero->id_tipo_estado_financiero==1){
+                app('App\Http\Controllers\RatioFinancieroController')->store($id);
+            }
+            else{
+                $estado_complementario = EstadoFinanciero::where('fecha_inicio','=',$estado_financiero->fecha_inicio)->
+                                                    where('fecha_final','=',$estado_financiero->fecha_final)->
+                                                    where('id_empresa','=',$estado_financiero->id_empresa)->
+                                                    where('id_tipo_estado_financiero','=',1)->first();
+                if($estado_complementario){
+                    app('App\Http\Controllers\RatioFinancieroController')->store($estado_complementario->id_estado_financiero);
+                }
+            }    
+
+        //ID de la empresa
+        $estado_financiero_actual = EstadoFinanciero::findOrFail($id);
+        $id_empresa = $estado_financiero_actual->empresa->id;
+
+        return redirect()->route('ver_empresa', $id_empresa)->withSuccess('Estado financiero actualizado correctamente');
+        
+        }       
+
     }
 
     /**

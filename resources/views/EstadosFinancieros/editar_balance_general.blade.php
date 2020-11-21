@@ -18,7 +18,7 @@
 
                 <input type="file" name="estado_financiero">
                 <br>
-                <button class="btn btn-primary">Importar Balance General</button>
+                <button class="btn btn-primary">Importar</button>
               </form>
               </div>
             <div style="text-align:center;">
@@ -39,6 +39,11 @@
                 <div class="row">
                       <div class="col-md-12">
                         <h3> </h3>
+                 
+                      </div>
+
+                     
+                      </div>
 
                         <div class="col-md-10">
                       
@@ -47,19 +52,13 @@
                             <hr>
                             <thead>
                             <tr>
-                           <td>Fecha de inicio de período</td>
-                            <td><input type="date" class="form-control round-form" name="fecha_inicio"  value="{{$estado_actualizar->fecha_inicio}}" ></td>  
-                            </tr>
-                            <td>Fecha de fin de período</td>
-                            <td><input type="date" class="form-control round-form" name="fecha_final"  value="{{$estado_actualizar->fecha_final}}" ></td>  
-                            </tr>
-                            <br><br>
+                                <th><h4><strong>Cuenta</strong></h4></th>
+                                <th><h4><strong>Código</strong></h4></th>
+                               
 
                             </tr>
-                          
                             </thead>
                             <tbody>
-                            
                             @foreach($activos as $cuenta)
                             <tr>
                                 @if($cuenta->cuenta == 'ACTIVO')
@@ -70,10 +69,10 @@
                                 <td hidden><input id="monto" type="text" class="form-control round-form" name="saldo[]" placeholder="Monto en $" value="0" ></td>
                                 @elseif($cuenta->cuenta == 'TOTAL DE ACTIVOS')
                                 <td><h5><strong>{{$cuenta->cuenta}}</strong></h5></td>
-                                <td><input id="total_activos" type="text" class="form-control round-form" name="saldo[]" placeholder="Monto en $" value="{{$cuenta->saldo}}" readonly></td>
+                                <td><input id="total_activos"  type="number" step="any"  class=" item form-control round-form" name="saldo[]" placeholder="Monto en $"  value="{{$cuenta->saldo}}" readonly></td>
                                 @else
                                 <td>{{$cuenta->cuenta}}</td>
-                                <td><input onkeyup="calcular_activo()" type="number" step="any" min="0" class=" item form-control round-form monto_activo" name="saldo[]" placeholder="Monto en $" value="{{$cuenta->saldo}}" required></td>
+                                <td><input onkeyup="calcular_activo()" type="number" step="any" class=" item form-control round-form monto_activo" name="saldo[]" placeholder="Monto en $" value="{{$cuenta->saldo}}" required></td>
                                 @endif
                                 <input type="text"  name="cuenta[]" value="{{ $cuenta->cuenta }}" hidden>
                                 <div><input type="text"  name="id_estado_financiero[]" value="{{ $estado_actualizar->id_estado_financiero}}" hidden></div>
@@ -81,54 +80,53 @@
                             </tr>
 
                             @endforeach
-                           
+                            </tbody>
                                 
-
                                 
                             @foreach($pasivos as $cuenta)
                             <tr>
                                 @if($cuenta->cuenta == 'PASIVO')
                                 <td><h4><strong>{{$cuenta->cuenta}}</strong></h4></td>
-                                <td hidden><input id="monto" type="text" class="form-control round-form" name="saldo[]" placeholder="Monto en $" value="0" ></td>
-                                @elseif($cuenta->cuenta == 'PASIVO CORRIENTE' || $cuenta->cuenta == 'PASIVO NO CORRIENTE')
+                                <td hidden><input type="text" class="form-control round-form" name="saldo[]" placeholder="Monto en $" value="0" ></td>
+                                @elseif($cuenta->cuenta == 'PASIVO  CORRIENTE' || $cuenta->cuenta == 'PASIVO NO CORRIENTE')
                                 <td><h5><strong>{{$cuenta->cuenta}}</strong></h5></td>
                                 <td hidden><input id="monto" type="text" class="form-control round-form" name="saldo[]" placeholder="Monto en $" value="0" ></td>
                                 @elseif($cuenta->cuenta == 'TOTAL DE PASIVOS')
                                 <td><h5><strong>{{$cuenta->cuenta}}</strong></h5></td>
-                                <td><input id="total_pasivos" type="text" class="form-control round-form" name="saldo[]" placeholder="Monto en $" value="{{$cuenta->saldo}}" readonly></td>
+                                <td><input id="total_pasivos"  type="number" step="any" class=" item form-control round-form" name="saldo[]" placeholder="Monto en $" value="{{$cuenta->saldo}}" readonly></td>
                                 @else
                                 <td>{{$cuenta->cuenta}}</td>
-                                <td><input onkeyup="calcular_pasivo()" type="number" step="any" min="0" class=" item form-control round-form monto_pasivo" name="saldo[]" placeholder="Monto en $" value="{{$cuenta->saldo}}" required></td>
+                                <td><input onkeyup="calcular_pasivo()" type="number" step="any" class="form-control round-form monto_pasivo" name="saldo[]" placeholder="Monto en $" value="{{$cuenta->saldo}}" required></td>
                                 @endif
                                 <input type="text"  name="cuenta[]" value="{{ $cuenta->cuenta }}" hidden>
                                 <div><input type="text"  name="id_estado_financiero[]" value="{{ $estado_actualizar->id_estado_financiero}}" hidden></div>
-                            
                             </tr>
-
                             @endforeach
+                            </tbody>
+                                
 
                                 
                             @foreach($patrimonio as $cuenta)
                             <tr>
                                 @if($cuenta->cuenta == 'PATRIMONIO')
                                 <td><h4><strong>{{$cuenta->cuenta}}</strong></h4></td>
-                                <td hidden><input id="monto" type="text" class="form-control round-form" name="saldo[]" placeholder="Monto en $" value="0" ></td>
+                                <td hidden><input type="text" class="form-control round-form" name="saldo[]" placeholder="Monto en $" value="0" ></td>
                                 @elseif($cuenta->cuenta == 'TOTAL PATRIMONIO')
                                 <td><h5><strong>{{$cuenta->cuenta}}</strong></h5></td>
-                                <td><input id="total_patrimonio" type="text" class="form-control round-form" name="saldo[]" placeholder="Monto en $" value="{{$cuenta->saldo}}" readonly></td>
+                                <td><input id="total_patrimonio"  type="number" step="any"  class=" item form-control round-form" name="saldo[]" placeholder="Monto en $" value="{{$cuenta->saldo}}" readonly></td>
                                 @else
                                 <td>{{$cuenta->cuenta}}</td>
-                                <td><input onkeyup="calcular_patrimonio()" type="number" step="any" min="0" class=" item form-control round-form monto_patrimonio" name="saldo[]" placeholder="Monto en $" value="{{$cuenta->saldo}}" required></td>
+                                <td><input onkeyup="calcular_patrimonio()" type="number" step="any" class="form-control round-form monto_patrimonio" name="saldo[]" placeholder="Monto en $" value="{{$cuenta->saldo}}" required></td>
                                 @endif
                                 <input type="text"  name="cuenta[]" value="{{ $cuenta->cuenta }}" hidden>
                                 <div><input type="text"  name="id_estado_financiero[]" value="{{ $estado_actualizar->id_estado_financiero}}" hidden></div>
-                            
                             </tr>
-
                             @endforeach
-                            </tbodt>
-
+                            </tbody>
+                                
                         </table>
+
+
                         <div class="col-md-12 alert alert-warning" >
                           <strong>
                           <span>TOTAL ACTIVO = </span><span id="validacion_activo"></span>
@@ -138,7 +136,6 @@
                           <br><br>
                           <p style="color: red" id="mensaje_validacion"></p>
                         </div>
-                           
 
                         <br><br><br>
                         
@@ -154,7 +151,6 @@
                     </div>
                 </div>
                 <br>
-                <br>
             </section>
           </div>
           <!-- /col-md-12-->
@@ -166,7 +162,7 @@
           <!-- col-lg-12-->
         </div>
 
-        <script>
+<script>
 function calcular_activo() {
 
 var total = 0;

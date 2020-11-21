@@ -17,7 +17,7 @@ class CreateDetalleEstadosFinancierosTable extends Migration
             $table->bigIncrements('id_detalle_estados_financieros');
             $table->integer('id_estado_financiero')->unsigned()->foreign()->references('id_estado_financiero')->on('estado_financieros')->onDelete('cascade');
             $table->string('cuenta',250);
-            $table->double('saldo');
+            $table->double('saldo')->nullable()->default(0);
             $table->timestamps();
         });
     }
