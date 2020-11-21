@@ -47,13 +47,13 @@ Route::delete('users/{user}', 'UserController@destroy')->name('users.destroy')
         
 
 ////RUTAS DE PERMISOS
-Route::get('user/permissions/{user}', 'permissioncontroller@index')->name('permission.index')
+Route::get('user/permissions/{user}', 'PermissionController@index')->name('permission.index')
 		->middleware('has.permission:permission_user.index');
 
-Route::post('user/permissions/', 'permissioncontroller@store')->name('permission.store')
+Route::post('user/permissions/', 'PermissionController@store')->name('permission.store')
 		->middleware('has.permission:permission_user.create');
 
-Route::post('user/permissions/delete', 'permissioncontroller@destroy')->name('permission.destroy')
+Route::post('user/permissions/delete', 'PermissionController@destroy')->name('permission.destroy')
 		->middleware('has.permission:permission_user.destroy');
 
 
