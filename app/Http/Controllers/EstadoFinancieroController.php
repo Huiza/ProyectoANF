@@ -111,7 +111,7 @@ class EstadoFinancieroController extends Controller
                 }
                 
             }
-            return view('EstadosFinancieros.crear_estado_resultados', compact('ingresos','gastos','empresa', 'estado_financiero', ));
+            return view('EstadosFinancieros.crear_estado_resultados', compact('ingresos','gastos','empresa', 'estado_financiero'));
         }
         
     }

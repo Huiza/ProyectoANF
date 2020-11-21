@@ -45,10 +45,13 @@ class DetalleEstadosFinancierosController extends Controller
     public function store(Request $request,$id)
     {  
         $estado_financiero = EstadoFinanciero::findOrFail($id);
+        $estado_financiero_actual = EstadoFinanciero::findOrFail($id);
+        $id_empresa = $estado_financiero_actual->empresa->id;
 
         if ($request->hasFile('estado_financiero')){
             $file = $request->file('estado_financiero');
             Excel::import(new DetalleEstadosFinancierosImport($id), $file);
+            return redirect()->route('ver_empresa', $id_empresa)->withSuccess('Importación de estado financiero completado.');
         }
         else{
             foreach($request->cuenta as $key => $value){
@@ -75,8 +78,8 @@ class DetalleEstadosFinancierosController extends Controller
         }
 
         //ID de la empresa
-        $estado_financiero_actual = EstadoFinanciero::findOrFail($id);
-        $id_empresa = $estado_financiero_actual->empresa->id;
+        //$estado_financiero_actual = EstadoFinanciero::findOrFail($id);
+        //$id_empresa = $estado_financiero_actual->empresa->id;
 
         return redirect()->route('ver_empresa', $id_empresa)->withSuccess('Estado financiero guardado correctamente');
         }
