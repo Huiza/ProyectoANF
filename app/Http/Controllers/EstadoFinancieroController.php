@@ -40,8 +40,8 @@ class EstadoFinancieroController extends Controller
        
         $estados_creados = EstadoFinanciero::where('id_empresa',$request->id_empresa)
                                             ->where('id_tipo_estado_financiero',$request->id_tipo_estado_financiero)
-                                            ->whereBetween('fecha_inicio',[$request->fecha_inicio,$request->fecha_inicio])
-                                            ->whereBetween('fecha_final',[$request->fecha_inicio,$request->fecha_inicio])->first();
+                                            ->whereBetween('fecha_inicio',[$request->fecha_inicio,$request->fecha_final])
+                                            ->whereBetween('fecha_final',[$request->fecha_final,$request->fecha_final])->first();
         
         $estado_financiero = new EstadoFinanciero();
         $estado_financiero->id_tipo_estado_financiero = $request->id_tipo_estado_financiero;
