@@ -168,13 +168,8 @@ class ReporteController extends Controller
             
         }
 
-<<<<<<< HEAD
-        $pdf=PDF::loadview('Analisis.calculo_analisis_vertical', compact('estado_financiero', 'balance', 'porcentaje_vertical', 'mensaje'));
+        $pdf=PDF::loadview('Analisis.reporte_analisis_vertical', compact('estado_financiero', 'balance', 'porcentaje_vertical', 'mensaje'));
         return $pdf->download('analisis_vertical.pdf');
-=======
-        $pdf=PDF::loadview('Reportes.reporte_analisis_vertical', compact('estado_financiero', 'balance', 'porcentaje_vertical', 'mensaje', 'fecha_inicio', 'fecha_final'));
-        return $pdf->stream('analisis_vertical.pdf');
->>>>>>> 12f0bf5016b86028d6203af67c9bb02b5aa1b9bc
     }
 
     public function ratios_financieros($id){
