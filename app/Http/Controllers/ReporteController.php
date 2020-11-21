@@ -168,7 +168,7 @@ class ReporteController extends Controller
             
         }
 
-        $pdf=PDF::loadview('Analisis.reporte_analisis_vertical', compact('estado_financiero', 'balance', 'porcentaje_vertical', 'mensaje'));
+        $pdf=PDF::loadview('Reporte.reporte_analisis_vertical', compact('estado_financiero', 'balance', 'porcentaje_vertical', 'mensaje'));
         return $pdf->download('analisis_vertical.pdf');
     }
 
