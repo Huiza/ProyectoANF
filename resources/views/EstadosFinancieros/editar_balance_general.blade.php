@@ -38,7 +38,25 @@
 
                 <div class="row">
                       <div class="col-md-12">
-                        <h3> </h3>
+                      
+                <div class="row">
+                      <div class="col-md-12">
+                      <div class="form-group">
+                  <label class="col-sm-4 col-sm-2 control-label">Fecha de inicio de período</label>
+                  <div class="col-sm-8">
+                    <input type="date" class="form-control round-form" name="fecha_inicio" value="{{$estado_actualizar->fecha_inicio}}">
+                   
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <label class="col-sm-4 col-sm-2 control-label">Fecha de final de período </label>
+                  <div class="col-sm-8">
+                    <input type="date" class="form-control round-form" name="fecha_final" value="{{$estado_actualizar->fecha_final}}">
+                    
+                  </div>
+                </div>
+                       
                  
                       </div>
 
@@ -88,7 +106,7 @@
                                 @if($cuenta->cuenta == 'PASIVO')
                                 <td><h4><strong>{{$cuenta->cuenta}}</strong></h4></td>
                                 <td hidden><input type="text" class="form-control round-form" name="saldo[]" placeholder="Monto en $" value="0" ></td>
-                                @elseif($cuenta->cuenta == 'PASIVO  CORRIENTE' || $cuenta->cuenta == 'PASIVO NO CORRIENTE')
+                                @elseif($cuenta->cuenta == 'PASIVO CORRIENTE' || $cuenta->cuenta == 'PASIVO NO CORRIENTE')
                                 <td><h5><strong>{{$cuenta->cuenta}}</strong></h5></td>
                                 <td hidden><input id="monto" type="text" class="form-control round-form" name="saldo[]" placeholder="Monto en $" value="0" ></td>
                                 @elseif($cuenta->cuenta == 'TOTAL DE PASIVOS')
@@ -146,7 +164,7 @@
               </div>
               <div class="form-group">
                     <div class="col-lg-offset-2 col-lg-10">
-                      <button class="btn btn-theme" id="boton_guardar" disabled>Guardar</button>
+                      <button class="btn btn-theme" id="boton_guardar" >Guardar</button>
                       <a href="{{route('ver_empresa', $empresa->id)}}" class="btn btn-theme04"> Cancelar</a>
                     </div>
                 </div>

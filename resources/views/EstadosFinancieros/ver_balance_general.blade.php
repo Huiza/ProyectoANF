@@ -78,10 +78,10 @@
                               <td><h4><strong>{{$cuenta->cuenta}}</strong></h4></td>
                               @elseif($cuenta->cuenta == 'TOTAL DE ACTIVOS' || $cuenta->cuenta == 'TOTAL DE PASIVOS'||$cuenta->cuenta == 'TOTAL PATRIMONIO'  )
                               <td><h3><strong>{{$cuenta->cuenta}}</strong></h3></td>
-                              <td><h3><strong>${{$cuenta->saldo}}</strong></h3></td>
+                              <td><h3><strong>${{ number_format($cuenta->saldo, 2)}}</strong></h3></td>
                               @else
                               <td><h4>{{$cuenta->cuenta}}</h4></td>
-                              <td><h4><strong>${{$cuenta->saldo}}</strong></h4></td>
+                              <td><h4><strong>${{ number_format($cuenta->saldo, 2)}}</strong></h4></td>
                               @endif
                              
                                 

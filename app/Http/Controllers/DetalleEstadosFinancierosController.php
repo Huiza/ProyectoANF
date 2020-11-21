@@ -71,6 +71,8 @@ class DetalleEstadosFinancierosController extends Controller
         
         }
         else{
+            
+
             foreach($request->cuenta as $key => $value){
                 DetalleEstadosFinancieros::create([
                     'cuenta' => $value, 
@@ -91,9 +93,6 @@ class DetalleEstadosFinancierosController extends Controller
                 }
             }    
 
-        //ID de la empresa
-        //$estado_financiero_actual = EstadoFinanciero::findOrFail($id);
-        //$id_empresa = $estado_financiero_actual->empresa->id;
 
         return redirect()->route('ver_empresa', $estado_financiero->id_empresa)->withSuccess('Estado financiero guardado correctamente');
         
@@ -229,6 +228,11 @@ class DetalleEstadosFinancierosController extends Controller
         
         }
         else{
+            $estado_financiero = EstadoFinanciero::findOrFail($id);
+            $estado_financiero->fecha_inicio = $request->fecha_inicio;
+            $estado_financiero->fecha_final = $request->fecha_final;
+            $estado_financiero->save();
+            
             foreach($request->cuenta as $key => $value){
                 DetalleEstadosFinancieros::create([
                     'cuenta' => $value, 

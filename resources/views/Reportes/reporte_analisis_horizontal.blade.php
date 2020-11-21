@@ -37,9 +37,9 @@
 
                   @else
                   <td><p>{{$balance[$i]->cuenta}}</p></td>
-                  <td><p><strong>${{$balance[$i]->saldo}}</strong></p></td>
-                  <td><p><strong>${{$balance_anterior[$i]->saldo}}</strong></p></td>
-                  <td><p><strong>${{$variacion_absoluta[$i]}}</strong></p></td>
+                  <td><p><strong>${{ number_format($balance[$i]->saldo, 2)}}</strong></p></td>
+                  <td><p><strong>${{ number_format($balance_anterior[$i]->saldo, 2)}}</strong></p></td>
+                  <td><p><strong>${{ number_format($variacio_absoluta[$i]->saldo, 2)}}</strong></p></td>
                   <td><p><strong>{{$variacion_relativa[$i]}}%</strong></p></td>
                   @endif
 

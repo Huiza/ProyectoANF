@@ -34,7 +34,7 @@
                               
                               @else
                               <td><p>{{$cuenta->cuenta}}</h4></p>
-                              <td><p><strong>${{$cuenta->saldo}}</strong></p></td>
+                              <td><p><strong>${{ number_format($cuenta->saldo, 2)}}</strong></p></td>
                               @endif
                              
                                 

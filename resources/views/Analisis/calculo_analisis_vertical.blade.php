@@ -84,12 +84,12 @@
                               <td><h4><strong>{{$balance[$i]->cuenta}}</strong></h4></td>
                               @elseif($balance[$i]->cuenta == 'TOTAL DE ACTIVOS'|| $balance[$i]->cuenta == 'TOTAL DE PASIVOS'|| $balance[$i]->cuenta == 'TOTAL PATRIMONIO' ||  $balance[$i]->cuenta == 'TOTAL DE GASTOS' ||  $balance[$i]->cuenta == 'TOTAL DE INGRESOS')
                               <td><h3><strong>{{$balance[$i]->cuenta}}</strong></h3></td>
-                              <td><h3><strong>${{$balance[$i]->saldo}}</strong></h3></td>
+                              <td><h3><strong>${{ number_format($balance[$i]->saldo, 2)}}</strong></h3></td>
                               <td><h3><strong>{{$porcentaje_vertical[$i]}} %</strong></h3></td>
                               
                               @else
                               <td><h4>{{$balance[$i]->cuenta}}</h4></td>
-                              <td><h4><strong>${{$balance[$i]->saldo}}</strong></h4></td>
+                              <td><h4><strong>${{number_format($balance[$i]->saldo, 2)}}</strong></h4></td>
                               <td><h4><strong>{{$porcentaje_vertical[$i]}} %</strong></h4></td>
                               
                               @endif

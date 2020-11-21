@@ -9,7 +9,16 @@
         <div class="row mt">
           <div class="col-lg-12">
             <div class="form-panel" >
+            <form method="post" enctype="multipart/form-data" action="{{route('actualizar_estado_financiero',$estado_actualizar->id_estado_financiero)}}">
+              @method('PUT')
+                @csrf
+
+                <input type="file" name="estado_financiero">
+                <br>
+                <button class="btn btn-primary">Importar</button>
+              </form>
             <div style="text-align:center;">
+            
             <br><br>
               <h3 class="mb">{{$estado_actualizar->empresa->nombre_empresa}}</h3>
               <h4 class="mb">Estado de resultados</h4>
@@ -26,6 +35,21 @@
 
                 <div class="row">
                       <div class="col-md-12">
+                      <div class="form-group">
+                  <label class="col-sm-4 col-sm-2 control-label">Fecha de inicio de período</label>
+                  <div class="col-sm-8">
+                    <input type="date" class="form-control round-form" name="fecha_inicio" value="{{$estado_actualizar->fecha_inicio}}">
+                   
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <label class="col-sm-4 col-sm-2 control-label">Fecha de final de período </label>
+                  <div class="col-sm-8">
+                    <input type="date" class="form-control round-form" name="fecha_final" value="{{$estado_actualizar->fecha_final}}">
+                    
+                  </div>
+                </div>
                         <h3> </h3>
 
                         <div class="col-md-10">
@@ -51,10 +75,10 @@
                           
                                 @elseif($cuenta->cuenta == 'TOTAL DE INGRESOS')
                                 <td><h5><strong>{{$cuenta->cuenta}}</strong></h5></td>
-                                <td><input id="total_ingresos"  type="number" step="any"  class=" item form-control round-form" name="saldo[]" placeholder="Monto en $"  value="{{$cuenta->saldo}}" readonly></td>
+                                <td><input id="total_ingresos"  type="number" step="any"  class=" item form-control round-form" name="saldo[]" placeholder="Monto en $"  value="{{ number_format($cuenta->saldo, 2)}}" readonly></td>
                                 @else
                                 <td>{{$cuenta->cuenta}}</td>
-                                <td><input onkeyup="calcular_ingreso()" type="number" step="any" class=" item form-control round-form monto_ingreso" name="saldo[]" placeholder="Monto en $" value="{{$cuenta->saldo}}" required></td>
+                                <td><input onkeyup="calcular_ingreso()" type="number" step="any" class=" item form-control round-form monto_ingreso" name="saldo[]" placeholder="Monto en $" value="{{ number_format($cuenta->saldo, 2)}}" required></td>
                                 @endif
                                 <input type="text"  name="cuenta[]" value="{{ $cuenta->cuenta }}" hidden>
                                 <div><input type="text"  name="id_estado_financiero[]" value="{{ $estado_actualizar->id_estado_financiero}}" hidden></div>
@@ -71,10 +95,10 @@
                           
                                 @elseif($cuenta->cuenta == 'TOTAL DE GASTOS')
                                 <td><h5><strong>{{$cuenta->cuenta}}</strong></h5></td>
-                                <td><input id="total_gastos"  type="number" step="any"  class=" item form-control round-form" name="saldo[]" placeholder="Monto en $"  value="{{$cuenta->saldo}}" readonly></td>
+                                <td><input id="total_gastos"  type="number" step="any"  class=" item form-control round-form" name="saldo[]" placeholder="Monto en $"  value="{{ number_format($cuenta->saldo, 2)}}" readonly></td>
                                 @else
                                 <td>{{$cuenta->cuenta}}</td>
-                                <td><input onkeyup="calcular_gasto()" type="number" step="any" class=" item form-control round-form monto_gasto" name="saldo[]" placeholder="Monto en $" value="{{$cuenta->saldo}}" required></td>
+                                <td><input onkeyup="calcular_gasto()" type="number" step="any" class=" item form-control round-form monto_gasto" name="saldo[]" placeholder="Monto en $" value="{{ number_format($cuenta->saldo, 2)}}" required></td>
                                 @endif
                                 <input type="text"  name="cuenta[]" value="{{ $cuenta->cuenta }}" hidden>
                                 <div><input type="text"  name="id_estado_financiero[]" value="{{ $estado_actualizar->id_estado_financiero}}" hidden></div>

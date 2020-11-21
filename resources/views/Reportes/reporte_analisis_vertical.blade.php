@@ -35,7 +35,7 @@
 
                     @else
                     <td><p>{{$balance[$i]->cuenta}}</p></td>
-                    <td><p><strong>${{$balance[$i]->saldo}}</strong></p></td>
+                    <td><p><strong>${{ number_format($balance[$i]->saldo, 2)}}</strong></p></td>
                     <td><p><strong>{{$porcentaje_vertical[$i]}} %</strong></p></td>
                     
                     @endif
