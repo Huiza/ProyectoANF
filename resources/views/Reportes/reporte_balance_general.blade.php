@@ -29,7 +29,7 @@
                @foreach($balance_general as $cuenta)
                             <tr>
                                 
-                            @if($balance_general[$i]->cuenta == 'ACTIVO' || $balance_general[$i]->cuenta == 'PASIVO' ||$balance_general[$i]->cuenta == 'PATRIMONIO' || $balance_general[$i]->cuenta == 'INGRESOS' || $balance_general[$i]->cuenta == 'GASTOS' || $balance_general[$i]->cuenta == 'ACTIVO CORRIENTE' || $balance_general[$i]->cuenta == 'ACTIVO NO CORRIENTE' || $balance_general[$i]->cuenta == 'PASIVO CORRIENTE' || $balance_general[$i]->cuenta == 'PASIVO NO CORRIENTE')
+                            @if($cuenta->cuenta == 'ACTIVO' || $cuenta->cuenta == 'PASIVO' ||$cuenta->cuenta == 'PATRIMONIO' || $cuenta->cuenta == 'INGRESOS' || $cuenta->cuenta == 'GASTOS' || $cuenta->cuenta == 'ACTIVO CORRIENTE' || $cuenta->cuenta == 'ACTIVO NO CORRIENTE' || $cuenta->cuenta == 'PASIVO CORRIENTE' || $cuenta->cuenta == 'PASIVO NO CORRIENTE')
                               <td><p><strong>{{$cuenta->cuenta}}</strong></p></td>
                               
                               @else
