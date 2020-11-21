@@ -78,8 +78,8 @@
                                 @if($cuenta->cuenta->nombre_cuenta == 'PASIVO')
                                 <td><h4><strong>{{$cuenta->cuenta->nombre_cuenta}}</strong></h4></td>
                                 <td hidden><input type="text" class="form-control round-form" name="saldo[]" placeholder="Monto en $" value="0" ></td>
-                                @elseif($cuenta->cuenta->nombre_cuenta == 'PASIVO CORRIENTE' || $cuenta->cuenta== 'PASIVO NO CORRIENTE')
-                                <td><h5><strong>{{$cuenta->cuenta}}</strong></h5></td>
+                                @elseif($cuenta->cuenta->nombre_cuenta == 'PASIVO CORRIENTE' || $cuenta->cuenta->nombre_cuenta== 'PASIVO NO CORRIENTE')
+                                <td><h5><strong>{{$cuenta->cuenta->nombre_cuenta}}</strong></h5></td>
                                 <td hidden><input id="monto" type="text" class="form-control round-form" name="saldo[]" placeholder="Monto en $" value="0" ></td>
                                 @else
                                 <td>{{$cuenta->cuenta->nombre_cuenta}}</td>
