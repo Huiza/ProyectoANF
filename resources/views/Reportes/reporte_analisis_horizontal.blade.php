@@ -11,7 +11,7 @@
     <header style="padding:5%; font-family:Arial, Helvetica, sans-serif; mrgin:5%; text-align:justify;" >
         <div style="text-align:center; line-height: 0.1;">
             <p><strong>{{$estado_financiero->empresa->nombre_empresa}}</strong></p> 
-            <p><strong>NÁLISIS HORIZONTAL</strong></p>
+            <p><strong>ANÁLISIS HORIZONTAL</strong></p>
             <p><strong>Del {{$fecha_inicio}} al {{$fecha_final}}</strong></p>
         </div>
         <hr>
