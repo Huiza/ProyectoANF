@@ -84,10 +84,13 @@ Route::get('empresas/buscar', 'EmpresaController@buscar')->name('buscar_empresa'
     
 //RUTAS PARA EL CATÁLOGO
 
-Route::post('catalogo/guardar', 'CatalogoController@store')->name('guardar_catalogo')
+Route::post('catalogo/guardar/', 'CatalogoController@store')->name('guardar_catalogo')
 ->middleware('has.permission:catalogo.create');   
 Route::get('catalogo/crear/{id}', 'CatalogoController@create')->name('crear_catalogo')
 ->middleware('has.permission:catalogo.create'); 
+
+Route::get('catalogo/configurar/{id}', 'CatalogoController@configurar')->name('configurar_catalogo');
+Route::put('catalogo/guardar_configuracion/{id}', 'CatalogoController@guardar_configuracion')->name('guardar_configuracion_catalogo');
 
 //RUTAS PARA LOS ESTADOS FINANCIEROS
 

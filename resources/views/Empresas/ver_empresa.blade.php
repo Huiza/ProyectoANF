@@ -158,6 +158,12 @@
                         <h4>Catálogo de cuentas</h4>
                         @if(count($catalogo)>0)
                         <table class="table table-hover">
+
+                        @for($i=0; $i<1; $i++)
+                        @if($catalogo[$i]->codigo_cuenta=="null")
+                        <a href="{{route('configurar_catalogo', $empresa->id)}}" class="btn btn-info"><i class="fa fa-indent"></i> Configurar catálogo</a>
+                        @endif
+                        @endfor
                             <hr>
                             <thead>
                             <tr>
@@ -170,11 +176,28 @@
                             @foreach($catalogo as $cuenta)
                             <tr>
                                 @if($cuenta->cuenta->nombre_cuenta == 'ACTIVO' || $cuenta->cuenta->nombre_cuenta == 'PASIVO' || $cuenta->cuenta->nombre_cuenta == 'PATRIMONIO' || $cuenta->cuenta->nombre_cuenta == 'INGRESOS' || $cuenta->cuenta->nombre_cuenta == 'GASTOS' || $cuenta->cuenta->nombre_cuenta == 'CUENTA LIQUIDADORA O DE CIERRE' || $cuenta->cuenta->nombre_cuenta == 'CUENTAS DE MEMORANDUM DEUDORAS' || $cuenta->cuenta->nombre_cuenta == 'CUENTAS DE MEMORANDUM DEUDORAS')
-                                <td><h4><strong>{{$cuenta->codigo_cuenta}}</strong></h4></td>
-                                <td><h4><strong>{{$cuenta->cuenta->nombre_cuenta}}</strong></h4></td>
+                                  
+                                  @if($cuenta->codigo_cuenta=="null")
+                                  <td><h4><strong></strong></h4></td>
+                                  <td><h4><strong>{{$cuenta->cuenta->nombre_cuenta}}</strong></h4></td>
+                                  @endif
+
+                                  @if($cuenta->codigo_cuenta!="null")
+                                  <td><h4><strong>{{$cuenta->codigo_cuenta}}</strong></h4></td>
+                                  <td><h4><strong>{{$cuenta->cuenta->nombre_cuenta}}</strong></h4></td>
+                                  @endif
+                                
                                 @else
-                                <td>{{$cuenta->codigo_cuenta}}</td>
-                                <td>{{$cuenta->cuenta->nombre_cuenta}}</td>
+                                  @if($cuenta->codigo_cuenta=="null")
+                                  <td><h4><strong></strong></h4></td>
+                                  <td><h4><strong>{{$cuenta->cuenta->nombre_cuenta}}</strong></h4></td>
+                                  @endif
+                                  
+                                  @if($cuenta->codigo_cuenta!="null")
+                                  <td><h4><strong>{{$cuenta->codigo_cuenta}}</strong></h4></td>
+                                  <td><h4><strong>{{$cuenta->cuenta->nombre_cuenta}}</strong></h4></td>
+                                  @endif
+                                
                                 @endif
 
                             </tr>
@@ -183,6 +206,7 @@
                             <p>No se ha creado el cátalogo aún</p>
                             @endif
                             </tbody>
+
                         </table>
                       </div>
                      

@@ -14,8 +14,9 @@
               <div class="col-md-12 alert alert-warning" >
                       <h5><strong> * Las cuentas seleccionadas son las cuentas mayores y las necesarias para calcular las razones financieras</strong></h5>
               </div>
-              <form class="form-horizontal style-form" method="POST" action="{{route('guardar_catalogo')}}" style="padding:2%;">
-               @csrf
+              <form class="form-horizontal style-form" method="POST" action="{{route('guardar_configuracion_catalogo', $empresa->id)}}" style="padding:2%;">
+              @method('PUT')
+                @csrf
            
               <div class="panel-body">
                 <div class="task-content">
@@ -32,29 +33,25 @@
                             <thead>
                             <tr>
                                 <th><h4><strong>Cuenta</strong></h4></th>
-                        
-                                <th><h4><strong>Selección</strong></h4></th>
+                                <th><h4><strong>Código</strong></h4></th>
+                                
 
                             </tr>
                             </thead>
                             <tbody>
                           
                             
-                            @foreach($cuentas as $cuenta)
+                            @foreach($catalogo as $cuenta)
                             <tr>
-                                <div class="task-checkbox"><input type="text"  name="id_empresa[]" value="{{ $empresa->id }}" hidden></div>
-                                @if($cuenta->nombre_cuenta == 'ACTIVO' || $cuenta->nombre_cuenta == 'PASIVO' || $cuenta->nombre_cuenta == 'PATRIMONIO' || $cuenta->nombre_cuenta == 'INGRESOS' || $cuenta->nombre_cuenta == 'GASTOS' || $cuenta->nombre_cuenta == 'ACTIVO CORRIENTE' || $cuenta->nombre_cuenta == 'ACTIVO NO CORRIENTE' || $cuenta->nombre_cuenta == 'PASIVO CORRIENTE' || $cuenta->nombre_cuenta == 'PASIVO NO CORRIENTE')
-                                <td><h4><strong>{{$cuenta->nombre_cuenta}}</strong></h4></td>
                                 
-                                <td><input style="height: 25px; width: 25px;background-color: #eee; cursor: pointer;" type="checkbox" class="list-child" name="id_cuenta[]" value="{{ $cuenta->id_cuenta }}" checked></td>
-                                @elseif($cuenta->cuenta_ratios == 1)
-                                <td><strong>{{$cuenta->nombre_cuenta}}</strong></td>
+                                @if($cuenta->cuenta->nombre_cuenta == 'ACTIVO' || $cuenta->cuenta->nombre_cuenta == 'PASIVO' || $cuenta->cuenta->nombre_cuenta == 'PATRIMONIO' || $cuenta->cuenta->nombre_cuenta == 'INGRESOS' || $cuenta->cuenta->nombre_cuenta == 'GASTOS' || $cuenta->cuenta->nombre_cuenta == 'ACTIVO CORRIENTE' || $cuenta->cuenta->nombre_cuenta == 'ACTIVO NO CORRIENTE' || $cuenta->cuenta->nombre_cuenta == 'PASIVO CORRIENTE' || $cuenta->cuenta->nombre_cuenta == 'PASIVO NO CORRIENTE')
+                                <td><h4><strong>{{$cuenta->cuenta->nombre_cuenta}}</strong></h4></td>
+                                <td><input type="text" class="form-control round-form" name="codigo_cuenta[]" value="{{old('codigo_cuenta')}}"></td>
                                 
-                                <td><input style="height: 25px; width: 25px;background-color: #eee; cursor: pointer;" type="checkbox" class="list-child" name="id_cuenta[]" value="{{ $cuenta->id_cuenta }}" checked></td>
                                 @else
-                                <td>{{$cuenta->nombre_cuenta}}</td>
+                                <td>{{$cuenta->cuenta->nombre_cuenta}}</td>
                                 
-                                <td><input style="height: 25px; width: 25px;background-color: #eee; cursor: pointer;" type="checkbox" class="list-child" name="id_cuenta[]" value="{{ $cuenta->id_cuenta }}"></td>
+                                <td><input type="text" class="form-control round-form" name="codigo_cuenta[]" value="{{old('codigo_cuenta')}}" required></td>
                                 @endif
                                 
 

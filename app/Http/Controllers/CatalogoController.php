@@ -34,7 +34,6 @@ class CatalogoController extends Controller
             Catalogo::create([
                     'id_empresa' => $request['id_empresa'][$key], 
                     'id_cuenta' => $value, 
-                    'codigo_cuenta' => $request['codigo_cuenta'][$key],
                 ]);
         }
 
@@ -42,5 +41,37 @@ class CatalogoController extends Controller
         $id = Empresa::findOrFail($request['id_empresa'][$value]);
 
         return redirect()->route('ver_empresa', $id)->withSuccess('Catálogo guardado correctamente');
+    }
+
+    public function configurar($id)
+    {   
+        
+        $empresa = Empresa:: findOrFail($id);
+        $catalogo = Catalogo::where('id_empresa',$id)->get();
+        
+       
+        return view('Catalogo.configurar_catalogo', compact('catalogo', 'empresa'));
+    }
+
+    public function guardar_configuracion(Request $request, $id){
+        
+        $catalogo = Catalogo::where('id_empresa',$id)->get();
+        $valores = [];
+
+        foreach($request->codigo_cuenta as $key => $value)
+        {
+                $valores[] = $value;
+                
         }
+
+        for($i=0; $i<count($valores);$i++)
+        {
+            $catalogo[$i]->codigo_cuenta = $valores[$i];
+            $catalogo[$i]->save();
+        }
+        
+
+        return redirect()->route('ver_empresa', $id)->withSuccess('Catálogo guardado correctamente');
+    
+    }
 }
