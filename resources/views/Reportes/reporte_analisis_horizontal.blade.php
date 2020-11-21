@@ -32,7 +32,7 @@
                 @for($i=0;$i<count($balance);$i++)
                 <tr>
 
-                  @if($balance[$i]->cuenta == 'ACTIVO' || $balance[$i]->cuenta == 'PASIVO' ||$balance[$i]->cuenta == 'PATRIMONIO' |$balance[$i]->cuenta == 'INGRESOS' |$balance[$i]->cuenta == 'GASTOS')
+                  @if($balance[$i]->cuenta == 'ACTIVO' || $balance[$i]->cuenta == 'PASIVO' ||$balance[$i]->cuenta == 'PATRIMONIO' || $balance[$i]->cuenta == 'INGRESOS' || $balance[$i]->cuenta == 'GASTOS' $balance[$i]->cuenta == 'ACTIVO CORRIENTE' $balance[$i]->cuenta == 'ACTIVO NO CORRIENTE' $balance[$i]->cuenta == 'PASIVO CORRIENTE' $balance[$i]->cuenta == 'PASIVO NO CORRIENTE')
                   <td><p><strong>{{ucfirst(strtolower($balance[$i]->cuenta))}}</strong></p></td>
 
                   @else

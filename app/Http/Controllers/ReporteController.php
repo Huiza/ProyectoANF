@@ -71,6 +71,8 @@ class ReporteController extends Controller
         $mensaje = "";
         $porcentaje_vertical = [];
         $estado_financiero = EstadoFinanciero::findOrFail($id);
+        $fecha_inicio = Fecha::fechaTexto($estado_financiero->fecha_inicio);
+        $fecha_final = Fecha::fechaTexto($estado_financiero->fecha_final);
         $balance = DB::select('select * from detalle_estados_financieros where id_estado_financiero ='.$id);
 
         for($i = 0; $i < count($balance); $i++){
@@ -109,7 +111,7 @@ class ReporteController extends Controller
             while($balance[$j]->cuenta!='PASIVO'){
                 if($balance[$j]->saldo!=0){
                     $porcentaje_vertical[$j] = $total_activo == 0 ? 0 : (round((($balance[$j]->saldo)/$total_activo)*100, 2));
-                    }
+                }
                     else{
                         $porcentaje_vertical[$j] = 0;
                     }
@@ -120,7 +122,7 @@ class ReporteController extends Controller
             while($balance[$j]->cuenta!='PATRIMONIO'){
                 if($balance[$j]->saldo!=0){
                     $porcentaje_vertical[$j] = $total_pasivo == 0 ? 0 : (round((($balance[$j]->saldo)/$total_pasivo)*100, 2));
-                    }
+                }
                     else{
                         $porcentaje_vertical[$j] = 0;
                     }
@@ -131,7 +133,7 @@ class ReporteController extends Controller
             while($j!==count($balance)){
                 if($balance[$j]->saldo!=0){
                     $porcentaje_vertical[$j] = $total_patrimonio == 0 ? 0 : (round((($balance[$j]->saldo)/$total_patrimonio)*100, 2));
-                    }
+                }
                     else{
                         $porcentaje_vertical[$j] = 0;
                     }
@@ -166,8 +168,13 @@ class ReporteController extends Controller
             
         }
 
+<<<<<<< HEAD
         $pdf=PDF::loadview('Analisis.calculo_analisis_vertical', compact('estado_financiero', 'balance', 'porcentaje_vertical', 'mensaje'));
         return $pdf->download('analisis_vertical.pdf');
+=======
+        $pdf=PDF::loadview('Reportes.reporte_analisis_vertical', compact('estado_financiero', 'balance', 'porcentaje_vertical', 'mensaje', 'fecha_inicio', 'fecha_final'));
+        return $pdf->stream('analisis_vertical.pdf');
+>>>>>>> 12f0bf5016b86028d6203af67c9bb02b5aa1b9bc
     }
 
     public function ratios_financieros($id){

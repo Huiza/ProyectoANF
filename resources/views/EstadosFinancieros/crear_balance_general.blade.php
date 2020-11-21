@@ -11,7 +11,7 @@
             <div style="padding-left:10%; padding-top:5%; padding-bottom:3%;"> 
                 <form method="post" enctype="multipart/form-data" action="{{route('guardar_detalle_estado_financiero',$estado_financiero->id_estado_financiero)}}">
                 @csrf
-                <input type="file" name="estado_financiero">
+                <input type="file" name="estado_financiero" required>
                 <br>
                 <button class="btn btn-primary">Importar Balance General</button>
               </form>
