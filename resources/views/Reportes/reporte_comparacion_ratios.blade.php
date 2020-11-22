@@ -42,7 +42,7 @@
                     <td><span class="badge bg-warning"><strong>{{$razones_liquidez[$i]->calculo_ratio}}</strong> </span></td>
                     @endif
                     @if($razones_liquidez[$i]->calculo_ratio < $ratios_liquidez_promedio[$i]->promedio)
-                    <td><span class="badge bg-important"><strong>{{$razones_liquidez[$i]->calculo_ratio}}</strong> </span></td>
+                    <td><span class="badge bg-danger"><strong>{{$razones_liquidez[$i]->calculo_ratio}}</strong> </span></td>
                     @endif
                 </tr>   
                 @endfor
@@ -63,7 +63,7 @@
                     <td><span class="badge bg-warning"><strong>{{$razones_actividad[$i]->calculo_ratio}}</strong> </span></td>
                     @endif
                     @if($razones_actividad[$i]->calculo_ratio < $ratios_actividad_promedio[$i]->promedio)
-                    <td><span class="badge bg-important"><strong>{{$razones_actividad[$i]->calculo_ratio}}</strong> </span></td>
+                    <td><span class="badge bg-danger"><strong>{{$razones_actividad[$i]->calculo_ratio}}</strong> </span></td>
                     @endif
                 </tr>   
                 @endfor
@@ -84,7 +84,7 @@
                     <td><span class="badge bg-warning"><strong>{{$razones_apalancamiento[$i]->calculo_ratio}}</strong> </span></td>
                     @endif
                     @if($razones_apalancamiento[$i]->calculo_ratio < $ratios_apalancamiento_promedio[$i]->promedio)
-                    <td><span class="badge bg-important"><strong>{{$razones_apalancamiento[$i]->calculo_ratio}}</strong> </span></td>
+                    <td><span class="badge bg-danger"><strong>{{$razones_apalancamiento[$i]->calculo_ratio}}</strong> </span></td>
                     @endif
                 </tr>   
                 @endfor
@@ -105,7 +105,7 @@
                     <td><span class="badge bg-warning"><strong>{{$razones_rentabilidad[$i]->calculo_ratio}}</strong> </span></td>
                     @endif
                     @if($razones_rentabilidad[$i]->calculo_ratio < $ratios_rentabilidad_promedio[$i]->promedio)
-                    <td><span class="badge bg-important"><strong>{{$razones_rentabilidad[$i]->calculo_ratio}}</strong> </span></td>
+                    <td><span class="badge bg-danger"><strong>{{$razones_rentabilidad[$i]->calculo_ratio}}</strong> </span></td>
                     @endif
                     @endfor
                 </tr>   

@@ -75,10 +75,10 @@
                           
                                 @elseif($cuenta->cuenta == 'TOTAL DE INGRESOS')
                                 <td><h5><strong>{{$cuenta->cuenta}}</strong></h5></td>
-                                <td><input id="total_ingresos"  type="number" step="any"  class=" item form-control round-form" name="saldo[]" placeholder="Monto en $"  value="{{ number_format($cuenta->saldo, 2)}}" readonly></td>
+                                <td><input id="total_ingresos"  type="number" step="any"  class=" item form-control round-form" name="saldo[]" placeholder="Monto en $"  value="{{$cuenta->saldo}}" readonly></td>
                                 @else
                                 <td>{{$cuenta->cuenta}}</td>
-                                <td><input onkeyup="calcular_ingreso()" type="number" step="any" class=" item form-control round-form monto_ingreso" name="saldo[]" placeholder="Monto en $" value="{{ number_format($cuenta->saldo, 2)}}" required></td>
+                                <td><input onkeyup="calcular_ingreso()" type="number" step="any" class=" item form-control round-form monto_ingreso" name="saldo[]" placeholder="Monto en $" value="{{$cuenta->saldo}}" required></td>
                                 @endif
                                 <input type="text"  name="cuenta[]" value="{{ $cuenta->cuenta }}" hidden>
                                 <div><input type="text"  name="id_estado_financiero[]" value="{{ $estado_actualizar->id_estado_financiero}}" hidden></div>
@@ -95,10 +95,10 @@
                           
                                 @elseif($cuenta->cuenta == 'TOTAL DE GASTOS')
                                 <td><h5><strong>{{$cuenta->cuenta}}</strong></h5></td>
-                                <td><input id="total_gastos"  type="number" step="any"  class=" item form-control round-form" name="saldo[]" placeholder="Monto en $"  value="{{ number_format($cuenta->saldo, 2)}}" readonly></td>
+                                <td><input id="total_gastos"  type="number" step="any"  class=" item form-control round-form" name="saldo[]" placeholder="Monto en $"  value="{{$cuenta->saldo}}" readonly></td>
                                 @else
                                 <td>{{$cuenta->cuenta}}</td>
-                                <td><input onkeyup="calcular_gasto()" type="number" step="any" class=" item form-control round-form monto_gasto" name="saldo[]" placeholder="Monto en $" value="{{ number_format($cuenta->saldo, 2)}}" required></td>
+                                <td><input onkeyup="calcular_gasto()" type="number" step="any" class=" item form-control round-form monto_gasto" name="saldo[]" placeholder="Monto en $" value="{{$cuenta->saldo}}" required></td>
                                 @endif
                                 <input type="text"  name="cuenta[]" value="{{ $cuenta->cuenta }}" hidden>
                                 <div><input type="text"  name="id_estado_financiero[]" value="{{ $estado_actualizar->id_estado_financiero}}" hidden></div>

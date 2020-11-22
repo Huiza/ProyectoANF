@@ -81,7 +81,7 @@
       function drawChart() {
         var data = google.visualization.arrayToDataTable([
           ['cuentas', 'Porcentaje'],
-        @for($i=0; $i<$indice_activos;$i++)
+         @for($i=0; $i<$indice_activos;$i++)
           ['{{$balance[$i]->cuenta}}',{{$balance[$i]->saldo}}],
          @endfor
         ]);
