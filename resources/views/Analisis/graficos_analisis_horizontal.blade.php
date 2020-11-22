@@ -80,7 +80,7 @@
                 
               </div>
             
-             
+              {{$estado_financiero->id_tipo_estado_financiero}}
            
                 <br>
             </section>

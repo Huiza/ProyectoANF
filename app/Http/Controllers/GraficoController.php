@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\EstadoFinanciero;
 use App\Empresa;
 use App\RatioFinanciero;
+use App\DetalleEstadosFinancieros;
 use \DB;
 class GraficoController extends Controller
 {
@@ -57,11 +58,12 @@ class GraficoController extends Controller
         $mensaje = "";
         $estado_financiero = EstadoFinanciero::findOrFail($id);
         $balance = DB::select('select * from detalle_estados_financieros where id_estado_financiero ='.$id);
-        $estado_financiero_anterior = EstadoFinanciero::where('fecha_inicio','<',$estado_financiero->fecha_inicio)->where('id_empresa', $estado_financiero->id_empresa)->orderBy('fecha_inicio', 'DESC')->first();
+        $estado_financiero_anterior = EstadoFinanciero::where('fecha_inicio','<',$estado_financiero->fecha_inicio)->where('id_empresa', $estado_financiero->id_empresa)->where('id_tipo_estado_financiero',$estado_financiero->id_tipo_estado_financiero)->orderBy('fecha_inicio', 'DESC')->first();
         
         if($estado_financiero_anterior)
         {
-        $balance_anterior = DB::select('select * from detalle_estados_financieros where id_estado_financiero ='.$estado_financiero_anterior->id_estado_financiero);;
+            $balance_anterior = DB::select('select * from detalle_estados_financieros where id_estado_financiero ='.$estado_financiero_anterior->id_estado_financiero);
+            
         }
         else{
             $mensaje = "No se han registrado períodos anteriores, no es posible calcular el análisis horizontal!!!";
